@@ -4,9 +4,9 @@ from game.player import Player
 
 class TestPlayer(unittest.TestCase):
     def test_init(self):
-        player_1 = Player()
+        player_1 = Player(BagTiles="BagTiles")
         self.assertEqual(
-            len(player_1.tiles),
+            len(player_1.BagTiles),
             0,
         )
 
