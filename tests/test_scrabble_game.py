@@ -3,7 +3,7 @@ from game.scrabble import ScrabbleGame
 
 
 class TestScrabbleGame(unittest.TestCase):
-    def test_init(self):
+    def test_init(self, BagTiles):
         scrabble_game = ScrabbleGame(players_count=3)
         self.assertIsNotNone(scrabble_game.board)
         self.assertEqual(

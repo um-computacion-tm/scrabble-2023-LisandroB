@@ -5,7 +5,6 @@ class Tile:
         self.letter = letter
         self.value = value
 
-
 class BagTiles:
     def __init__(self):
         self.tiles = [
