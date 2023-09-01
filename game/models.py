@@ -7,13 +7,8 @@ class Tile:
 
 class BagTiles:
     def __init__(self):
-        self.tiles = [
-            Tile('A', 1),
-            Tile('A', 1),
-            Tile('A', 1),
-            Tile('A', 1),
-            Tile('A', 1),
-        ]
+        self.tiles = []
+#       for _ in range(0, 7):    
         random.shuffle(self.tiles)
 
     def take(self, count):
