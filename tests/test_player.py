@@ -1,4 +1,5 @@
 import unittest
+from game.models import BagTiles
 from game.player import Player
 
 class TestPlayer(unittest.TestCase):

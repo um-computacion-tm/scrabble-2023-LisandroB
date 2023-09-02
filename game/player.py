@@ -7,4 +7,3 @@ class Player:
         self.tiles += BagTiles.take(
             7 - len(BagTiles)
         );
-        
