@@ -3,11 +3,11 @@ from game.scrabble import ScrabbleGame
 
 class TestScrabbleGame(unittest.TestCase):
     def test_init(self):
-        scrabble_game = ScrabbleGame(players_count=3)
+        scrabble_game = ScrabbleGame(players_count=4)
         self.assertIsNotNone(scrabble_game.board)
         self.assertEqual(
             len(scrabble_game.players),
-            3,
+            4,
         )
         self.assertIsNotNone(scrabble_game.bag_tiles)
 
