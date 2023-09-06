@@ -10,18 +10,20 @@ class BagTiles:
         self.tiles = []
 
     def initBagTiles(self, dict, n):
-        unpacking = [Tile(Letters.onePoint, 1),
-                Tile(Letters.twoPoints, 2),
-                Tile(Letters.threePoints, 3),
-                Tile(Letters.fourPoints, 4),
-                Tile(Letters.fivePoints, 5),
-                Tile(Letters.eightPoints, 8),
-                Tile(Letters.tenPoints, 10)]    
         for key, value in dict.items():
             for _ in range(0, value):
                 self.tiles.append([Tile(key, n)])
+    
+    def getTiles(self):
+        unpacking = [(Letters.onePoint, 1),
+            (Letters.twoPoints, 2),
+            (Letters.threePoints, 3),
+            (Letters.fourPoints, 4),
+            (Letters.fivePoints, 5),
+            (Letters.eightPoints, 8),
+            (Letters.tenPoints, 10)] 
         for z in unpacking:
-            self.initBagTiles(*z)
+            self.initBagTiles(*z)           
     def take(self, count):
         None
         # bag

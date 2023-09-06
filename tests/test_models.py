@@ -18,6 +18,8 @@ class TestTiles(unittest.TestCase):
 class TestBagTiles(unittest.TestCase):
     @patch('random.shuffle')
     def test_bag_tiles(self, patch_shuffle):
+        s = BagTiles()
+        s.getTiles()
         self.assertEqual(
             len(bag.tiles),
             98,
