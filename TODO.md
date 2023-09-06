@@ -1,5 +1,6 @@
 ## TO DO
-- Add random functionality to adding tiles to bag
+- Add dictionaries in eng/spa
+- Add menu functions
 - basically the entire game haha
 
 ### Added [30/08/23]
