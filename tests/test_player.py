@@ -4,10 +4,10 @@ from game.player import Player
 
 class TestPlayer(unittest.TestCase):
     def test_init(self):
-        player_1 = Player(BagTiles="BagTiles")
+        player_1 = Player(BagTiles.getTiles())
         self.assertEqual(
-            len(player_1.BagTiles),
-            0,
+            len(player_1),
+            7,
         )
 
 if __name__ == '__main__':
