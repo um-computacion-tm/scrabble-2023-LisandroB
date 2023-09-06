@@ -3,3 +3,5 @@ Hi! This is a _simple_ Scrabble clone made in Python that is playable through th
 Or at least, that's the idea.
 
 It will use Pygame and ScrabbleCli. It has very few lines of code yet, as this is mostly the skeleton provided in class. This README is barebones too, so keep an eye out for this project! :) [also, check the CHANGELOG].
+
+[![um-computacion-tm](https://circleci.com/gh/um-computacion-tm/scrabble-2023-lisandrob.svg?style=svg)](https://app.circleci.com/pipelines/github/um-computacion-tm/scrabble-2023-LisandroB/14/workflows/d705be85-a3ee-4407-9b54-4af1668a40d6)
