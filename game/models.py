@@ -12,8 +12,7 @@ class BagTiles:
     def initBagTiles(self, dict, n):
         for key, value in dict.items():
             for _ in range(0, value):
-                self.tiles.append([Tile(key, n)])
-        return self.tiles
+                self.tiles.append(Tile(key, n))
     
     def getTiles(self):
         unpacking = [(Letters.onePoint, 1),

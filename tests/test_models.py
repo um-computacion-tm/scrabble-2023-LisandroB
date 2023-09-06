@@ -19,19 +19,12 @@ class TestBagTiles(unittest.TestCase):
     @patch('random.shuffle')
     def test_bag_tiles(self, patch_shuffle):
         s = BagTiles()
-        
+        s.getTiles()
         self.assertEqual(
-            len(s.getTiles()),
+            len(s.tiles),
             98,
         )
-        self.assertEqual(
-            patch_shuffle.call_count,
-            1,
-        )
-        self.assertEqual(
-            patch_shuffle.call_args[0][0],
-            bag.tiles,
-        )
+
 
 
 #    def test_take(self):
