@@ -1,5 +1,6 @@
 ## TO DO
 - Add random functionality to adding tiles to bag
+- Badges [CodeClimate, CircleCI]
 - basically the entire game haha
 
 ### Added [30/08/23]
