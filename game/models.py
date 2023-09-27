@@ -21,12 +21,14 @@ class BagTiles:
             (Letters.fivePoints, 5),
             (Letters.eightPoints, 8),
             (Letters.tenPoints, 10)] 
-        random.shuffle(unpacking)
         for z in unpacking:
             create(*z)
     
     def getTiles(self):
-        self.initBagTiles()
+        bag = self.initBagTiles()
+        random.shuffle(bag)
+        for _ in range(0, 91):
+            self.tiles.pop()
           
     def take(self, count):
         None

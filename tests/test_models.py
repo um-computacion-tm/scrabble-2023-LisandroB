@@ -7,13 +7,11 @@ global bag
 bag = BagTiles()
 from unittest.mock import patch
 
-
 class TestTiles(unittest.TestCase):
     def test_tile(self):
         tile = Tile('A', 1)
         self.assertEqual(tile.letter, 'A')
         self.assertEqual(tile.value, 1)
-
 
 class TestBagTiles(unittest.TestCase):
     @patch('random.shuffle')
@@ -22,10 +20,8 @@ class TestBagTiles(unittest.TestCase):
         s.getTiles()
         self.assertEqual(
             len(s.tiles),
-            98,
+            7,
         )
-
-
 
 #    def test_take(self):
 #        bag = BagTiles()
@@ -47,7 +43,6 @@ class TestBagTiles(unittest.TestCase):
 #            len(bag.tiles),
 #            2,
 #        )
-
 
 if __name__ == '__main__':
     unittest.main()
