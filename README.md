@@ -1,3 +1,5 @@
+<h1> ScrabbleUM </h1>
+
 Hi! This is a _simple_ Scrabble clone made in Python that is playable through the terminal.
 
 Or at least, that's the idea.
