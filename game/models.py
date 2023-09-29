@@ -23,19 +23,20 @@ class BagTiles:
             (Letters.tenPoints, 10)] 
         for z in unpacking:
             create(*z)
+        return self.tiles;
     
     def getTiles(self):
         bag = self.initBagTiles()
         random.shuffle(bag)
         for _ in range(0, 91):
             self.tiles.pop()
+        return self.tiles
           
     def take(self, count):
-        None
-        # bag
-        # for _ in range(count):
-        #   tiles.append(self.tiles.pop())
-        # return tiles
+        tiles = self.getTiles()
+        for _ in range(count):
+            tiles.append(tiles.pop())
+        return tiles
 
     def put(self, tiles):
         self.tiles.extend(tiles)
