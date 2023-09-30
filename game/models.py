@@ -9,12 +9,11 @@ class BagTiles:
     def __init__(self):
         self.tiles = []
 
-    def initBagTiles(self, dict, n):
-        for key, value in dict.items():
-            for _ in range(0, value):
-                self.tiles.append([Tile(key, n)])
-    
-    def getTiles(self):
+    def initBagTiles(self):
+        def create(dict, n):
+            for key, value in dict.items():
+                for _ in range(0, value):
+                    self.tiles.append(Tile(key, n))
         unpacking = [(Letters.onePoint, 1),
             (Letters.twoPoints, 2),
             (Letters.threePoints, 3),
@@ -23,13 +22,21 @@ class BagTiles:
             (Letters.eightPoints, 8),
             (Letters.tenPoints, 10)] 
         for z in unpacking:
-            self.initBagTiles(*z)           
+            create(*z)
+        return self.tiles;
+    
+    def getTiles(self):
+        bag = self.initBagTiles()
+        random.shuffle(bag)
+        for _ in range(0, 91):
+            self.tiles.pop()
+        return self.tiles
+          
     def take(self, count):
-        None
-        # bag
-        # for _ in range(count):
-        #   tiles.append(self.tiles.pop())
-        # return tiles
+        tiles = self.getTiles()
+        for _ in range(count):
+            tiles.append(tiles.pop())
+        return tiles
 
     def put(self, tiles):
         self.tiles.extend(tiles)
