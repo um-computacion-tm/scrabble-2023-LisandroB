@@ -13,3 +13,5 @@ It will use Pygame and ScrabbleCli. It has very few lines of code yet, as this i
 <a href="https://codeclimate.com/github/um-computacion-tm/scrabble-2023-LisandroB/test_coverage"><img src="https://api.codeclimate.com/v1/badges/5f39fbeaa1318a0b90e2/test_coverage" /></a>
 
 Lisandro Brasolin, Computación 1, Facultad de Ingeniería, Universidad de Mendoza
+
+<img src="https://media.tenor.com/ad9w0MNoG1IAAAAM/whats-a-yeet-playing.gif">
