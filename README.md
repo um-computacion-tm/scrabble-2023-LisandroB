@@ -14,4 +14,4 @@ It will use Pygame and ScrabbleCli. It has very few lines of code yet, as this i
 
 Lisandro Brasolin, Computación 1, Facultad de Ingeniería, Universidad de Mendoza
 
-<img src="https://media.tenor.com/ad9w0MNoG1IAAAAM/whats-a-yeet-playing.gif">
+<img src="https://media.tenor.com/ad9w0MNoG1IAAAAM/whats-a-yeet-playing.gif"/>
