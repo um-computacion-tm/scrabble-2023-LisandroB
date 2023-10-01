@@ -8,9 +8,9 @@ class ScrabbleGame:
         self.bag_tiles = BagTiles()
         self.players = []
         for _ in range(players_count):
-            self.players.append(Player(BagTiles="BagTiles"))
-    def calculate_word_value(self, word):
+            self.players.append(Player())
+    def calculate_word_value(word):
         result = 0;
         for _ in range(len(word)):
-            result =+ word.Cell.letter[1]
+            result += word[_].letter
         return result;
