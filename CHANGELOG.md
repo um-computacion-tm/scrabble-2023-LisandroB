@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added [02/09/23]
-- 
+- Fixed tests + logic for score
 ### Added [30/09/23]
-- Started fixing the tests for point calculations
+- Started fixing tests for score
 - Fixed take/put functions
 - Fixed player functionality
 ### Added [29/09/23]
