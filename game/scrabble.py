@@ -11,6 +11,13 @@ class ScrabbleGame:
             self.players.append(Player())
     def calculate_word_value(word):
         result = 0;
-        for _ in range(len(word)):
-            result += word[_].letter
+        mulres = 0; ## creating a variable for adding whatever the _.multiplier throws back 
+        for _ in word:
+            if _.multiplier_type=="letter":
+                result += _.letter.value * _.multiplier
+            elif _.multiplier == None or _.multiplier_type == None:
+                result += _.letter.value 
+            elif _.multiplier_type=="word":
+                mulres = _.multiplier
+                            
         return result;
