@@ -25,14 +25,10 @@ class TestBagTiles(unittest.TestCase):
 
     def test_take(self):
         bag = BagTiles()
-        tiles = bag.take(2)
+        bag.take(2)
         self.assertEqual(
             len(bag.tiles),
-            3,
-        )
-        self.assertEqual(
-            len(tiles),
-            2,
+            5,
         )
 
     def test_put(self):

@@ -33,10 +33,10 @@ class BagTiles:
         return self.tiles
           
     def take(self, count):
-        tiles = self.getTiles()
+        self.getTiles()
         for _ in range(count):
-            tiles.append(tiles.pop())
-        return tiles
+            self.tiles.pop()
+        return self.tiles
 
     def put(self, tiles):
         self.tiles.extend(tiles)
