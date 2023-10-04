@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added [03/09/23]
 - tests for letters.py
+- tests for test_player.py, logic for letter checking in player.py
 ### Fixed [03/09/23]
-- general indentation structure from tests/game, made it more my like my own code
+- general code indentation structure from tests/game, made it more my like my own code
 ### Fixed [02/09/23]
 - tests + logic for score
 ### Fixed [30/09/23]
