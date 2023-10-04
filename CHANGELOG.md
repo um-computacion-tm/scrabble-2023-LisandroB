@@ -6,12 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added [03/09/23]
+### Added [04/10/23]
+- more tests for scrabble_game
+- word validation, parsing and putting [logic missing, init idea]
+- cli.py, test_cli.py
+### Added [03/10/23]
 - tests for letters.py
 - tests for test_player.py, logic for letter checking in player.py
-### Fixed [03/09/23]
+### Fixed [03/10/23]
 - general code indentation structure from tests/game, made it more my like my own code
-### Fixed [02/09/23]
+### Fixed [02/10/23]
 - tests + logic for score
 ### Fixed [30/09/23]
 - take/put functions

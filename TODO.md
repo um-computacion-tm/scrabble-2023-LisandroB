@@ -1,11 +1,15 @@
 ## TO DO
-1. add dictionary in spa
-2. elaborate player
-3. figure out board [coordinates, positioning]
-4. add score system layer [fixed letter multiplier on board]ç
-5. add menu functions [enter game, how many players, put, take, ...]
-6. basically the entire game haha
-7. add coordinate values to cell.py, add tests [!]
+- redo cli.py [following directions]
+- add //local?// dictionary in spa
+- figure out board [print, coordinates]
+- add score system layer [fixed letter multiplier on board]
+- add missing scrabble.py functions [put, take, ...]
+- basically the entire game haha
+- add coordinate values to cell.py, add tests [!]
+- scrabble's client
 
 ## DONE
 - fixed score system tests
+- arreglar scrabble.py, test_scrabble_game.py
+- elaborate player
+- added some menu functions
