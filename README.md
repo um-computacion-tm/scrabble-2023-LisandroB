@@ -1,4 +1,5 @@
 <h1> ScrabbleUM </h1>
+<img src="https://media.tenor.com/ad9w0MNoG1IAAAAM/whats-a-yeet-playing.gif"/>
 
 Hi! This is a _simple_ Scrabble clone made in Python that is playable through the terminal.
 
@@ -14,4 +15,3 @@ It will use Pygame and ScrabbleCli. It has very few lines of code yet, as this i
 
 Lisandro Brasolin, Computación 1, Facultad de Ingeniería, Universidad de Mendoza
 
-<img src="https://media.tenor.com/ad9w0MNoG1IAAAAM/whats-a-yeet-playing.gif"/>
