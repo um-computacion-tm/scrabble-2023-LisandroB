@@ -24,6 +24,7 @@ class ScrabbleGame:
         1- Validar que usuario tiene esas letras
         2- Validar que la palabra entra en el tablero
         '''
+        self.current_player.has_letters(word)
         self.board.validate_word_inside_board(word, location, orientation)
     
     def get_words():
@@ -34,15 +35,3 @@ class ScrabbleGame:
     
     def put_words():
         '''Modifica el estado del tablero con las palabras consideradas como correctas'''
-    def calculate_word_value(word):
-        result = 0;
-        mulres = 1; ## creating a variable for adding whatever the _.multiplier throws back 
-        for _ in word:
-            if _.multiplier_type=="letter":
-                result += _.letter.value * _.multiplier
-            elif _.multiplier == None or _.multiplier_type == None:
-                result += _.letter.value 
-            elif _.multiplier_type=="word":
-                mulres = _.multiplier
-                result += _.letter.value
-        return mulres * result ## multiplying the result when the score is already added
