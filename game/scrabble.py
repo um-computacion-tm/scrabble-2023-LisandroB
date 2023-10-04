@@ -20,4 +20,4 @@ class ScrabbleGame:
             elif _.multiplier_type=="word":
                 mulres = _.multiplier
                 result += _.letter.value
-        return mulres * result
+        return mulres * result ## multiplying the result when the score is already added
