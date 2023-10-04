@@ -18,14 +18,37 @@ class TestPlayer(unittest.TestCase):
             Tile(letter='C', value=1),
             Tile(letter='A', value=1),
             Tile(letter='U', value=1),
-            Tile(letter='M', value=1),
+            Tile(letter='M', value=1)
         ]
         player_1.tiles.extend(bagTile.tiles)
         tiles = [
             Tile(letter='H', value=1),
             Tile(letter='O', value=1),
             Tile(letter='L', value=1),
+            Tile(letter='A', value=1)
+        ]
+        is_valid = player_1.has_letters(tiles)
+        self.assertEqual(is_valid, True)
+
+    def test_user_has_letters2(self):
+        player_1 = Player()
+        bagTile = BagTiles()
+        bagTile.tiles = [
+            Tile(letter='O', value=1),
             Tile(letter='A', value=1),
+            Tile(letter='F', value=1),
+            Tile(letter='V', value=1),
+            Tile(letter='A', value=1),
+            Tile(letter='I', value=1),
+            Tile(letter='N', value=1)
+        ]
+        player_1.tiles.extend(bagTile.tiles)
+        tiles = [
+            Tile(letter='A', value=1),
+            Tile(letter='V', value=1),
+            Tile(letter='I', value=1),
+            Tile(letter='O', value=1),
+            Tile(letter='N', value=1)
         ]
         is_valid = player_1.has_letters(tiles)
         self.assertEqual(is_valid, True)
@@ -40,14 +63,14 @@ class TestPlayer(unittest.TestCase):
             Tile(letter='O', value=1),
             Tile(letter='U', value=1),
             Tile(letter='C', value=1),
-            Tile(letter='M', value=1),
+            Tile(letter='M', value=1)
         ]
         player_1.tiles.extend(bagTile.tiles)
         tiles = [
             Tile(letter='H', value=1),
             Tile(letter='O', value=1),
             Tile(letter='L', value=1),
-            Tile(letter='A', value=1),
+            Tile(letter='A', value=1)
         ]
         is_valid = player_1.has_letters(tiles)
         self.assertEqual(is_valid, False)
@@ -62,14 +85,14 @@ class TestPlayer(unittest.TestCase):
             Tile(letter='A', value=1),
             Tile(letter='A', value=1),
             Tile(letter='M', value=1),
-            Tile(letter='Ñ', value=1),
+            Tile(letter='Ñ', value=1)
         ]
         player_1.tiles.extend(bagTile.tiles)
         tiles = [
             Tile(letter='C', value=1),
             Tile(letter='A', value=1),
             Tile(letter='M', value=1),
-            Tile(letter='A', value=1),
+            Tile(letter='A', value=1)
         ]
         is_valid = player_1.has_letters(tiles)
         self.assertEqual(is_valid, False)
