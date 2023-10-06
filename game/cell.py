@@ -1,18 +1,18 @@
 from game.models import Tile
 
 class Cell:
-    def __init__(self, multiplier=None, multiplier_type=None, letter=None):
+    def __init__(self, multiplier=None, multiplier_type=None, tile=None):
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
-        self.letter = letter
-
-    def add_letter(self, letter:Tile):
-        self.letter = letter
+        self.tile = tile
 
     def calculate_value(self):
-        if self.letter is None:
+        if self.tile is None:
             return 0
         if self.multiplier_type == 'letter':
-            return self.letter.value * self.multiplier
+            return self.tile.value * self.multiplier
         else:
-            return self.letter.value
+            return self.tile.value
+    
+    def addValue(self, tile):
+        self.tile = tile;

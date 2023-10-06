@@ -25,4 +25,3 @@ def cli():
     else:
         print("Juego terminado! Desea jugar otra vez? (Y/N): ")
     """
-
