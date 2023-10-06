@@ -5,17 +5,17 @@ class Board:
         self.grid = [[Cell(1, "", "") for _ in range(15)] for _ in range(15)]
 
     @staticmethod
-    def calculate_word_value(word):
+    def calculateWordValue(word):
         result = 0;
         mulres = 1; ## creating a variable for adding whatever the _.multiplier throws back 
         for _ in word:
             if _.multiplier_type=="letter":
-                result += _.letter.value * _.multiplier
+                result += _.tile.value * _.multiplier
             elif _.multiplier == None or _.multiplier_type == None:
-                result += _.letter.value 
+                result += _.tile.value 
             elif _.multiplier_type=="word":
                 mulres = _.multiplier
-                result += _.letter.value
+                result += _.tile.value
         return mulres * result ## multiplying the result when the score is already added
 
     def validate_word_inside_board(self, word, location, orientation):
@@ -27,14 +27,25 @@ class Board:
                 return False
             else:
                 return True
-        else:
-            pass
+        elif orientation == "V":
+            if position_y + len_word > 15:
+                return False;
+            else:
+                return True;
 
-    def is_empty(self):
-        print(self.grid[0][1].letter(Tile("A", 1)))
+    def isEmpty(self):
+        res = []
+        check = 0;
         for _ in self.grid:
             for x in _:
-                if x.letter == "":
-                    print("Sí!")
-                else: 
-                    print("No!")
+               res.append(x)
+        for _ in res:
+            if _.tile:
+                check+=1
+        if check > 0:
+            return False;    
+        else:
+            return True;
+            
+    def addTile(self, x, y, tile=Tile):
+        self.grid[x][y].addValue(tile)
