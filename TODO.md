@@ -1,4 +1,5 @@
 ## TO DO
+- refactor code smells [codeclimate]
 - add score system layer [fixed letter multiplier on board]
 - add missing scrabble.py functions [put, take, ...]
 - add //local?// dictionary in spa
