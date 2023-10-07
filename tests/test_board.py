@@ -42,8 +42,10 @@ class TestBoard(unittest.TestCase):
         word = "Facultad"
         location = (7, 4)
         orientation = "H"
-        word_is_valid = board.validate_word_inside_board(word, location, orientation)
-        assert word_is_valid == True
+        self.assertEqual(board.validate_word_inside_board(word, location, orientation), True) 
+    def test_multipliers(self):
+        board = Board()
+        self.assertEqual(board.fillWithMultipliers(), True)
 
     """
     def test_place_word_empty_board_horizontal_wrong(self):
