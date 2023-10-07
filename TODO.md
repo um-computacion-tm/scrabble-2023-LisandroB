@@ -1,12 +1,11 @@
 ## TO DO
+- refactor code smells [codeclimate]
+- add score system layer [fixed letter multiplier on board]
 - add missing scrabble.py functions [put, take, ...]
 - add //local?// dictionary in spa
-- figure out board [print, coordinates]
-- add score system layer [fixed letter multiplier on board]
+- figure out board [print]
 - basically the entire game haha
-- add coordinate values to cell.py, add tests [!]
 - redo cli.py [following directions] 
-- scrabble's client
 
 ## DONE
 - fixed score system tests

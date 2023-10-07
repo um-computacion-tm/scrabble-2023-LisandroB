@@ -8,8 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added [07/10/23]
 -
-### Fixed [06/10/23]
+### Added [06/10/23]
 - tests for test_board.py
+### Fixed [06/10/23]
+- test_board.py non-functional tests
 ### Added [05/10/23]
 - functions (addTile, isEmpty, addValue), tests for test_board.py
 ### Added [04/10/23] 
