@@ -6,8 +6,7 @@ class TestBoard(unittest.TestCase):
     def test_init(self):
         board = Board()
         self.assertEqual(len(board.grid), 15)
-        self.assertEqual(
-            len(board.grid[0]),15)
+        self.assertEqual(len(board.grid[0]),15)
         
     def test_word_inside_board(self):
         board = Board()
@@ -39,10 +38,7 @@ class TestBoard(unittest.TestCase):
 
     def test_place_word_empty_board_horizontal_fine(self):
         board = Board()
-        word = "Facultad"
-        location = (7, 4)
-        orientation = "H"
-        self.assertEqual(board.validate_word_inside_board(word, location, orientation), True) 
+        self.assertEqual(board.validate_word_inside_board("Facultad", (7, 4), "H"), True) 
     def test_multipliers(self):
         board = Board()
         self.assertEqual(board.fillWithMultipliers(), True)
