@@ -1,14 +1,14 @@
 import unittest;
-from game.letters import Letters;
+from game.language.letters_spa import Letters as LettersSpa;
 
 class TestLetters(unittest.TestCase):
-    def test_engletinit(self):
-        self.assertEqual(all([Letters.eightPoints,
-            Letters.fivePoints,
-            Letters.fourPoints,
-            Letters.onePoint,
-            Letters.tenPoints,
-            Letters.threePoints]), True)
-        
+    def test_spaletinit(self):
+        self.assertEqual(all([LettersSpa.eightPoints,
+            LettersSpa.fivePoints,
+            LettersSpa.fourPoints,
+            LettersSpa.onePoint,
+            LettersSpa.tenPoints,
+            LettersSpa.threePoints]), True)
+
 if __name__ == '__main__':
     unittest.main()

@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added [07/10/23]
--
+- tests, created new file for english letters, multipliers
 ### Added [06/10/23]
 - tests for test_board.py
 ### Fixed [06/10/23]

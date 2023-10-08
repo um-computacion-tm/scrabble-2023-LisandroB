@@ -1,5 +1,5 @@
 import random
-from game.letters import Letters
+from game.language.letters_spa import Letters
 class Tile:
     def __init__(self, letter, value):
         self.letter = letter

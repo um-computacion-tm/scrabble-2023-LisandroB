@@ -1,4 +1,6 @@
 ## TO DO
+- understand board
+- fix list index out of range in board.py 
 - refactor code smells [codeclimate]
 - add score system layer [fixed letter multiplier on board]
 - add missing scrabble.py functions [put, take, ...]

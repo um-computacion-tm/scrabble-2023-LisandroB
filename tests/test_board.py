@@ -27,7 +27,16 @@ class TestBoard(unittest.TestCase):
         board.addTile(9, 7, Tile('S', 1))
         board.addTile(10, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
-
+    """
+    def test_addTileInCorner(self):
+        board = Board()
+        board.addTile(15, 15, Tile('C', 1))
+        self.assertEqual(board.isEmpty(), False)
+    
+    def test_boardDoubleLetterMultiplier(self):
+        board = Board()
+        self.assertEqual(board.grid[4][1].multiplier, 2)
+    """
     def test_place_word_empty_board_horizontal_fine(self):
         board = Board()
         self.assertEqual(board.validate_word_inside_board("Facultad", (7, 4), "H"), True)
@@ -40,11 +49,11 @@ class TestBoard(unittest.TestCase):
         board = Board()
         self.assertEqual(board.validate_word_inside_board("Facultad", (4, 7), "V"), True)
 
-    def test_place_word_empty_board_vertical_wrong(self):
+    def test_boardEmptyPlaceWrongVerticalWord(self):
         board = Board()
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 11), "V"), False)
     
-    def test_place_word_not_empty_board_horizontal_fine(self):
+    def test_boardNotEmptyPlaceRightHorizontalWord(self):
         board = Board()
         board.addTile(7, 7, Tile('C', 1))
         board.addTile(8, 7, Tile('A', 1))
@@ -52,6 +61,6 @@ class TestBoard(unittest.TestCase):
         board.addTile(10, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 6), "H"), True)
-
+    
 if __name__ == '__main__':
     unittest.main()
