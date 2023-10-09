@@ -1,6 +1,7 @@
 from game.board import Board
 from game.player import Player
 from game.models import BagTiles
+
 class ScrabbleGame:
     def __init__(self, players_count: int):
         self.board = Board()

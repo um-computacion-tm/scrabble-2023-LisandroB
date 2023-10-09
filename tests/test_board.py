@@ -6,7 +6,7 @@ class TestBoard(unittest.TestCase):
     def test_init(self):
         board = Board()
         self.assertEqual(len(board.grid), 15)
-        self.assertEqual(len(board.grid[0]),15)
+        self.assertEqual(len(board.grid[0]), 15)
         
     def test_word_inside_board(self):
         board = Board()
@@ -27,7 +27,7 @@ class TestBoard(unittest.TestCase):
         board.addTile(9, 7, Tile('S', 1))
         board.addTile(10, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
-    """
+
     def test_addTileInCorner(self):
         board = Board()
         board.addTile(15, 15, Tile('C', 1))
@@ -35,8 +35,24 @@ class TestBoard(unittest.TestCase):
     
     def test_boardDoubleLetterMultiplier(self):
         board = Board()
-        self.assertEqual(board.grid[4][1].multiplier, 2)
-    """
+        self.assertEqual(board.getTile(15, 4).multiplier, 2)
+        self.assertEqual(board.getTile(15, 4).multiplier_type, "letter")
+
+    def test_boardTripleLetterMultiplier(self):
+        board = Board()
+        self.assertEqual(board.getTile(14, 10).multiplier, 3)
+        self.assertEqual(board.getTile(14, 10).multiplier_type, "letter")
+
+    def test_boardDoubleWordMultiplier(self):
+        board = Board()
+        self.assertEqual(board.getTile(15, 1).multiplier, 2)
+        self.assertEqual(board.getTile(15, 1).multiplier_type, "word")
+
+    def test_boardTripleWordMultiplier(self):
+        board = Board()
+        self.assertEqual(board.getTile(0, 0).multiplier, 3)
+        self.assertEqual(board.getTile(0, 0).multiplier_type, "word")
+        
     def test_place_word_empty_board_horizontal_fine(self):
         board = Board()
         self.assertEqual(board.validate_word_inside_board("Facultad", (7, 4), "H"), True)
@@ -58,7 +74,7 @@ class TestBoard(unittest.TestCase):
         board.addTile(7, 7, Tile('C', 1))
         board.addTile(8, 7, Tile('A', 1))
         board.addTile(9, 7, Tile('S', 1))
-        board.addTile(10, 7, Tile('A', 1))
+        board.addTile(15, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 6), "H"), True)
     

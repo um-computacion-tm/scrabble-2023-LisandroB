@@ -6,13 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [09/10/23]
+- play.py, run_test.py, addTile, getTile, fillWithMultipliers, tests in test_board
 ### Added [07/10/23]
-- tests, created new file for english letters, multipliers
+- tests, new file for english letters, multipliers
 ### Added [06/10/23]
 - tests for test_board.py
 ### Fixed [06/10/23]
 - test_board.py non-functional tests
-### Added [05/10/23]
+### Added [05/10/23]0
 - functions (addTile, isEmpty, addValue), tests for test_board.py
 ### Added [04/10/23] 
 - more tests for scrabble_game

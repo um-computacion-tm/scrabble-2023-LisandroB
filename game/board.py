@@ -51,7 +51,25 @@ class Board:
             return True;
 
     def fillWithMultipliers(self):
-        pass;
+        for _ in Multipliers.doubleLetter:
+            (x, y) = _
+            self.grid[x-1][y-1].multiplier = 2
+            self.grid[x-1][y-1].multiplier_type = "letter"
+        for _ in Multipliers.tripleletter:
+            (x, y) = _
+            self.grid[x-1][y-1].multiplier = 3
+            self.grid[x-1][y-1].multiplier_type = "letter"
+        for _ in Multipliers.doubleWord:
+            (x, y) = _
+            self.grid[x-1][y-1].multiplier = 2
+            self.grid[x-1][y-1].multiplier_type = "word"
+        for _ in Multipliers.tripleWord:
+            (x, y) = _
+            self.grid[x-1][y-1].multiplier = 3
+            self.grid[x-1][y-1].multiplier_type = "word"
             
     def addTile(self, x, y, tile=Tile):
-        self.grid[x][y].addValue(tile)
+        self.grid[x-1][y-1].addValue(tile)
+    
+    def getTile(self, x, y):
+        return self.grid[x-1][y-1]

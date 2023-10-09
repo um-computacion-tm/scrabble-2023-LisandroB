@@ -1,8 +1,5 @@
 ## TO DO
-- understand board
-- fix list index out of range in board.py 
 - refactor code smells [codeclimate]
-- add score system layer [fixed letter multiplier on board]
 - add missing scrabble.py functions [put, take, ...]
 - add //local?// dictionary in spa
 - figure out board [print]
@@ -10,6 +7,9 @@
 - redo cli.py [following directions] 
 
 ## DONE
+- understand board
+- fix list index out of range in board.py 
+- add score system layer [fixed letter multiplier on board]
 - fixed score system tests
 - arreglar scrabble.py, test_scrabble_game.py
 - elaborate player
