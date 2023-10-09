@@ -22,36 +22,46 @@ class TestBoard(unittest.TestCase):
 
     def test_board_is_not_empty(self):
         board = Board()
-        board.addTile(7, 7, Tile('C', 1))
-        board.addTile(8, 7, Tile('A', 1))
-        board.addTile(9, 7, Tile('S', 1))
-        board.addTile(10, 7, Tile('A', 1))
+        board.addTileToBoard(7, 7, Tile('C', 1))
+        board.addTileToBoard(8, 7, Tile('A', 1))
+        board.addTileToBoard(9, 7, Tile('S', 1))
+        board.addTileToBoard(10, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
 
     def test_addTileInCorner(self):
         board = Board()
-        board.addTile(15, 15, Tile('C', 1))
+        board.addTileToBoard(15, 15, Tile('C', 1))
         self.assertEqual(board.isEmpty(), False)
     
     def test_boardDoubleLetterMultiplier(self):
         board = Board()
-        self.assertEqual(board.getTile(15, 4).multiplier, 2)
-        self.assertEqual(board.getTile(15, 4).multiplier_type, "letter")
+        self.assertEqual(board.getTileInBoard(15, 4).multiplier, 2)
+        self.assertEqual(board.getTileInBoard(15, 4).multiplier_type, "letter")
+    
+    def test_boardDoubleLetterMultiplier2(self):
+        board = Board()
+        self.assertEqual(board.getTileInBoard(0, 12).multiplier, 2)
+        self.assertEqual(board.getTileInBoard(0, 12).multiplier_type, "letter")
 
     def test_boardTripleLetterMultiplier(self):
         board = Board()
-        self.assertEqual(board.getTile(14, 10).multiplier, 3)
-        self.assertEqual(board.getTile(14, 10).multiplier_type, "letter")
+        self.assertEqual(board.getTileInBoard(14, 6).multiplier, 3)
+        self.assertEqual(board.getTileInBoard(14, 6).multiplier_type, "letter")
 
     def test_boardDoubleWordMultiplier(self):
         board = Board()
-        self.assertEqual(board.getTile(15, 1).multiplier, 2)
-        self.assertEqual(board.getTile(15, 1).multiplier_type, "word")
+        self.assertEqual(board.getTileInBoard(14, 2).multiplier, 2)
+        self.assertEqual(board.getTileInBoard(14, 2).multiplier_type, "word")
 
     def test_boardTripleWordMultiplier(self):
         board = Board()
-        self.assertEqual(board.getTile(0, 0).multiplier, 3)
-        self.assertEqual(board.getTile(0, 0).multiplier_type, "word")
+        self.assertEqual(board.getTileInBoard(0, 0).multiplier, 3)
+        self.assertEqual(board.getTileInBoard(0, 0).multiplier_type, "word")
+        
+    def test_boardTripleWordMultiplier2(self):
+        board = Board()
+        self.assertEqual(board.getTileInBoard(0, 0).multiplier, 3)
+        self.assertEqual(board.getTileInBoard(0, 0).multiplier_type, "word")
         
     def test_place_word_empty_board_horizontal_fine(self):
         board = Board()
@@ -71,12 +81,15 @@ class TestBoard(unittest.TestCase):
     
     def test_boardNotEmptyPlaceRightHorizontalWord(self):
         board = Board()
-        board.addTile(7, 7, Tile('C', 1))
-        board.addTile(8, 7, Tile('A', 1))
-        board.addTile(9, 7, Tile('S', 1))
-        board.addTile(15, 7, Tile('A', 1))
+        board.addTileToBoard(7, 7, Tile('C', 1))
+        board.addTileToBoard(8, 7, Tile('A', 1))
+        board.addTileToBoard(9, 7, Tile('S', 1))
+        board.addTileToBoard(15, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 6), "H"), True)
     
+    def test_showBoard(self):
+        board = Board()
+        board.showBoard()
 if __name__ == '__main__':
     unittest.main()

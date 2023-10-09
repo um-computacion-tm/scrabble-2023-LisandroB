@@ -6,7 +6,7 @@ class Board:
     def __init__(self):
         self.grid = [[Cell(1, "", "") for _ in range(15)] for _ in range(15)]
         self.fillWithMultipliers()
-    
+        
     def checkIfEmpty(self):
         res = []
         check = 0;
@@ -56,8 +56,7 @@ class Board:
     def applyMultipliersToCoords(self, Coords, multiplier, multiplier_type):
         for _ in Coords:
             (x, y) = _
-            self.grid[x-1][y-1].multiplier = multiplier
-            self.grid[x-1][y-1].multiplier_type = multiplier_type
+            self.grid[x-1][y-1].multiplier, self.grid[x-1][y-1].multiplier_type = multiplier, multiplier_type
 
     def fillWithMultipliers(self):
         unpacking = [(Multipliers.doubleLetter, 2, "letter"),
@@ -66,9 +65,14 @@ class Board:
             (Multipliers.tripleWord, 3, "word")]
         for z in unpacking:
             self.applyMultipliersToCoords(*z)
+    
+    def showBoard(self):
+        print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(15)]))
+        for row_index, row in enumerate(self.grid):
+            print(str(row_index).rjust(2) + '| ' + ' '.join([repr(cell) for cell in row]))
             
-    def addTile(self, x, y, tile=Tile):
+    def addTileToBoard(self, x, y, tile=Tile):
         self.grid[x-1][y-1].addValue(tile)
     
-    def getTile(self, x, y):
+    def getTileInBoard(self, x, y):
         return self.grid[x-1][y-1]

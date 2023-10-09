@@ -5,6 +5,14 @@ class Cell:
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
         self.tile = tile
+        
+    def __repr__(self):
+        if self.tile:
+            return repr(self.tile)
+        if self.multiplier > 1:
+            return f'{"W" if self.multiplier_type == "word" else "L"}x{self.multiplier}'
+        else:
+            return '   '
 
     def calculate_value(self):
         if self.tile is None:
