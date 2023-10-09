@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added [09/10/23]
-- play.py, run_test.py, addTile, getTile, fillWithMultipliers, tests in test_board
+- play.py, run_test.py, addTile, getTile, applyMultipliersToList, fillWithMultipliers, applyMultipliersToCoords, checkIfEmpty, tests in test_board
 ### Added [07/10/23]
 - tests, new file for english letters, multipliers
 ### Added [06/10/23]

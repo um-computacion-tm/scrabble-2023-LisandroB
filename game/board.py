@@ -6,6 +6,20 @@ class Board:
     def __init__(self):
         self.grid = [[Cell(1, "", "") for _ in range(15)] for _ in range(15)]
         self.fillWithMultipliers()
+    
+    def checkIfEmpty(self):
+        res = []
+        check = 0;
+        for _ in self.grid:
+            for x in _:
+               res.append(x)
+        for _ in res:
+            if _.tile:
+                check+=1
+        if check > 0:
+            return False;    
+        else:
+            return True;
         
     @staticmethod
     def calculateWordValue(word):
@@ -37,36 +51,21 @@ class Board:
                 return True;
 
     def isEmpty(self):
-        res = []
-        check = 0;
-        for _ in self.grid:
-            for x in _:
-               res.append(x)
-        for _ in res:
-            if _.tile:
-                check+=1
-        if check > 0:
-            return False;    
-        else:
-            return True;
+        return self.checkIfEmpty()
+    
+    def applyMultipliersToCoords(self, Coords, multiplier, multiplier_type):
+        for _ in Coords:
+            (x, y) = _
+            self.grid[x-1][y-1].multiplier = multiplier
+            self.grid[x-1][y-1].multiplier_type = multiplier_type
 
     def fillWithMultipliers(self):
-        for _ in Multipliers.doubleLetter:
-            (x, y) = _
-            self.grid[x-1][y-1].multiplier = 2
-            self.grid[x-1][y-1].multiplier_type = "letter"
-        for _ in Multipliers.tripleletter:
-            (x, y) = _
-            self.grid[x-1][y-1].multiplier = 3
-            self.grid[x-1][y-1].multiplier_type = "letter"
-        for _ in Multipliers.doubleWord:
-            (x, y) = _
-            self.grid[x-1][y-1].multiplier = 2
-            self.grid[x-1][y-1].multiplier_type = "word"
-        for _ in Multipliers.tripleWord:
-            (x, y) = _
-            self.grid[x-1][y-1].multiplier = 3
-            self.grid[x-1][y-1].multiplier_type = "word"
+        unpacking = [(Multipliers.doubleLetter, 2, "letter"),
+            (Multipliers.tripleletter, 3, "letter"),
+            (Multipliers.doubleWord, 2, "word"),
+            (Multipliers.tripleWord, 3, "word")]
+        for z in unpacking:
+            self.applyMultipliersToCoords(*z)
             
     def addTile(self, x, y, tile=Tile):
         self.grid[x-1][y-1].addValue(tile)
