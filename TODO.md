@@ -1,12 +1,15 @@
 ## TO DO
 - arreglar board multipliers [no aparecen bien, chequear si los valores están bien/el print está bien]
+- lógica de cli.py, juego en general
+- limites dependiendo de si hay tiles o no al poner
 - refactor code smells [codeclimate]
 - add missing scrabble.py functions [put, take, ...]
-- add //local?// dictionary in spa
 - basically the entire game haha
 - redo cli.py [following directions] 
 
 ## DONE
+- added online api as dictionary in spa
+- reworked player/bagtile interaction
 - understand board
 - figure out board [print]
 - fix list index out of range in board.py 

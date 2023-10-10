@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed [10/10/23]
+- tests for test_scrabble_game.py, test_models.py, player/bagtile logic
+### Added [10/10/23]
+- tests in test_player.py
 ### Added [09/10/23]
 - play.py, run_test.py, dictionary.py, test_dictionary.py, addTileToBoard, getTileInBoard, applyMultipliersToList, fillWithMultipliers, applyMultipliersToCoords, checkIfEmpty, tests in test_board, showBoard
 ### Added [07/10/23]

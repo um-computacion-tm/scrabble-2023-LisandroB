@@ -1,13 +1,14 @@
 from game.board import Board
 from game.player import Player
 from game.models import BagTiles
+from game.dictionary import validate_word as dict
 
 class ScrabbleGame:
-    def __init__(self, players_count: int):
+    def __init__(self, playerCount: int):
         self.board = Board()
         self.bagTiles = BagTiles()
         self.players:list[Player] = []
-        for index in range(players_count):
+        for index in range(playerCount):
             self.players.append(Player())
         self.current_player = None
 
@@ -19,24 +20,13 @@ class ScrabbleGame:
         else:
             index = self.players.index(self.current_player) + 1
             self.current_player = self.players[index]
-        
-    """
-    def validate_word(self, word, location, orientation):
-        if not dict_validateWord(word):
-            raise InvalidWordException("Su palabra no existe en el diccionario")
-        if not self.board.validate_word_inside_board(word, location, orientation):
-            raise InvalidPlaceWordException("Su palabra excede el tablero")
-        if not self.board.validate_word_place_board(word, location, orientation):
-            raise InvalidPlaceWordException("Su palabra esta mal puesta en el tablero")
 
-    def validate_word(self, word, location, orientation):
-        '''
-        1- Validar que usuario tiene esas letras
-        2- Validar que la palabra entra en el tablero
-        '''
-        self.current_player.has_letters(word)
-        self.board.validate_word_inside_board(word, location, orientation)
-    """
+    def validateWord(self, word, location, orientation):
+        if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
+            return True;
+        else:
+            return False;
+    
     def get_words():
             '''
             Obtener las posibles palabras que se pueden formar, dada una palabra, ubicacion y orientacion 

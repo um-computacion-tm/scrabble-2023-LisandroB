@@ -9,7 +9,18 @@ class TestPlayer(unittest.TestCase):
     
     def test_rellenar(self):
         player1 = Player()
-        bagTile = BagTiles()
+        player1.getTiles()
+        self.assertEqual(len(player1.tiles), 7)
+
+    def test_playerHasWord(self):
+        player1 = Player()
+        player1.tiles = [Tile('A', 1), Tile('A', 1), Tile('C', 1), Tile('X', 1), Tile('S', 1), Tile('F', 1), Tile('I', 1)]
+        self.assertEqual(player1.hasWord("casa"), True)
+
+    def test_playerDoesntHaveWord(self):
+        player1 = Player()
+        player1.tiles = [Tile('T', 1), Tile('C', 1), Tile('E', 1), Tile('A', 1), Tile('D', 1), Tile('O', 1), Tile('D', 1)]
+        self.assertEqual(player1.hasWord("torpe"), True)
 
     def test_validate_user_has_letters(self):
         player1 = Player()
