@@ -4,8 +4,10 @@ class Player:
     def __init__(self): 
         self.tiles = [];
         self.id = 0;
+    
     def rellenar(self):
         self.tiles += BagTiles.take(7 - len(BagTiles));
+
     def has_letters(self, tiles):
         res = []
         bagtiles = []

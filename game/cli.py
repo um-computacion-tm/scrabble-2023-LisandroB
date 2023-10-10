@@ -1,8 +1,12 @@
 from game.scrabble import ScrabbleGame
+from art import *
+welcome = text2art("ScrabbleUM", font='block', chr_ignore=True) 
 
 class Game():
+    Art=text2art("art") 
     def cli(self):
         print("Bienvenido a ScrabbleUM!")
+        print(welcome)
         while True:
             try: 
                 players_count = int(input("Ingrese cantidad de jugadores: "))
@@ -12,8 +16,8 @@ class Game():
             except ValueError:
                 print("Valor invalido")
         scrabble_game = ScrabbleGame(players_count=players_count)
+    """
         print("Cantidad de jugadores: ", len(scrabble_game.players))
-        """ 
         while scrabble_game.validate_turn:
             scrabble_game.next_turn()
             print(f"Turno del jugador {scrabble_game.current_player.id}")
@@ -25,4 +29,4 @@ class Game():
             scrabble_game.validate_word(word, location, orientation)
         else:
             print("Juego terminado! Desea jugar otra vez? (Y/N): ")
-        """
+    """

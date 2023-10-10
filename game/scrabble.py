@@ -19,6 +19,15 @@ class ScrabbleGame:
         else:
             index = self.players.index(self.current_player) + 1
             self.current_player = self.players[index]
+        
+    """
+    def validate_word(self, word, location, orientation):
+        if not dict_validateWord(word):
+            raise InvalidWordException("Su palabra no existe en el diccionario")
+        if not self.board.validate_word_inside_board(word, location, orientation):
+            raise InvalidPlaceWordException("Su palabra excede el tablero")
+        if not self.board.validate_word_place_board(word, location, orientation):
+            raise InvalidPlaceWordException("Su palabra esta mal puesta en el tablero")
 
     def validate_word(self, word, location, orientation):
         '''
@@ -27,7 +36,7 @@ class ScrabbleGame:
         '''
         self.current_player.has_letters(word)
         self.board.validate_word_inside_board(word, location, orientation)
-    
+    """
     def get_words():
             '''
             Obtener las posibles palabras que se pueden formar, dada una palabra, ubicacion y orientacion 
