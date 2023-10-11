@@ -7,23 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed [11/10/23]
-- multiplier distribution in board, letter distribution in letters_spa [no longer has 'ch', 'rr' or 'll' tiles], tests in test_player.py, test_scrabble_game
+- showBoard
+- function names [addTileToCell, getCellInBoard] in board.py
+- tests in test_player.py, test_scrabble_game
+- multiplier distribution in board
+- letter distribution in letters_spa [no longer has 'ch', 'rr' or 'll' tiles]
 ### Added [11/10/23]
-- tests in test_scrabble_game.py, test_models.py, test_cli.py, moved showBoard to cli.py,  logic in hasWord (player.py)
+- tests in test_scrabble_game.py, test_models.py, test_cli.py
+- logic in hasWord (player.py)
+- moved showBoard to cli.py
 ### Fixed [10/10/23]
-- tests for test_scrabble_game.py, test_models.py, player/bagtile logic
+- tests for test_scrabble_game.py, test_models.py
+- player/bagtile logic
 ### Added [10/10/23]
 - tests in test_player.py
 ### Added [09/10/23]
-- play.py, run_test.py, dictionary.py, test_dictionary.py, addTileToBoard, getTileInBoard, applyMultipliersToList, fillWithMultipliers, applyMultipliersToCoords, checkIfEmpty, tests in test_board, showBoard
+- files play.py, run_test.py, dictionary.py, test_dictionary.py, 
+- functions addTileToCell, getCellInBoard, applyMultipliersToList, fillWithMultipliers, applyMultipliersToCoords, checkIfEmpty, showBoard
+- tests in test_board
 ### Added [07/10/23]
-- tests, new file for english letters, multipliers
+- tests, multipliers
+- new file for english letters
 ### Added [06/10/23]
 - tests for test_board.py
 ### Fixed [06/10/23]
 - test_board.py non-functional tests
 ### Added [05/10/23]0
-- functions (addTile, isEmpty, addValue), tests for test_board.py
+- functions (addTile, isEmpty, addValue)
+- tests for test_board.py
 ### Added [04/10/23] 
 - more tests for scrabble_game
 - word validation, parsing and putting [logic missing, init idea]

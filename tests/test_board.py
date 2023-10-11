@@ -22,46 +22,46 @@ class TestBoard(unittest.TestCase):
 
     def test_board_is_not_empty(self):
         board = Board()
-        board.addTileToBoard(7, 7, Tile('C', 1))
-        board.addTileToBoard(8, 7, Tile('A', 1))
-        board.addTileToBoard(9, 7, Tile('S', 1))
-        board.addTileToBoard(10, 7, Tile('A', 1))
+        board.addTileToCell(7, 7, Tile('C', 1))
+        board.addTileToCell(8, 7, Tile('A', 1))
+        board.addTileToCell(9, 7, Tile('S', 1))
+        board.addTileToCell(10, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
 
     def test_addTileInCorner(self):
         board = Board()
-        board.addTileToBoard(15, 15, Tile('C', 1))
+        board.addTileToCell(15, 15, Tile('C', 1))
         self.assertEqual(board.isEmpty(), False)
     
     def test_boardDoubleLetterMultiplier(self):
         board = Board()
-        self.assertEqual(board.getTileInBoard(15, 4).multiplier, 2)
-        self.assertEqual(board.getTileInBoard(15, 4).multiplier_type, "letter")
+        self.assertEqual(board.getCellInBoard(15, 4).multiplier, 2)
+        self.assertEqual(board.getCellInBoard(15, 4).multiplier_type, "letter")
 
     def test_boardDoubleLetterMultiplier2(self):
         board = Board()
-        self.assertEqual(board.getTileInBoard(7, 7).multiplier, 2)
-        self.assertEqual(board.getTileInBoard(7, 7).multiplier_type, "letter")
+        self.assertEqual(board.getCellInBoard(7, 7).multiplier, 2)
+        self.assertEqual(board.getCellInBoard(7, 7).multiplier_type, "letter")
     
     def test_boardTripleLetterMultiplier(self):
         board = Board()
-        self.assertEqual(board.getTileInBoard(14, 6).multiplier, 3)
-        self.assertEqual(board.getTileInBoard(14, 6).multiplier_type, "letter")
+        self.assertEqual(board.getCellInBoard(14, 6).multiplier, 3)
+        self.assertEqual(board.getCellInBoard(14, 6).multiplier_type, "letter")
 
     def test_boardTripleLetterMultiplier2(self):
         board = Board()
-        self.assertEqual(board.getTileInBoard(14, 6).multiplier, 3)
-        self.assertEqual(board.getTileInBoard(14, 6).multiplier_type, "letter")
+        self.assertEqual(board.getCellInBoard(14, 6).multiplier, 3)
+        self.assertEqual(board.getCellInBoard(14, 6).multiplier_type, "letter")
 
     def test_boardDoubleWordMultiplier(self):
         board = Board()
-        self.assertEqual(board.getTileInBoard(14, 2).multiplier, 2)
-        self.assertEqual(board.getTileInBoard(14, 2).multiplier_type, "word")
+        self.assertEqual(board.getCellInBoard(14, 2).multiplier, 2)
+        self.assertEqual(board.getCellInBoard(14, 2).multiplier_type, "word")
 
     def test_boardTripleWordMultiplier(self):
         board = Board()
-        self.assertEqual(board.getTileInBoard(0, 0).multiplier, 3)
-        self.assertEqual(board.getTileInBoard(0, 0).multiplier_type, "word")
+        self.assertEqual(board.getCellInBoard(0, 0).multiplier, 3)
+        self.assertEqual(board.getCellInBoard(0, 0).multiplier_type, "word")
         
     def test_place_word_empty_board_horizontal_fine(self):
         board = Board()
@@ -81,10 +81,10 @@ class TestBoard(unittest.TestCase):
     
     def test_boardNotEmptyPlaceRightHorizontalWord(self):
         board = Board()
-        board.addTileToBoard(7, 7, Tile('C', 1))
-        board.addTileToBoard(8, 7, Tile('A', 1))
-        board.addTileToBoard(9, 7, Tile('S', 1))
-        board.addTileToBoard(15, 7, Tile('A', 1))
+        board.addTileToCell(7, 7, Tile('C', 1))
+        board.addTileToCell(8, 7, Tile('A', 1))
+        board.addTileToCell(9, 7, Tile('S', 1))
+        board.addTileToCell(15, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 6), "H"), True)
 

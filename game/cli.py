@@ -30,8 +30,7 @@ class Game():
             print("Juego terminado! Desea jugar otra vez? (Y/N): ")
     """
         
-    def showBoard(self):
-        board = Board()
-        print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(15)]))
+    def showBoard(self, board):
+        print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(1, 16)]))
         for row_index, row in enumerate(board.grid):
-            print(str(row_index).rjust(2) + '| ' + ' '.join([repr(cell) for cell in row]))
+            print(str(row_index+1).rjust(2) + '| ' + ' '.join([repr(cell) for cell in row]))

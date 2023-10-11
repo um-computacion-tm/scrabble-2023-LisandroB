@@ -12,7 +12,7 @@
 - added online api as dictionary in spa
 - reworked player/bagtile interaction
 - understand board
-- figure out board [print]
+- print board
 - fix list index out of range in board.py 
 - add score system layer [fixed letter multiplier on board]
 - fixed score system tests
