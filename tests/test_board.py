@@ -46,6 +46,7 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.getTileInBoard(7, 7).multiplier, 2)
         self.assertEqual(board.getTileInBoard(7, 7).multiplier_type, "letter")
     """
+    
     def test_boardTripleLetterMultiplier(self):
         board = Board()
         self.assertEqual(board.getTileInBoard(14, 6).multiplier, 3)
@@ -95,9 +96,7 @@ class TestBoard(unittest.TestCase):
         board.addTileToBoard(15, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 6), "H"), True)
-    
-    def test_showBoard(self):
-        board = Board()
-        board.showBoard()
+
+
 if __name__ == '__main__':
     unittest.main()

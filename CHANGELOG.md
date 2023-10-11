@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed [11/10/23]
+- letter distribution in letters_spa [no longer has 'ch', 'rr' or 'll' tiles], tests in test_player.py, test_scrabble_game
+### Added [11/10/23]
+- tests in test_scrabble_game.py, test_models.py, test_cli.py, moved showBoard to cli.py,  logic in hasWord (player.py)
 ### Fixed [10/10/23]
 - tests for test_scrabble_game.py, test_models.py, player/bagtile logic
 ### Added [10/10/23]

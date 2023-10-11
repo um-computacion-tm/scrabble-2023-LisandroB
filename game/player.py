@@ -6,13 +6,10 @@ class Player:
         self.tiles = [];
         self.id = 0;
     
-    def rellenar(self):
-        self.tiles += BagTiles.take(7 - len(BagTiles));
-    
     def getTiles(self):
         bag = BagTiles()
         random.shuffle(bag.tiles)
-        for _ in range(0, 91):
+        for _ in range(0, 94):
             bag.tiles.pop()
         self.tiles = bag.tiles
         return self.tiles
@@ -33,10 +30,15 @@ class Player:
     def hasWord(self, word):
         res = []
         chk = []
+        ret = 0
         for _ in self.tiles:
             res += _.letter
         for _ in word:
             chk += _
-        for _ in chk:
-            if _ in chk:
-                return True;
+        for _ in res:
+            if _.lower() in chk:
+                ret +=1
+        if ret == len(chk):
+            return True
+        else:
+            return False;

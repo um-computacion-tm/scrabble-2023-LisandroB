@@ -1,5 +1,6 @@
 import unittest
 from game.scrabble import ScrabbleGame
+from game.models import Tile
 
 class TestScrabbleGame(unittest.TestCase):
     def test_init(self):
@@ -38,12 +39,19 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateWordRight(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
-        self.assertEqual(scrabbleGame.validateWord("papa", (8, 7), "V"), True)
-        
-    def test_validateWordRight(self):
+        scrabbleGame.current_player.tiles = [Tile("P", 1), Tile("A", 1), Tile("A", 1), Tile("P", 1)]
+        self.assertEqual(scrabbleGame.validateWord("papa", (8, 7), "V"), True)    
+    
+    def test_validateWordFalse(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
         scrabbleGame.current_player = scrabbleGame.players[0]
         self.assertEqual(scrabbleGame.validateWord("empanada", (15, 7), "H"), False)
+    
+    def test_lastPlayer(self):
+        scrabbleGame = ScrabbleGame(playerCount=3)
+        scrabbleGame.current_player = scrabbleGame.players[-1]
+        scrabbleGame.next_turn()
+        assert scrabbleGame.current_player == scrabbleGame.players[0]
     
 if __name__ == '__main__':
     unittest.main()

@@ -65,11 +65,6 @@ class Board:
             (Multipliers.tripleWord, 3, "word")]
         for z in unpacking:
             self.applyMultipliersToCoords(*z)
-    
-    def showBoard(self):
-        print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(15)]))
-        for row_index, row in enumerate(self.grid):
-            print(str(row_index).rjust(2) + '| ' + ' '.join([repr(cell) for cell in row]))
             
     def addTileToBoard(self, x, y, tile=Tile):
         self.grid[x-1][y-1].addValue(tile)

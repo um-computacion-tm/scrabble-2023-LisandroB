@@ -1,4 +1,5 @@
 from game.scrabble import ScrabbleGame
+from game.board import Board
 from art import *
 welcome = text2art("ScrabbleUM", font='block', chr_ignore=True) 
 
@@ -30,3 +31,9 @@ class Game():
         else:
             print("Juego terminado! Desea jugar otra vez? (Y/N): ")
     """
+        
+    def showBoard(self):
+        board = Board()
+        print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(15)]))
+        for row_index, row in enumerate(board.grid):
+            print(str(row_index).rjust(2) + '| ' + ' '.join([repr(cell) for cell in row]))
