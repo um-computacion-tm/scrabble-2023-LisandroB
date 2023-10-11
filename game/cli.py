@@ -4,10 +4,8 @@ from art import *
 welcome = text2art("ScrabbleUM", font='block', chr_ignore=True) 
 
 class Game():
-    Art=text2art("art") 
     def cli(self):
         print("Bienvenido a ScrabbleUM!")
-        print(welcome)
         while True:
             try: 
                 players_count = int(input("Ingrese cantidad de jugadores: "))

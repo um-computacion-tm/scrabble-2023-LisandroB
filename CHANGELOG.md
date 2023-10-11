@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed [11/10/23]
-- letter distribution in letters_spa [no longer has 'ch', 'rr' or 'll' tiles], tests in test_player.py, test_scrabble_game
+- multiplier distribution in board, letter distribution in letters_spa [no longer has 'ch', 'rr' or 'll' tiles], tests in test_player.py, test_scrabble_game
 ### Added [11/10/23]
 - tests in test_scrabble_game.py, test_models.py, test_cli.py, moved showBoard to cli.py,  logic in hasWord (player.py)
 ### Fixed [10/10/23]

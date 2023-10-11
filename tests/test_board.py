@@ -38,14 +38,10 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.getTileInBoard(15, 4).multiplier, 2)
         self.assertEqual(board.getTileInBoard(15, 4).multiplier_type, "letter")
 
-    # este test se rompe, por qué el valor no es el mismo?
-    # doubleWord de Multipliers lo está overrideando
-    """ 
     def test_boardDoubleLetterMultiplier2(self):
         board = Board()
         self.assertEqual(board.getTileInBoard(7, 7).multiplier, 2)
         self.assertEqual(board.getTileInBoard(7, 7).multiplier_type, "letter")
-    """
     
     def test_boardTripleLetterMultiplier(self):
         board = Board()
@@ -54,8 +50,8 @@ class TestBoard(unittest.TestCase):
 
     def test_boardTripleLetterMultiplier2(self):
         board = Board()
-        self.assertEqual(board.getTileInBoard(13, 8).multiplier, 3)
-        self.assertEqual(board.getTileInBoard(13, 8).multiplier_type, "letter")
+        self.assertEqual(board.getTileInBoard(14, 6).multiplier, 3)
+        self.assertEqual(board.getTileInBoard(14, 6).multiplier_type, "letter")
 
     def test_boardDoubleWordMultiplier(self):
         board = Board()
@@ -63,11 +59,6 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.getTileInBoard(14, 2).multiplier_type, "word")
 
     def test_boardTripleWordMultiplier(self):
-        board = Board()
-        self.assertEqual(board.getTileInBoard(0, 0).multiplier, 3)
-        self.assertEqual(board.getTileInBoard(0, 0).multiplier_type, "word")
-        
-    def test_boardTripleWordMultiplier2(self):
         board = Board()
         self.assertEqual(board.getTileInBoard(0, 0).multiplier, 3)
         self.assertEqual(board.getTileInBoard(0, 0).multiplier_type, "word")
@@ -96,7 +87,6 @@ class TestBoard(unittest.TestCase):
         board.addTileToBoard(15, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 6), "H"), True)
-
 
 if __name__ == '__main__':
     unittest.main()

@@ -56,7 +56,8 @@ class Board:
     def applyMultipliersToCoords(self, Coords, multiplier, multiplier_type):
         for _ in Coords:
             (x, y) = _
-            self.grid[x-1][y-1].multiplier, self.grid[x-1][y-1].multiplier_type = multiplier, multiplier_type
+            self.grid[x-1][y-1].multiplier = multiplier
+            self.grid[x-1][y-1].multiplier_type =  multiplier_type
 
     def fillWithMultipliers(self):
         unpacking = [(Multipliers.doubleLetter, 2, "letter"),
