@@ -40,6 +40,9 @@ class ScrabbleGame:
     def putWords(self, word, location, orientation):
         word = [char for char in word]
         if self.validateWord(word, location, orientation):
+            ## parse current_player's letters and values from its tiles 
+            ## search tiles that match word's letters
+            ## add found tiles to cells in specific directions and length
             (x, y) = location
             if orientation == "V":
                 for _ in word:
