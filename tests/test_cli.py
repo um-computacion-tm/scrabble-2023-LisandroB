@@ -4,6 +4,9 @@ from game.board import Board
 from game.models import Tile
 
 class testCli(unittest.TestCase):
+    # se spawnea una instancia de board y game,
+    # se agregan tiles a las celdas específicas, 
+    # se muestra el board y se confirma que el board se creó
     def test_place_word_cross_vertical_fine(self):
         board = Board()
         client = Game()
@@ -16,10 +19,6 @@ class testCli(unittest.TestCase):
 
     def test_place_word_wrong(self):
         board = Board()
-        # show_board(board)
-        word = "FACULTAD"
-        location = (6, 11)
-        orientation = "V"
         self.assertFalse(board.validate_word_inside_board("facultad", (2, 11), "V"))
 
 if __name__ == '__main__':

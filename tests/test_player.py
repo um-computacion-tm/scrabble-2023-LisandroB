@@ -22,6 +22,16 @@ class TestPlayer(unittest.TestCase):
         player1.tiles = [Tile('T', 1), Tile('C', 1), Tile('E', 1), Tile('A', 1), Tile('D', 1), Tile('O', 1), Tile('D', 1)]
         self.assertEqual(player1.hasWord("torpe"), False)
     
+    def test_playerAlmostHasWord(self):
+        player1 = Player()
+        player1.tiles = [Tile('T', 1), Tile('C', 1), Tile('P', 1), Tile('A', 1), Tile('D', 1), Tile('O', 1), Tile('R', 1)]
+        self.assertEqual(player1.hasWord("torpe"), False)
+
+    def test_playerHasWordWithMoreTiles(self):
+        player1 = Player()
+        player1.tiles = [Tile('A', 1), Tile('A', 1), Tile('C', 1), Tile('A', 1), Tile('A', 1), Tile('S', 1), Tile('I', 1)]
+        self.assertEqual(player1.hasWord("casa"), True)
+    
     def test_playerHasNoTiles(self):
         player1 = Player()
         self.assertEqual(player1.hasWord("torpe"), False)

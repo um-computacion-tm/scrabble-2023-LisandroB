@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [12/10/23]
+- putWords, validateTurn
+- tests in test_scrabble_game.py, test_player.py
 ### Fixed [11/10/23]
 - showBoard
 - function names [addTileToCell, getCellInBoard] in board.py

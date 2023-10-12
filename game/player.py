@@ -38,7 +38,7 @@ class Player:
         for _ in res:
             if _.lower() in chk:
                 ret +=1
-        if ret == len(chk):
+        if ret >= len(chk):
             return True
         else:
             return False;

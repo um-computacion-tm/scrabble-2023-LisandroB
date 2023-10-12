@@ -1,4 +1,2 @@
 coverage==7.3.0
 pyrae==0.1.4
-text2art==0.2.0
-art==6.1

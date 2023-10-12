@@ -1,8 +1,9 @@
 ## TO DO
 - lógica de cli.py, juego en general
+- add missing scrabble.py functions [put, take, ...]
+- check if function is removing tiles from bagtiles when creating players 
 - limites dependiendo de si hay tiles o no al poner, choque entre tiles
 - refactor code smells [codeclimate]
-- add missing scrabble.py functions [put, take, ...]
 - basically the entire game haha
 - redo cli.py [following directions] 
 - correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar

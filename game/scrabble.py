@@ -12,6 +12,10 @@ class ScrabbleGame:
             self.players.append(Player())
         self.current_player = None
 
+    def validateTurn(self, word, location, orientation):
+        ## loop through x, y coordinates if v/h, [tiles from player?] place each tile with letter and points to board
+        pass;
+
     def next_turn(self):
         if self.current_player is None:
             self.current_player = self.players[0]
@@ -33,5 +37,11 @@ class ScrabbleGame:
             Preguntar al usuario, por cada una de esas palabras, las que considera reales
             '''
     
-    def put_words():
-        '''Modifica el estado del tablero con las palabras consideradas como correctas'''
+    def putWords(self, word, location, orientation):
+        word = [char for char in word]
+        if self.validateWord(word, location, orientation):
+            (x, y) = location
+            if orientation == "V":
+                for _ in word:
+                    self.board.addTileToCell(x, y, self.current_player.tiles)
+                    y+1

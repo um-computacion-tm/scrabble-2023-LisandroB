@@ -58,7 +58,6 @@ class Board:
             (x, y) = _
             self.grid[x-1][y-1].multiplier, self.grid[x-1][y-1].multiplier_type  = multiplier, multiplier_type
 
-
     def fillWithMultipliers(self):
         unpacking = [(Multipliers.doubleLetter, 2, "letter"),
             (Multipliers.tripleletter, 3, "letter"),
