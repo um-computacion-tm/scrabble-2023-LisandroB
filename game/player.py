@@ -14,6 +14,9 @@ class Player:
         self.tiles = bag.tiles
         return self.tiles
 
+    def removeTiles(self):
+        pass;
+
     def has_letters(self, tiles):
         res = []
         bagtiles = []

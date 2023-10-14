@@ -1,6 +1,6 @@
 from game.board import Board
 from game.player import Player
-from game.models import BagTiles
+from game.models import BagTiles, Tile
 from game.dictionary import validate_word as dict
 
 class ScrabbleGame:
@@ -26,25 +26,44 @@ class ScrabbleGame:
             self.current_player = self.players[index]
 
     def validateWord(self, word, location, orientation):
-        if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
+        # if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
+        if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation):
             return True;
         else:
             return False;
     
     def get_words():
-            '''
-            Obtener las posibles palabras que se pueden formar, dada una palabra, ubicacion y orientacion 
-            Preguntar al usuario, por cada una de esas palabras, las que considera reales
-            '''
+        '''
+        Obtener las posibles palabras que se pueden formar, dada una palabra, ubicacion y orientacion 
+        Preguntar al usuario, por cada una de esas palabras, las que considera reales
+        '''
     
     def putWords(self, word, location, orientation):
-        word = [char for char in word]
+        (x, y) = location
         if self.validateWord(word, location, orientation):
+            check = []
             ## parse current_player's letters and values from its tiles 
             ## search tiles that match word's letters
             ## add found tiles to cells in specific directions and length
-            (x, y) = location
-            if orientation == "V":
-                for _ in word:
-                    self.board.addTileToCell(x, y, self.current_player.tiles)
-                    y+1
+            for _ in self.current_player.tiles:
+                if _.letter.lower() in word:
+                    print(word.find(_.letter.lower()), _.letter.lower())
+                
+            """
+            for _ in word:
+                for i in range(len(self.current_player.tiles)):
+                    if _ == self.current_player.tiles[i].letter.lower():
+                        print(self.current_player.tiles[i])
+                        if orientation == "V":
+                            self.board.addTileToCell(x, y, Tile(
+                                self.current_player.tiles[i].letter,
+                                self.current_player.tiles[i].value
+                            ))
+                            x+=1
+                        elif orientation == "H":
+                            self.board.addTileToCell(x, y, Tile(
+                                self.current_player.tiles[i].letter,
+                                self.current_player.tiles[i].value
+                            ))
+                            y+=1
+            """

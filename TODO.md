@@ -1,5 +1,9 @@
 ## TO DO
 - lógica de cli.py, juego en general
+- remove tiles from player when putting on board
+- add tiles to players from bagtiles after turn
+- chequear env? [revisar si virtual environment está bien]
+- sacar linea comentada donde chequea la clase dict [scrabble.py, validateWord]
 - add missing scrabble.py functions [put, take, ...]
 - check if function is removing tiles from bagtiles when creating players 
 - limites dependiendo de si hay tiles o no al poner, choque entre tiles

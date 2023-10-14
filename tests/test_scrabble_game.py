@@ -1,6 +1,7 @@
 import unittest
 from game.scrabble import ScrabbleGame
 from game.models import Tile
+from game.cli import Game as Client
 
 class TestScrabbleGame(unittest.TestCase):
     def test_init(self):
@@ -39,13 +40,29 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateWordRight(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
-        scrabbleGame.current_player.tiles = [Tile("P", 1), Tile("A", 1), Tile("A", 1), Tile("P", 1), Tile("G", 4), Tile("F", 1), Tile("A", 1)]
+        scrabbleGame.current_player.tiles = [
+            Tile("G", 4), 
+            Tile("A", 1), 
+            Tile("F", 1), 
+            Tile("P", 1), 
+            Tile("P", 1),
+            Tile("A", 1), 
+            Tile("A", 1)
+        ]
         self.assertEqual(scrabbleGame.validateWord("papa", (8, 7), "V"), True)    
     
     def test_validateWordFalse(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
         scrabbleGame.current_player = scrabbleGame.players[0]
-        scrabbleGame.current_player.tiles = [Tile("P", 1), Tile("A", 1), Tile("A", 1), Tile("P", 1), Tile("G", 4), Tile("F", 1), Tile("A", 1)]
+        scrabbleGame.current_player.tiles = [
+            Tile("P", 1), 
+            Tile("A", 1), 
+            Tile("A", 1), 
+            Tile("P", 1),
+            Tile("G", 4), 
+            Tile("F", 1), 
+            Tile("A", 1)
+        ]
         self.assertEqual(scrabbleGame.validateWord("empanada", (15, 7), "H"), False)
     
     def test_lastPlayer(self):
@@ -53,12 +70,33 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.current_player = scrabbleGame.players[-1]
         scrabbleGame.next_turn()
         assert scrabbleGame.current_player == scrabbleGame.players[0]
-    """
+
     def test_putWords(self):
+        client = Client()
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
-        scrabbleGame.current_player.tiles = [Tile("P", 1), Tile("A", 1), Tile("A", 1), Tile("P", 1), Tile("G", 4), Tile("F", 1), Tile("A", 1)]
-        scrabbleGame.putWords("papa", (5, 6), "V")
-    """
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 1), 
+            Tile("H", 1), 
+            Tile("I", 1), 
+            Tile("P", 1), 
+            Tile("A", 1), 
+            Tile("A", 4),
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWords("chipa", (5, 6), "H")
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("M", 1), 
+            Tile("B", 1), 
+            Tile("E", 1), 
+            Tile("J", 1), 
+            Tile("U", 1), 
+            Tile("A", 4),
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWords("mbeju", (3, 2), "H")
+        client.showBoard(scrabbleGame.board)
+
 if __name__ == '__main__':
     unittest.main()
