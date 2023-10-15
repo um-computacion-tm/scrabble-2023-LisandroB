@@ -14,5 +14,3 @@ It has very few lines of code yet, as this is mostly the skeleton provided in cl
 <a href="https://codeclimate.com/github/um-computacion-tm/scrabble-2023-LisandroB/test_coverage"><img src="https://api.codeclimate.com/v1/badges/5f39fbeaa1318a0b90e2/test_coverage" /></a>
 
 Lisandro Brasolin, Computación 1, Facultad de Ingeniería, Universidad de Mendoza
-
-<img src="https://blog.codinghorror.com/content/images/uploads/2007/03/6a0120a85dcdae970b0128776ff992970c-pi.png"/>
