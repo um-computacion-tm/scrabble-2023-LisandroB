@@ -15,3 +15,4 @@ It has very few lines of code yet, as this is mostly the skeleton provided in cl
 
 Lisandro Brasolin, Computación 1, Facultad de Ingeniería, Universidad de Mendoza
 
+<img src="https://blog.codinghorror.com/content/images/uploads/2007/03/6a0120a85dcdae970b0128776ff992970c-pi.png"/>
