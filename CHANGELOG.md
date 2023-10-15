@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [15/10/23]
+- dev branch for updates starting from now, will publish finished scrabble in main branch when done
 ### Added [13/10/23]
 - removeTiles
 - test in test_scrabble_game.py

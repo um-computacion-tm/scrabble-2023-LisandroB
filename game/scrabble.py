@@ -2,6 +2,7 @@ from game.board import Board
 from game.player import Player
 from game.models import BagTiles, Tile
 from game.dictionary import validate_word as dict
+import collections
 
 class ScrabbleGame:
     def __init__(self, playerCount: int):
@@ -26,8 +27,7 @@ class ScrabbleGame:
             self.current_player = self.players[index]
 
     def validateWord(self, word, location, orientation):
-        # if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
-        if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation):
+        if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
             return True;
         else:
             return False;
@@ -41,19 +41,13 @@ class ScrabbleGame:
     def putWords(self, word, location, orientation):
         (x, y) = location
         if self.validateWord(word, location, orientation):
-            check = []
+            word = [char for char in word]
             ## parse current_player's letters and values from its tiles 
             ## search tiles that match word's letters
             ## add found tiles to cells in specific directions and length
-            for _ in self.current_player.tiles:
-                if _.letter.lower() in word:
-                    print(word.find(_.letter.lower()), _.letter.lower())
-                
-            """
             for _ in word:
                 for i in range(len(self.current_player.tiles)):
                     if _ == self.current_player.tiles[i].letter.lower():
-                        print(self.current_player.tiles[i])
                         if orientation == "V":
                             self.board.addTileToCell(x, y, Tile(
                                 self.current_player.tiles[i].letter,
@@ -66,4 +60,3 @@ class ScrabbleGame:
                                 self.current_player.tiles[i].value
                             ))
                             y+=1
-            """

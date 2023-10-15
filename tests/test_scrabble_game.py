@@ -76,26 +76,26 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
         scrabbleGame.current_player.tiles = [
+            Tile("A", 1), 
             Tile("C", 1), 
             Tile("H", 1), 
-            Tile("I", 1), 
             Tile("P", 1), 
-            Tile("A", 1), 
+            Tile("I", 1), 
             Tile("A", 4),
             Tile("A", 1)
         ]
         scrabbleGame.putWords("chipa", (5, 6), "H")
         scrabbleGame.current_player = scrabbleGame.players[0]
         scrabbleGame.current_player.tiles = [
-            Tile("M", 1), 
-            Tile("B", 1), 
-            Tile("E", 1), 
-            Tile("J", 1), 
             Tile("U", 1), 
+            Tile("B", 1), 
+            Tile("J", 1), 
+            Tile("M", 1), 
+            Tile("E", 1), 
             Tile("A", 4),
             Tile("A", 1)
         ]
-        scrabbleGame.putWords("mbeju", (3, 2), "H")
+        scrabbleGame.putWords("mbeju", (3, 2), "V")
         client.showBoard(scrabbleGame.board)
 
 if __name__ == '__main__':
