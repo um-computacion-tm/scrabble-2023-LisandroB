@@ -1,7 +1,5 @@
 ## TO DO
-- arreglar putWords [no deja de agregar tiles después de encontrar]
 - lógica de cli.py, juego en general
-- remove tiles from player when putting on board
 - add tiles to players from bagtiles after turn
 - chequear env? [revisar si virtual environment está bien]
 - add missing scrabble.py functions [put, take, ...]
@@ -14,6 +12,9 @@
 - basically the entire game haha
 
 ## DONE
+- turnos
+- arreglar putWord [no deja de agregar tiles después de encontrar]
+- remove tiles from player when putting on board
 - pasar a rama develop somehow
 - board multipliers arreglados
 - added online api as dictionary in spa

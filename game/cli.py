@@ -13,19 +13,20 @@ class Game():
                 break
             except ValueError:
                 print("Valor invalido")
-        scrabble_game = ScrabbleGame(players_count)
-        print("Cantidad de jugadores: ", len(scrabble_game.players))
-        while scrabble_game.validateTurn:
-            scrabble_game.next_turn()
-            print(f"Turno del jugador {scrabble_game.current_player.id}")
+        scrabbleGame = ScrabbleGame(players_count)
+        print("Cantidad de jugadores: ", len(scrabbleGame.players))
+        while scrabbleGame.validateTurn:
+            scrabbleGame.next_turn()
+            print(f"Turno del jugador {scrabbleGame.current_player.id}")
+            print(scrabbleGame.current_player.tiles)
             word = input("Ingrese palabra: ")
-            location_x = input("Ingrese posicion X: ")
-            location_y = input("Ingrese posicion Y: ")
-            location = (location_x, location_y)
+            x = input("Ingrese posicion X: ")
+            y = input("Ingrese posicion Y: ")
+            location = (int(x), int(y))
             orientation = input("Ingrese orientacion (V/H): ")
-            scrabble_game.validateTurn(word, location, orientation)
+            scrabbleGame.putWord(word, location, orientation)
             # refill tiles of current_player from bagtiles
-            self.showBoard(board)
+            self.showBoard(scrabbleGame.board)
         else:
             print("Juego terminado! Desea jugar otra vez? (Y/N): ")
         

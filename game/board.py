@@ -36,16 +36,14 @@ class Board:
         return mulres * result ## multiplying the result when the score is already added
 
     def validate_word_inside_board(self, word, location, orientation):
-        position_x = location[0]
-        position_y = location[1]
-        len_word = len(word)
-        if orientation == "H":
-            if position_x + len_word > 15:
+        (x, y) = location
+        if orientation == "H" or orientation == "h":
+            if x + len(word) > 15:
                 return False
             else:
                 return True
-        elif orientation == "V":
-            if position_y + len_word > 15:
+        elif orientation == "V" or orientation == "v":
+            if y + len(word) > 15:
                 return False;
             else:
                 return True;

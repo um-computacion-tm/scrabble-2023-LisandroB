@@ -7,17 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added [15/10/23]
-- dev branch for updates starting from now, will publish finished scrabble in main branch when done
+- dev branch for updates starting from now, will publish finished project in main branch when done
+- tests in test_scrabble_game.py
+- initializing player now gets tiles from bag
+### Fixed [15/10/23]
+- logic for putWord method
+- passing player's coordinates input in client as integer instead of string 
+### Modified [15/10/23]
+- validate_word_inside_board method
+- indentation in test_player.py 
 ### Added [13/10/23]
-- removeTiles
+- removeTiles method
 - test in test_scrabble_game.py
 ### Modified [13/10/23]
-- putWords 
+- putWord method
 ### Added [12/10/23]
-- putWords, validateTurn
+- putWord, validateTurn methods
 - tests in test_scrabble_game.py, test_player.py
 ### Fixed [11/10/23]
-- showBoard
+- showBoard method
 - function names [addTileToCell, getCellInBoard] in board.py
 - tests in test_player.py, test_scrabble_game
 - multiplier distribution in board

@@ -14,8 +14,7 @@ class ScrabbleGame:
         self.current_player = None
 
     def validateTurn(self, word, location, orientation):
-        ## loop through x, y coordinates if v/h, [tiles from player?] place each tile with letter and points to board
-        pass;
+        return self.putWord(word, location, orientation)
 
     def next_turn(self):
         if self.current_player is None:
@@ -27,18 +26,20 @@ class ScrabbleGame:
             self.current_player = self.players[index]
 
     def validateWord(self, word, location, orientation):
+        """ 
+        if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation):
+        """
         if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
             return True;
         else:
             return False;
-    
     def get_words():
         '''
         Obtener las posibles palabras que se pueden formar, dada una palabra, ubicacion y orientacion 
         Preguntar al usuario, por cada una de esas palabras, las que considera reales
         '''
     
-    def putWords(self, word, location, orientation):
+    def putWord(self, word, location, orientation):
         (x, y) = location
         if self.validateWord(word, location, orientation):
             word = [char for char in word]
@@ -48,15 +49,19 @@ class ScrabbleGame:
             for _ in word:
                 for i in range(len(self.current_player.tiles)):
                     if _ == self.current_player.tiles[i].letter.lower():
-                        if orientation == "V":
+                        if orientation == "V" or orientation == "v":
                             self.board.addTileToCell(x, y, Tile(
                                 self.current_player.tiles[i].letter,
                                 self.current_player.tiles[i].value
                             ))
                             x+=1
-                        elif orientation == "H":
+                            self.current_player.tiles.pop(i)
+                            break;
+                        elif orientation == "H" or orientation == "h":
                             self.board.addTileToCell(x, y, Tile(
                                 self.current_player.tiles[i].letter,
                                 self.current_player.tiles[i].value
                             ))
                             y+=1
+                            self.current_player.tiles.pop(i)
+                            break;

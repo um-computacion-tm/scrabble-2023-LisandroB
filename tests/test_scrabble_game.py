@@ -71,8 +71,22 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.next_turn()
         assert scrabbleGame.current_player == scrabbleGame.players[0]
 
-    def test_putWords(self):
-        client = Client()
+    def test_validateTurn(self):
+        scrabbleGame = ScrabbleGame(playerCount=4)
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("A", 1), 
+            Tile("C", 1), 
+            Tile("R", 1), 
+            Tile("P", 1), 
+            Tile("R", 1), 
+            Tile("A", 4),
+            Tile("O", 1)
+        ]
+        """  
+        self.assertEqual(scrabbleGame.validateTurn("carro", (3, 2), "V"), True)
+        """
+    def test_putWord(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
         scrabbleGame.current_player.tiles = [
@@ -84,19 +98,70 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 4),
             Tile("A", 1)
         ]
-        scrabbleGame.putWords("chipa", (5, 6), "H")
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.putWord("chipa", (5, 6), "H")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 6).tile), "C:1")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 7).tile), "H:1")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 8).tile), "I:1")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 9).tile), "P:1")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 10).tile), "A:1")
+
+    def test_putWordAgain(self):
+        scrabbleGame = ScrabbleGame(playerCount=4)
+        scrabbleGame.current_player = scrabbleGame.players[3]
         scrabbleGame.current_player.tiles = [
-            Tile("U", 1), 
-            Tile("B", 1), 
-            Tile("J", 1), 
-            Tile("M", 1), 
-            Tile("E", 1), 
-            Tile("A", 4),
-            Tile("A", 1)
-        ]
-        scrabbleGame.putWords("mbeju", (3, 2), "V")
-        client.showBoard(scrabbleGame.board)
+           Tile("U", 4),
+           Tile("H", 1), 
+           Tile("E", 1), 
+           Tile("A", 1), 
+           Tile("E", 1), 
+           Tile("L", 1), 
+           Tile("G", 1)
+       ]
+        scrabbleGame.putWord("huelga", (3, 2), "V")
+        self.assertTrue(scrabbleGame.board.getCellInBoard(3, 2).tile, "H:1")
+        self.assertTrue(scrabbleGame.board.getCellInBoard(4, 2).tile, "U:4")
+        self.assertTrue(scrabbleGame.board.getCellInBoard(5, 2).tile, "E:1")
+        self.assertTrue(scrabbleGame.board.getCellInBoard(6, 2).tile, "L:1")
+        self.assertTrue(scrabbleGame.board.getCellInBoard(7, 2).tile, "G:1")
+        self.assertTrue(scrabbleGame.board.getCellInBoard(8, 2).tile, "A:1")
+
+    def test_putWordFalse(self):
+        scrabbleGame = ScrabbleGame(playerCount=4)
+        scrabbleGame.current_player = scrabbleGame.players[3]
+        scrabbleGame.current_player.tiles = [
+           Tile("N", 1), 
+           Tile("R", 1),
+           Tile("B", 1), 
+           Tile("I", 4),
+           Tile("A", 1), 
+           Tile("C", 1), 
+           Tile("A", 1)
+       ]
+        scrabbleGame.putWord("carro", (3, 2), "V")
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(3, 2).tile), 0)
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(4, 2).tile), 0)
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(5, 2).tile), 0)
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(6, 2).tile), 0)
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(7, 2).tile), 0)
+
+    def test_putWordFalseAgain(self):
+        scrabbleGame = ScrabbleGame(playerCount=4)
+        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.current_player.tiles = [
+           Tile("N", 1), 
+           Tile("R", 1),
+           Tile("B", 1), 
+           Tile("I", 4),
+           Tile("A", 1), 
+           Tile("C", 1), 
+           Tile("O", 1)
+       ]
+        scrabbleGame.putWord("barca", (3, 2), "H")
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(3, 2).tile), 0)
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(3, 3).tile), 0)
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(3, 4).tile), 0)
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(3, 5).tile), 0)
+        self.assertEqual(len(scrabbleGame.board.getCellInBoard(3, 6).tile), 0)
 
 if __name__ == '__main__':
     unittest.main()
