@@ -3,7 +3,6 @@ from game.board import Board
 
 class Game():
     def cli(self):
-        board = Board()
         print("Bienvenido a ScrabbleUM!")
         while True:
             try: 
@@ -18,6 +17,7 @@ class Game():
         while scrabbleGame.validateTurn:
             scrabbleGame.next_turn()
             print(f"Turno del jugador {scrabbleGame.current_player.id}")
+            self.showBoard(scrabbleGame.board)
             print(scrabbleGame.current_player.tiles)
             word = input("Ingrese palabra: ")
             x = input("Ingrese posicion X: ")
@@ -25,8 +25,8 @@ class Game():
             location = (int(x), int(y))
             orientation = input("Ingrese orientacion (V/H): ")
             scrabbleGame.putWord(word, location, orientation)
-            # refill tiles of current_player from bagtiles
-            self.showBoard(scrabbleGame.board)
+            # calculate and show score
+            scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
         else:
             print("Juego terminado! Desea jugar otra vez? (Y/N): ")
         

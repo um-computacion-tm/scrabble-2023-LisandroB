@@ -1,22 +1,22 @@
-from game.models import BagTiles
 import random
 
 class Player:
-    def __init__(self): 
+    def __init__(self, bagTiles, id): 
         self.tiles = [];
-        self.id = 0;
-        self.getTiles()
+        self.id = id;
+        self.getTiles(bagTiles)
     
-    def getTiles(self):
-        bag = BagTiles()
-        random.shuffle(bag.tiles)
-        for _ in range(0, 94):
-            bag.tiles.pop()
-        self.tiles = bag.tiles
+    def getTiles(self, bagTiles):
+        random.shuffle(bagTiles.tiles)
+        for i in range(0, 7):
+            self.tiles.append(bagTiles.tiles[i])
+            bagTiles.tiles.pop(i)
         return self.tiles
 
-    def removeTiles(self):
-        pass;
+    def fillTiles(self, bagTiles):
+        for i in range(7 - len(self.tiles)):
+            self.tiles.append(bagTiles.tiles[i])
+            bagTiles.tiles.pop(i)
 
     def has_letters(self, tiles):
         res = []

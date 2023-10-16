@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [16/10/23]
+- fillTiles function in player.py
+- tests in test_player.py
+### Fixed [16/10/23]
+- getTiles function
+- Player class init in player.py, parameter bagTiles added
+### Modified [16/10/23]
+- order in cli.py 
+- validateTurn function in scrabble.py
 ### Added [15/10/23]
 - dev branch for updates starting from now, will publish finished project in main branch when done
 - tests in test_scrabble_game.py

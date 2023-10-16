@@ -1,7 +1,7 @@
 import unittest
 from game.scrabble import ScrabbleGame
 from game.models import Tile
-from game.cli import Game as Client
+from game.cli import Game 
 
 class TestScrabbleGame(unittest.TestCase):
     def test_init(self):

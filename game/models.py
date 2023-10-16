@@ -1,4 +1,3 @@
-import random
 from game.language.letters_spa import Letters
 
 class Tile:
@@ -29,7 +28,7 @@ class BagTiles:
         for z in unpacking:
             self.createBagTiles(*z)
         return self.tiles;
-          
+
     def take(self, count):
         for _ in range(count):
             self.tiles.pop()
