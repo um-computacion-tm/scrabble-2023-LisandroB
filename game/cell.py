@@ -25,5 +25,5 @@ class Cell:
     def addTile(self, tile):
         self.tile = tile;
 
-    def removeTile(self):
+    def noneTile(self):
         self.tile = None;

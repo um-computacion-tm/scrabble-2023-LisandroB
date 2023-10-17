@@ -24,7 +24,7 @@ class ScrabbleGame:
             print(f"Player {_.id}: {_.score}")
         return True;
 
-    def removeTile(self, index):
+    def removeTileFromPlayer(self, index):
         self.current_player.tiles.pop(index)
 
     def next_turn(self):
@@ -60,7 +60,7 @@ class ScrabbleGame:
                             ))
                             score.append(self.board.getCellInBoard(x, y))
                             x+=1
-                            self.removeTile(i)
+                            self.removeTileFromPlayer(i)
                             break;
                         elif orientation == "H" or orientation == "h":
                             self.board.addTileToCell(x, y, Tile(
@@ -69,7 +69,7 @@ class ScrabbleGame:
                             ))
                             score.append(self.board.getCellInBoard(x, y))
                             y+=1
-                            self.removeTile(i)
+                            self.removeTileFromPlayer(i)
                             break;
             self.current_player.score = self.board.calculateWordValue(score)
             return True;

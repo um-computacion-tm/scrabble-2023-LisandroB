@@ -1,5 +1,5 @@
 ## TO DO
-- limites dependiendo de si hay tiles o no al poner, choque entre tiles, solo poner palabras consiguientes a tiles
+- limites dependiendo de si hay tiles o no al poner, solo poner palabras consiguientes a tiles
 - evitar que termine turno con segunda elección en cli
 - agregar más tests rigurosos a test_cli.py
 - agregar exceptions para cada error del jugador, que no rompa el loop de juego
@@ -14,6 +14,7 @@
 - aprendí a la fuerza que los tests sirven un montón
 
 ## DONE
+- choque entre tiles
 - chequear si hasword y hasletters son iguales, if so borrar la que no sirva
 - printear scoreboard en client [bien]
 - arreglar score

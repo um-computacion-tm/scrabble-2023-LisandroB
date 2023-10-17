@@ -68,7 +68,7 @@ class Board:
         if self.grid[x-1][y-1].tile == "":
             self.grid[x-1][y-1].addTile(tile)
         elif self.grid[x-1][y-1].tile.letter == tile.letter:
-            self.grid[x-1][y-1].removeTile()
+            self.grid[x-1][y-1].noneTile()
             self.grid[x-1][y-1].addTile(tile)
     
     def getCellInBoard(self, x, y):
