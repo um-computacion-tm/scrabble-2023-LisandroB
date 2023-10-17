@@ -4,6 +4,7 @@ class Player:
     def __init__(self, bagTiles, id): 
         self.tiles = [];
         self.id = id;
+        self.score = 0;
         self.getTiles(bagTiles)
     
     def getTiles(self, bagTiles):
@@ -12,6 +13,9 @@ class Player:
             self.tiles.append(bagTiles.tiles[i])
             bagTiles.tiles.pop(i)
         return self.tiles
+    
+    def shuffleTiles(self):
+        return random.shuffle(self.tiles)
 
     def fillTiles(self, bagTiles):
         for i in range(7 - len(self.tiles)):

@@ -1,18 +1,20 @@
 ## TO DO
-- lógica de cli.py, juego en general
-- agregar funciones de score a client
-- printear scoreboard en client 
-- agregar opciones de menú [swappear tiles después terminar turno, poner palabra] a client
+- arreglar score
+- printear scoreboard en client [bien]
+- limites dependiendo de si hay tiles o no al poner, choque entre tiles, solo poner palabras consiguientes a tiles
+- evitar que termine turno con segunda elección en cli
 - agregar más tests a test_cli.py
-- limites dependiendo de si hay tiles o no al poner, choque entre tiles
 - agregar exceptions para cada error del jugador, que no rompa el loop de juego
 - refactor code smells [codeclimate]
 - redis?
 - chequear env? [revisar si virtual environment está bien]
 - correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar
 - basically the entire game haha
-
+ 
 ## DONE
+- lógica de cli.py, juego en general
+- agregar funciones de score a client
+- agregar opciones de menú [swappear tiles después terminar turno, poner palabra, shuffle] a client
 - redo cli.py [following directions] 
 - check if function is removing tiles from bagtiles when creating players 
 - readme/changelog en ingles

@@ -13,7 +13,7 @@ class ScrabbleGame:
         self.current_player = None
 
     def validateTurn(self, word, location, orientation):
-        while len(self.bagTiles) > 0:
+        if len(self.bagTiles) > 0:
             self.putWord(word, location, orientation)
         else:
             return False;
@@ -37,6 +37,7 @@ class ScrabbleGame:
         (x, y) = location
         if self.validateWord(word, location, orientation):
             word = [char for char in word]
+            score = []
             ## parse current_player's letters and values from its tiles 
             ## search tiles that match word's letters
             ## add found tiles to cells in specific directions and length
@@ -48,6 +49,7 @@ class ScrabbleGame:
                                 self.current_player.tiles[i].letter,
                                 self.current_player.tiles[i].value
                             ))
+                            score.append(self.board.getCellInBoard(x, y))
                             x+=1
                             self.current_player.tiles.pop(i)
                             break;
@@ -56,6 +58,10 @@ class ScrabbleGame:
                                 self.current_player.tiles[i].letter,
                                 self.current_player.tiles[i].value
                             ))
+                            score.append(self.board.getCellInBoard(x, y))
                             y+=1
                             self.current_player.tiles.pop(i)
                             break;
+            self.current_player.score = self.board.calculateWordValue(score)
+        else:
+            return False;

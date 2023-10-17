@@ -15,18 +15,42 @@ class Game():
         scrabbleGame = ScrabbleGame(players_count)
         print("Cantidad de jugadores: ", len(scrabbleGame.players))
         while scrabbleGame.validateTurn:
-            scrabbleGame.next_turn()
-            print(f"Turno del jugador {scrabbleGame.current_player.id}")
-            self.showBoard(scrabbleGame.board)
-            print(scrabbleGame.current_player.tiles)
-            word = input("Ingrese palabra: ")
-            x = input("Ingrese posicion X: ")
-            y = input("Ingrese posicion Y: ")
-            location = (int(x), int(y))
-            orientation = input("Ingrese orientacion (V/H): ")
-            scrabbleGame.putWord(word, location, orientation)
-            # calculate and show score
-            scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
+            try:
+                scrabbleGame.next_turn()
+                print(f"Turno del jugador {scrabbleGame.current_player.id}")
+                self.showBoard(scrabbleGame.board)
+                print(f"Puntos del jugador {scrabbleGame.current_player.id}: {scrabbleGame.current_player.score}")
+                print(scrabbleGame.current_player.tiles)
+                print("------------------------------------------------")
+                print("1. Poner palabra")
+                print("2. Cambiar tiles")
+                print("3. Shuffle!")
+                print("4. Pasar turno")
+                print("------------------------------------------------")
+                choice = input("Qué desea hacer?: " )
+                if choice == "1":
+                    word = input("Ingrese palabra: ")
+                    x = input("Ingrese posicion X: ")
+                    y = input("Ingrese posicion Y: ")
+                    location = (int(x), int(y))
+                    orientation = input("Ingrese orientacion (V/H): ")
+                    scrabbleGame.putWord(word, location, orientation)
+                    # calculate and show score
+                    scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
+                    print("------------------------------------------------")
+                elif choice == "2":
+                    print("El formato para elegir es del 1 al 7, pudiendo elegir un rango de ellas o una sola")
+                    tiles = input("Elija qué tiles cambiar!")
+                elif choice == "3":
+                    scrabbleGame.current_player.shuffleTiles()
+                    print(scrabbleGame.current_player.tiles)
+                    print("Shuffled!")
+                elif choice == "4":
+                    pass;
+                else:
+                    print("Valor equivocado!")
+            except False:
+                print("Valor equivocado!")
         else:
             print("Juego terminado! Desea jugar otra vez? (Y/N): ")
         
