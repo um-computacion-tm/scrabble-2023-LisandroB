@@ -13,13 +13,12 @@ class Game():
             except ValueError:
                 print("Valor invalido")
         scrabbleGame = ScrabbleGame(players_count)
-        print("Cantidad de jugadores: ", len(scrabbleGame.players))
         while scrabbleGame.validateTurn:
             try:
                 scrabbleGame.next_turn()
+                print(f"{scrabbleGame.getScore()}")
                 print(f"Turno del jugador {scrabbleGame.current_player.id}")
                 self.showBoard(scrabbleGame.board)
-                print(f"Puntos del jugador {scrabbleGame.current_player.id}: {scrabbleGame.current_player.score}")
                 print(scrabbleGame.current_player.tiles)
                 print("------------------------------------------------")
                 print("1. Poner palabra")

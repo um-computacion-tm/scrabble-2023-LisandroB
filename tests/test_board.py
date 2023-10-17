@@ -28,6 +28,13 @@ class TestBoard(unittest.TestCase):
         board.addTileToCell(10, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
 
+    def test_addTileToCell(self):
+        board = Board()
+        board.addTileToCell(15, 15, Tile('C', 1))
+        self.assertEqual(board.getCellInBoard(15, 15).tile.letter, "C")
+        board.addTileToCell(15, 15, Tile('C', 1))
+        self.assertEqual(board.getCellInBoard(15, 15).tile.letter, "C")
+
     def test_addTileInCorner(self):
         board = Board()
         board.addTileToCell(15, 15, Tile('C', 1))

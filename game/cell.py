@@ -22,5 +22,8 @@ class Cell:
         else:
             return self.tile.value
     
-    def addValue(self, tile):
+    def addTile(self, tile):
         self.tile = tile;
+
+    def removeTile(self):
+        self.tile = None;

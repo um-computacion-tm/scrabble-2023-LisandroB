@@ -28,7 +28,7 @@ class Board:
         for _ in word:
             if _.multiplier_type=="letter":
                 result += _.tile.value * _.multiplier
-            elif _.multiplier == None or _.multiplier_type == None:
+            elif _.multiplier == "" or _.multiplier_type == "":
                 result += _.tile.value 
             elif _.multiplier_type=="word":
                 mulres = _.multiplier
@@ -65,7 +65,11 @@ class Board:
             self.applyMultipliersToCoords(*z)
             
     def addTileToCell(self, x, y, tile=Tile):
-        self.grid[x-1][y-1].addValue(tile)
+        if self.grid[x-1][y-1].tile == "":
+            self.grid[x-1][y-1].addTile(tile)
+        elif self.grid[x-1][y-1].tile.letter == tile.letter:
+            self.grid[x-1][y-1].removeTile()
+            self.grid[x-1][y-1].addTile(tile)
     
     def getCellInBoard(self, x, y):
         return self.grid[x-1][y-1]

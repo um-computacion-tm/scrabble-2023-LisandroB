@@ -21,19 +21,6 @@ class Player:
         for i in range(7 - len(self.tiles)):
             self.tiles.append(bagTiles.tiles[i])
             bagTiles.tiles.pop(i)
-
-    def has_letters(self, tiles):
-        res = []
-        bagtiles = []
-        for _ in range(0, len(tiles)):
-            res += tiles[_].letter
-        for _ in range(0, len(self.tiles)):
-            bagtiles += self.tiles[_].letter
-        for _ in res:
-            if _ in bagtiles:
-                return True;
-            else:
-                return False;
     
     def hasWord(self, word):
         res = []

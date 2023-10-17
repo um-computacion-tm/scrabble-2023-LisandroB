@@ -7,10 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added [17/10/23]
-- shuffleTiles method to player.py
+- shuffleTiles function to player.py
+- removeTile function in cell.py
 - score attribute in player class initialization
 - score keeping in each player instance in putWord method
 - test_putWordGetScore in test_scrabble_game.py
+- getScore function in scrabble.py
+- removeTile function in scrabble.py
+- test_addTileToCell in test_board.py
+- test_reprMultiplier, reprTile, reprNone in test_cell.py
+- test_shufflinTiles in test_player.py
+- test_getScore, test_validateTurnRight, validateTurnWrong in test_scrabble_game.py
+### Fixed [17/10/23]
+- line 31 in board.py, changed _.multiplier and _.multiplier_type to == "" instead of == None
+- all tests in test_wordvalue.py
+### Modified [17/10/23]
+- validateTurn function in scrabble.py
+- logic order in cli.py
+- addTileToCell function in board.py, added logic for avoiding already set tiles on board
 ### Added [16/10/23]
 - fillTiles function in player.py
 - tests in test_player.py

@@ -13,10 +13,19 @@ class ScrabbleGame:
         self.current_player = None
 
     def validateTurn(self, word, location, orientation):
-        if len(self.bagTiles) > 0:
-            self.putWord(word, location, orientation)
+        if len(self.bagTiles.tiles) > 0:
+            return self.putWord(word, location, orientation)
         else:
             return False;
+
+    def getScore(self):
+        print("------------------------ Scoreboard ------------------------")
+        for _ in self.players:
+            print(f"Player {_.id}: {_.score}")
+        return True;
+
+    def removeTile(self, index):
+        self.current_player.tiles.pop(index)
 
     def next_turn(self):
         if self.current_player is None:
@@ -51,7 +60,7 @@ class ScrabbleGame:
                             ))
                             score.append(self.board.getCellInBoard(x, y))
                             x+=1
-                            self.current_player.tiles.pop(i)
+                            self.removeTile(i)
                             break;
                         elif orientation == "H" or orientation == "h":
                             self.board.addTileToCell(x, y, Tile(
@@ -60,8 +69,9 @@ class ScrabbleGame:
                             ))
                             score.append(self.board.getCellInBoard(x, y))
                             y+=1
-                            self.current_player.tiles.pop(i)
+                            self.removeTile(i)
                             break;
             self.current_player.score = self.board.calculateWordValue(score)
+            return True;
         else:
             return False;

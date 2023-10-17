@@ -1,17 +1,22 @@
 ## TO DO
-- arreglar score
-- printear scoreboard en client [bien]
 - limites dependiendo de si hay tiles o no al poner, choque entre tiles, solo poner palabras consiguientes a tiles
 - evitar que termine turno con segunda elección en cli
-- agregar más tests a test_cli.py
+- agregar más tests rigurosos a test_cli.py
 - agregar exceptions para cada error del jugador, que no rompa el loop de juego
 - refactor code smells [codeclimate]
+- testear _todo_
 - redis?
 - chequear env? [revisar si virtual environment está bien]
 - correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar
 - basically the entire game haha
  
+### Moraleja [17/10/23]
+- aprendí a la fuerza que los tests sirven un montón
+
 ## DONE
+- chequear si hasword y hasletters son iguales, if so borrar la que no sirva
+- printear scoreboard en client [bien]
+- arreglar score
 - lógica de cli.py, juego en general
 - agregar funciones de score a client
 - agregar opciones de menú [swappear tiles después terminar turno, poner palabra, shuffle] a client

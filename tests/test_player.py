@@ -9,6 +9,12 @@ class TestPlayer(unittest.TestCase):
         player1 = Player(bagTiles, id=1)
         self.assertEqual(len(player1.tiles), 7)
 
+    def test_shufflinTiles(self):
+        bagTiles = BagTiles()
+        player1 = Player(bagTiles, id=1)
+        player1.shuffleTiles()
+        self.assertEqual(len(player1.tiles), 7)
+
     def test_getTiles(self):
         bagTiles = BagTiles()
         Player(bagTiles, id=1)
@@ -117,51 +123,6 @@ class TestPlayer(unittest.TestCase):
             Tile('I', 1)
         ]
         self.assertEqual(player1.hasWord("casa"), True)
-
-    def test_validate_user_has_letters(self):
-        bagTiles = BagTiles()
-        player1 = Player(bagTiles, id=1)
-        bagTiles.tiles = [
-            Tile('O', 1),
-            Tile('L', 1),
-            Tile('H', 1),
-            Tile('C', 1),
-            Tile('A', 1),
-            Tile('U', 1),
-            Tile('M', 1)
-        ]
-        player1.tiles.extend(bagTiles.tiles)
-        tiles = [
-            Tile('H', 1),
-            Tile('O', 1),
-            Tile('L', 1),
-            Tile('A', 1)
-        ]
-        is_valid = player1.has_letters(tiles)
-        self.assertEqual(is_valid, True)
-
-    def test_user_has_letters2(self):
-        bagTiles = BagTiles()
-        player1 = Player(bagTiles, id=1)
-        bagTiles.tiles = [
-            Tile('O', 1),
-            Tile('A', 1),
-            Tile('F', 1),
-            Tile('V', 1),
-            Tile('A', 1),
-            Tile('I', 1),
-            Tile('N', 1)
-        ]
-        player1.tiles.extend(bagTiles.tiles)
-        tiles = [
-            Tile('A', 1),
-            Tile('V', 1),
-            Tile('I', 1),
-            Tile('O', 1),
-            Tile('N', 1)
-        ]
-        is_valid = player1.has_letters(tiles)
-        self.assertEqual(is_valid, True)
 
 if __name__ == '__main__':
     unittest.main()
