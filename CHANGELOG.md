@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - __str__ in cell.py
 ### Modified [18/10/23]
 - addTileToCell function in board.py
+- .coverage.xml 
+- .codeclimate.yml
 ### Added [17/10/23]
 - test_validateGameHuh in test_scrabble_game.py
 - shuffleTiles function to player.py
