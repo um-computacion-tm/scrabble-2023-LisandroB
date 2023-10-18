@@ -6,6 +6,9 @@
 - refactor code smells [codeclimate]
 - testear _todo_
 - redis?
+- para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
+- docker run image
+- chequear codeclimate.yml de template en github, tienen que haber 0 issues found en el analisis
 - chequear env? [revisar si virtual environment está bien]
 - correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar
 - basically the entire game haha

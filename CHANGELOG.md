@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [18/10/23]
+- __str__ in cell.py
+### Modified [18/10/23]
+- addTileToCell function in board.py
 ### Added [17/10/23]
 - test_validateGameHuh in test_scrabble_game.py
 - shuffleTiles function to player.py
