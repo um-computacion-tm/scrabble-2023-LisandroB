@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added [17/10/23]
+- test_validateGameHuh in test_scrabble_game.py
 - shuffleTiles function to player.py
 - removeTile function in cell.py
 - score attribute in player class initialization

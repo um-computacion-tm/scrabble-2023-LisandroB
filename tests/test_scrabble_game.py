@@ -233,5 +233,33 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.putWord("huelga", (3, 2), "V")
         self.assertEqual(scrabbleGame.current_player.score, 31)
 
+    def test_validateGameHuh(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("D", 2), 
+            Tile("A", 1), 
+            Tile("G", 2), 
+            Tile("H", 4),
+            Tile("T", 1), 
+            Tile("X", 8), 
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWord("gata", (8, 8), "v")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("A", 1), 
+            Tile("N", 1), 
+            Tile("N", 1), 
+            Tile("A", 1),
+            Tile("N", 1), 
+            Tile("O", 1), 
+            Tile("E", 1)
+        ]
+        scrabbleGame.putWord("nota", (10, 6), "h")
+        game.showBoard(scrabbleGame.board)
+
+        
 if __name__ == '__main__':
     unittest.main()
