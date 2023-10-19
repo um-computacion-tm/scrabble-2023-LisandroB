@@ -1,7 +1,8 @@
 ## TO DO
-- limites dependiendo de si hay tiles o no al poner, solo poner palabras consiguientes a tiles
-- evitar que termine turno con segunda elección en cli
-- agregar más tests rigurosos a test_cli.py
+- fixear concatenacion de si hay tile en player y en board, qué hacer? [1]
+- limites dependiendo de si hay tiles o no al poner [1], solo poner palabras consiguientes a tiles
+- evitar que termine turno con segunda elección en cli [2]
+- agregar más tests rigurosos a test_cli.py [2]
 - agregar exceptions para cada error del jugador, que no rompa el loop de juego
 - refactor code smells [codeclimate]
 - testear _todo_

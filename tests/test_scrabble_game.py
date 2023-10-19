@@ -154,11 +154,11 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1)
         ]
         scrabbleGame.putWord("chipa", (5, 6), "H")
-        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 6).tile), "C:1")
-        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 7).tile), "H:1")
-        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 8).tile), "I:1")
-        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 9).tile), "P:1")
-        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 10).tile), "A:1")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 6).tile), "C")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 7).tile), "H")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 8).tile), "I")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 9).tile), "P")
+        self.assertEqual(str(scrabbleGame.board.getCellInBoard(5, 10).tile), "A")
 
     def test_putWordAgain(self):
         scrabbleGame = ScrabbleGame(playerCount=4)
@@ -260,6 +260,60 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.putWord("nota", (10, 6), "h")
         game.showBoard(scrabbleGame.board)
 
-        
+
+    def test_validateGameFixed(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("D", 2), 
+            Tile("A", 1), 
+            Tile("G", 2), 
+            Tile("F", 4),
+            Tile("S", 1), 
+            Tile("A", 8), 
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWord("gafas", (8, 6), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 1), 
+            Tile("N", 1), 
+            Tile("E", 1), 
+            Tile("A", 1),
+            Tile("G", 1), 
+            Tile("O", 1), 
+            Tile("S", 1)
+        ]
+        scrabbleGame.putWord("fuegos", (8, 8), "v")
+        game.showBoard(scrabbleGame.board)
+
+    def test_validateGameHuh2(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("N", 1), 
+            Tile("O", 1), 
+            Tile("H", 4), 
+            Tile("O", 1),
+            Tile("R", 8), 
+            Tile("X", 8), 
+            Tile("E", 1)
+        ]
+        scrabbleGame.putWord("honor", (8, 8), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("O", 1), 
+            Tile("E", 1), 
+            Tile("A", 1), 
+            Tile("J", 8),
+            Tile("N", 1), 
+            Tile("O", 1), 
+            Tile("L", 1)
+        ]
+        scrabbleGame.putWord("ojo", (8, 9), "v")
+        game.showBoard(scrabbleGame.board)
+
 if __name__ == '__main__':
     unittest.main()

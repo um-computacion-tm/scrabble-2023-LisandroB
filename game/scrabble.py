@@ -37,10 +37,18 @@ class ScrabbleGame:
             self.current_player = self.players[index]
 
     def validateWord(self, word, location, orientation):
-        if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
-            return True;
-        else:
-            return False;
+        (x, y) = location
+        for _ in word:
+            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
+                return True;
+            elif (
+                str(self.board.getCellInBoard(x, y)).lower() == _
+                and self.board.validate_word_inside_board(word, location, orientation)
+                and dict(word)
+            ):
+                return True;
+            else:
+                return False;
     
     def putWord(self, word, location, orientation):
         (x, y) = location
@@ -51,8 +59,21 @@ class ScrabbleGame:
             ## search tiles that match word's letters
             ## add found tiles to cells in specific directions and length
             for _ in word:
-                for i in range(len(self.current_player.tiles)):
-                    if _ == self.current_player.tiles[i].letter.lower():
+                for i in range(len(self.current_player.tiles)):             
+                    if (_ == str(self.board.getCellInBoard(x, y)).lower() and _ == self.current_player.tiles[i].letter.lower()):
+                        score.append(self.board.getCellInBoard(x, y))
+                        break;
+                    if _ == str(self.board.getCellInBoard(x, y)).lower():
+                        if orientation == "V" or orientation == "v":
+                            score.append(self.board.getCellInBoard(x, y))
+                            x+=1
+                        if orientation == "H" or orientation == "h":
+                            score.append(self.board.getCellInBoard(x, y))
+                            y+=1
+                    if (
+                        _ == self.current_player.tiles[i].letter.lower()
+                        or _ == str(self.board.getCellInBoard(x, y)).lower()
+                    ):
                         if orientation == "V" or orientation == "v":
                             self.board.addTileToCell(x, y, Tile(
                                 self.current_player.tiles[i].letter,

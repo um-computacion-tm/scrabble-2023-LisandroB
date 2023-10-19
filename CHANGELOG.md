@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [19/10/23]
+- __str__ in Tile class in models.py
+- logic in validateWord function in scrabble.py
+- logic in putWord function in scrabble.py
+- test_validateGameHuh, test_validateGameFixed, test_validateGameHuh2 in test_scrabble_game.py
 ### Added [18/10/23]
 - __str__ in cell.py
 ### Modified [18/10/23]

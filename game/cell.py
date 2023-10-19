@@ -7,7 +7,7 @@ class Cell:
         self.tile = tile
 
     def __str__(self):
-        return self.tile;
+        return str(self.tile).lower()
 
     def __repr__(self):
         if self.tile:
