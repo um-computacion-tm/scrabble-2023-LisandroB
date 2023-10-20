@@ -5,7 +5,7 @@
 - agregar más tests rigurosos a test_cli.py [2]
 - agregar exceptions para cada error del jugador, que no rompa el loop de juego
 - refactor code smells [codeclimate]
-- testear _todo_
+- testear _todo_ 
 - redis?
 - para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
 - docker run image

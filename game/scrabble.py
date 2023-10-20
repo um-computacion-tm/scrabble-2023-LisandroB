@@ -39,7 +39,8 @@ class ScrabbleGame:
     def validateWord(self, word, location, orientation):
         (x, y) = location
         for _ in word:
-            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
+            """self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word)""" 
+            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation):
                 return True;
             elif (
                 str(self.board.getCellInBoard(x, y)).lower() == _
@@ -49,6 +50,7 @@ class ScrabbleGame:
                 return True;
             else:
                 return False;
+
     
     def putWord(self, word, location, orientation):
         (x, y) = location
@@ -61,8 +63,14 @@ class ScrabbleGame:
             for _ in word:
                 for i in range(len(self.current_player.tiles)):             
                     if (_ == str(self.board.getCellInBoard(x, y)).lower() and _ == self.current_player.tiles[i].letter.lower()):
-                        score.append(self.board.getCellInBoard(x, y))
-                        break;
+                        if orientation == "V" or orientation == "v":
+                            score.append(self.board.getCellInBoard(x, y))
+                            x+=1
+                            break;
+                        elif orientation == "H" or orientation == "h":
+                            score.append(self.board.getCellInBoard(x, y))
+                            y+= 1
+                            break;
                     if _ == str(self.board.getCellInBoard(x, y)).lower():
                         if orientation == "V" or orientation == "v":
                             score.append(self.board.getCellInBoard(x, y))

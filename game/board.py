@@ -70,8 +70,6 @@ class Board:
         elif self.getCellInBoard(x, y).tile.letter == tile.letter:
             self.grid[x-1][y-1].noneTile()
             self.grid[x-1][y-1].addTile(tile)
-        elif self.getCellInBoard(x, y).tile.letter:
-            pass;
 
     def getCellInBoard(self, x, y):
         return self.grid[x-1][y-1]

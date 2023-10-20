@@ -33,7 +33,7 @@ class Game():
                     y = input("Ingrese posicion Y: ")
                     location = (int(x), int(y))
                     orientation = input("Ingrese orientacion (V/H): ")
-                    scrabbleGame.putWord(word, location, orientation)
+                    scrabbleGame.validateTurn(word, location, orientation)
                     # calculate and show score
                     scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
                     print("------------------------------------------------")

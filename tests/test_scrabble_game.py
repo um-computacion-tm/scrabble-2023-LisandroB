@@ -258,7 +258,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("E", 1)
         ]
         scrabbleGame.putWord("nota", (10, 6), "h")
-        game.showBoard(scrabbleGame.board)
 
 
     def test_validateGameFixed(self):
@@ -286,9 +285,8 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("S", 1)
         ]
         scrabbleGame.putWord("fuegos", (8, 8), "v")
-        game.showBoard(scrabbleGame.board)
 
-    def test_validateGameHuh2(self):
+    def test_validateGameVertical(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[0]
@@ -313,6 +311,43 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("L", 1)
         ]
         scrabbleGame.putWord("ojo", (8, 9), "v")
+    
+    def test_validateGameHorizontal(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=3)
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("T", 8), 
+            Tile("E", 1), 
+            Tile("R", 8), 
+            Tile("C", 3),
+            Tile("O", 1), 
+            Tile("X", 1), 
+            Tile("E", 1)
+        ]
+        scrabbleGame.putWord("terco", (8, 8), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 1), 
+            Tile("U", 1), 
+            Tile("N", 1), 
+            Tile("A", 8),
+            Tile("I", 1), 
+            Tile("E", 1), 
+            Tile("H", 4)
+        ]
+        scrabbleGame.putWord("tan", (8, 8), "v")
+        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.current_player.tiles = [
+            Tile("E", 1), 
+            Tile("J", 8), 
+            Tile("M", 3), 
+            Tile("D", 2),
+            Tile("O", 1), 
+            Tile("E", 1), 
+            Tile("E", 1)
+        ]
+        scrabbleGame.putWord("moda", (9, 5), "h")
         game.showBoard(scrabbleGame.board)
 
 if __name__ == '__main__':
