@@ -100,7 +100,7 @@ class ScrabbleGame:
                             y+=1
                             self.removeTileFromPlayer(i)
                             break;
-            self.current_player.score = self.board.calculateWordValue(score)
+            self.current_player.score += self.board.calculateWordValue(score)
             return True;
         else:
             return False;

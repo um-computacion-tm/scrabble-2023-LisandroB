@@ -1,6 +1,8 @@
 ## TO DO
 - fixear concatenacion de si hay tile en player y en board, qué hacer? [1]
 - limites dependiendo de si hay tiles o no al poner [1], solo poner palabras consiguientes a tiles
+- fixear funcion de poner palabra, pone doble letra al terminar
+- agregar lógica de ver palabra y chequear tiles consiguientes para poner o no 
 - evitar que termine turno con segunda elección en cli [2]
 - agregar más tests rigurosos a test_cli.py [2]
 - agregar exceptions para cada error del jugador, que no rompa el loop de juego
@@ -18,6 +20,7 @@
 - aprendí a la fuerza que los tests sirven un montón
 
 ## DONE
+- arreglar score [no se guarda]
 - choque entre tiles
 - chequear si hasword y hasletters son iguales, if so borrar la que no sirva
 - printear scoreboard en client [bien]
