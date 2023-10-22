@@ -505,6 +505,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1), 
         ]
         scrabbleGame.putWord("fuerte", (12, 3), "h")
+        game.showBoard(scrabbleGame.board)
         self.assertTrue(scrabbleGame.board.getCellInBoard(12, 8).tile)
 
     def test_validateGameHorizontalConEñe(self):
@@ -532,7 +533,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("C", 4)
         ]
         scrabbleGame.putWord("maña", (8, 6), "v")
-        game.showBoard(scrabbleGame.board)
     
     def test_validateGameHorizontalConTilde(self):
         game = Game()
@@ -559,6 +559,43 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("V", 1)
         ]
         scrabbleGame.putWord("oído", (6, 7), "v")
+        
+    def test_validateGameHorizontalConExtra(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 8), 
+            Tile("O", 1), 
+            Tile("N", 8), 
+            Tile("O", 3),
+            Tile("S", 1), 
+            Tile("D", 1), 
+            Tile("B", 1)
+        ]
+        scrabbleGame.putWord("cono", (8, 7), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("T", 8), 
+            Tile("A", 1), 
+            Tile("N", 8), 
+            Tile("R", 3),
+            Tile("O", 1), 
+            Tile("S", 1), 
+            Tile("V", 1)
+        ]
+        scrabbleGame.putWord("tano", (5, 10), "v")
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("D", 8), 
+            Tile("U", 1), 
+            Tile("E", 8), 
+            Tile("L", 3),
+            Tile("I", 1), 
+            Tile("E", 1), 
+            Tile("R", 1)
+        ]
+        scrabbleGame.putWord("duelar", (6, 6), "h")
         game.showBoard(scrabbleGame.board)
 
 if __name__ == '__main__':

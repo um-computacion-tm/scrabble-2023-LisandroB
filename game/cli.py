@@ -31,7 +31,7 @@ class Game():
                     word = input("Ingrese palabra: ")
                     x = input("Ingrese posicion X: ")
                     y = input("Ingrese posicion Y: ")
-                    location = (int(x), int(y))
+                    location = (int(y), int(x))
                     orientation = input("Ingrese orientacion (V/H): ")
                     scrabbleGame.validateTurn(word, location, orientation)
                     # calculate and show score
