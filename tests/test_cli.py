@@ -13,11 +13,11 @@ class testCli(unittest.TestCase):
         board.addTileToCell(7, 8, Tile("A", 1))
         board.addTileToCell(7, 9, Tile("S", 1))
         board.addTileToCell(7, 10, Tile("A", 1))
-        self.assertTrue(board.validate_word_inside_board("facultad", (11, 2), "V"))
+        self.assertTrue(board.validate_word_inside_board("facultad", (2, 11), "V"))
 
     def test_place_word_wrong(self):
         board = Board()
-        self.assertFalse(board.validate_word_inside_board("facultad", (2, 11), "V"))
+        self.assertFalse(board.validate_word_inside_board("facultad", (2, 11), "H"))
 
 if __name__ == '__main__':
     unittest.main() 

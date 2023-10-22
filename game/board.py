@@ -38,12 +38,12 @@ class Board:
     def validate_word_inside_board(self, word, location, orientation):
         (x, y) = location
         if orientation == "H" or orientation == "h":
-            if x + len(word) > 15:
+            if y-1 + len(word) > 15:
                 return False
             else:
                 return True
         elif orientation == "V" or orientation == "v":
-            if y + len(word) > 15:
+            if x-1 + len(word) > 15:
                 return False;
             else:
                 return True;

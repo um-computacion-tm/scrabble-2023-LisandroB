@@ -2,6 +2,7 @@ from game.board import Board
 from game.player import Player
 from game.models import BagTiles, Tile
 from game.dictionary import validate_word as dict
+from unidecode import unidecode
 
 class ScrabbleGame:
     def __init__(self, playerCount: int):
@@ -11,6 +12,39 @@ class ScrabbleGame:
         for index in range(playerCount):
             self.players.append(Player(self.bagTiles, id=index+1))
         self.current_player = None
+    
+    def isWordInBoard(self, word, location, orientation):
+        (x, y) = location
+        if  (
+                'í' in word 
+                or 'é' in word 
+                or 'ú' in word 
+                or 'ó' in word 
+                or 'á' in word
+            ):
+                word = unidecode(word)
+        cellsInBoard = []
+        playerTiles = []
+        result = []
+        for _ in self.current_player.tiles:
+            playerTiles.append(_.letter.lower())
+
+        for _ in word:
+            if orientation == "V" or orientation == "v":
+                cellsInBoard.append(str(self.board.getCellInBoard(x, y)))
+                x+=1
+            elif orientation == "H" or orientation == "h":
+                cellsInBoard.append(str(self.board.getCellInBoard(x, y)))
+                y+=1
+        
+        for _ in word:
+            if _ in cellsInBoard or _ in playerTiles:
+                result.append(_)    
+        
+        if ''.join(result) == word:
+            return True;
+        else:
+            return False;
 
     def validateTurn(self, word, location, orientation):
         if len(self.bagTiles.tiles) > 0:
@@ -39,22 +73,30 @@ class ScrabbleGame:
     def validateWord(self, word, location, orientation):
         (x, y) = location
         for _ in word:
-            """self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word)""" 
-            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation):
+            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
+                word = unidecode(word)
                 return True;
             elif (
-                str(self.board.getCellInBoard(x, y)).lower() == _
-                and self.board.validate_word_inside_board(word, location, orientation)
-                and dict(word)
+                self.isWordInBoard(word, location, orientation)
+                and
+                self.board.validate_word_inside_board(word, location, orientation)
+                and 
+                dict(word)
             ):
+                word = unidecode(word)
                 return True;
             else:
                 return False;
 
-    
     def putWord(self, word, location, orientation):
         (x, y) = location
         if self.validateWord(word, location, orientation):
+            if ('í' in word 
+                or 'é' in word 
+                or 'ú' in word 
+                or 'ó' in word 
+                or 'á' in word):
+                word = unidecode(word)
             word = [char for char in word]
             score = []
             ## parse current_player's letters and values from its tiles 
@@ -69,15 +111,17 @@ class ScrabbleGame:
                             break;
                         elif orientation == "H" or orientation == "h":
                             score.append(self.board.getCellInBoard(x, y))
-                            y+= 1
+                            y+=1
                             break;
                     if _ == str(self.board.getCellInBoard(x, y)).lower():
                         if orientation == "V" or orientation == "v":
                             score.append(self.board.getCellInBoard(x, y))
                             x+=1
+                            break;
                         if orientation == "H" or orientation == "h":
                             score.append(self.board.getCellInBoard(x, y))
                             y+=1
+                            break
                     if (
                         _ == self.current_player.tiles[i].letter.lower()
                         or _ == str(self.board.getCellInBoard(x, y)).lower()
@@ -104,3 +148,4 @@ class ScrabbleGame:
             return True;
         else:
             return False;
+        

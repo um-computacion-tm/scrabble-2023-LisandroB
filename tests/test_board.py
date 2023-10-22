@@ -14,7 +14,7 @@ class TestBoard(unittest.TestCase):
     
     def test_word_out_of_board(self):
         board = Board()
-        self.assertEqual(board.validate_word_inside_board("Facultad", (14, 4), "H"), False)
+        self.assertEqual(board.validate_word_inside_board("Facultad", (4, 14), "H"), False)
 
     def test_board_is_empty(self):
         board = Board()
@@ -76,15 +76,15 @@ class TestBoard(unittest.TestCase):
 
     def test_place_word_empty_board_horizontal_wrong(self):
         board = Board()
-        self.assertEqual(board.validate_word_inside_board("Facultad", (13, 4), "H"), False)
+        self.assertEqual(board.validate_word_inside_board("Facultad", (4, 13), "H"), False)
 
     def test_place_word_empty_board_vertical_fine(self):
         board = Board()
-        self.assertEqual(board.validate_word_inside_board("Facultad", (4, 7), "V"), True)
+        self.assertEqual(board.validate_word_inside_board("Facultad", (7, 4), "V"), True)
 
     def test_boardEmptyPlaceWrongVerticalWord(self):
         board = Board()
-        self.assertEqual(board.validate_word_inside_board("Facultad", (6, 11), "V"), False)
+        self.assertEqual(board.validate_word_inside_board("Facultad", (11, 6), "V"), False)
     
     def test_boardNotEmptyPlaceRightHorizontalWord(self):
         board = Board()

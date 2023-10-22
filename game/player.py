@@ -1,4 +1,5 @@
 import random
+from unidecode import unidecode
 
 class Player:
     def __init__(self, bagTiles, id): 
@@ -23,6 +24,7 @@ class Player:
             bagTiles.tiles.pop(i)
     
     def hasWord(self, word):
+        word = unidecode(word)
         res = []
         chk = []
         ret = 0

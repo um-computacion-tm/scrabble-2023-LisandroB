@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [21/10/23]
+- isWordInBoard function in scrabble.py
+- unidecode in requirements.txt, added as class in player.py and scrabble.py
+- test_validateGameHorizontalAndVerticalWithDoubleLetter, test_validateGameHorizontalConEñe, test_validateGameHorizontalConTilde, test_validateGameHorizontalAndVerticalWithDoubleLetter in test_scrabble_game.py
+### Modified [21/10/23]
+- test_word_out_of_board,test_place_word_empty_board_horizontal_wrong, test_place_word_empty_board_vertical_fine, test_boardEmptyPlaceWrongVerticalWord, test_word_out_of_board in test_board.py
+- test_place_word_cross_vertical_fine, test_place_word_wrong in test_cli.py
+- test_validateGameHorizontalAndVertical in test_scrabble_game.py
+- logic in validateWord function in scrabble.py
+- logic in validate_word_inside_board function in board.py
+- logic for coordinates [line 96, 102, 106] in putWord function in scrabble.py
 ### Added [20/10/23]
 - test_validateGameVertical in test_scrabble_game.py
 ### Modified [20/10/23]
