@@ -2,7 +2,6 @@ import unittest
 from unittest.mock import patch
 from game.dictionary import (
     validate_word,
-    DictionaryConnectionError,
 )
 
 
@@ -30,7 +29,7 @@ class TestDiccionary(unittest.TestCase):
         return_value=None
     )
     def test_connection_error(self, search_by_word_patched):
-        with self.assertRaises(DictionaryConnectionError):
+        with self.assertRaises(Exception):
             validate_word('hola')
 
 if __name__ == '__main__':

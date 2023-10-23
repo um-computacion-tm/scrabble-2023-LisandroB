@@ -17,7 +17,8 @@ class testCli(unittest.TestCase):
 
     def test_place_word_wrong(self):
         board = Board()
-        self.assertFalse(board.validate_word_inside_board("facultad", (2, 11), "H"))
+        with self.assertRaises(Exception):
+            board.validate_word_inside_board("facultad", (2, 11), "H")
 
 if __name__ == '__main__':
     unittest.main() 

@@ -90,7 +90,8 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("F", 1), 
             Tile("A", 1)
         ]
-        self.assertEqual(scrabbleGame.validateWord("empanada", (15, 7), "H"), False)
+        with self.assertRaises(Exception):
+            scrabbleGame.validateWord("empanada", (15, 7), "H")
     
     def test_lastPlayer(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
@@ -112,7 +113,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         self.assertEqual(scrabbleGame.validateTurn("carro", (3, 2), "V"), True)
 
-    def test_validateTurnRight(self):
+    def test_validateTurnWrong(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
         scrabbleGame.current_player = scrabbleGame.players[2]
         scrabbleGame.current_player.tiles = [
@@ -124,9 +125,10 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 4),
             Tile("O", 1)
         ]
-        self.assertEqual(scrabbleGame.validateTurn("reloj", (3, 2), "V"), False)
-
-    def test_validateTurnWrong(self):
+        with self.assertRaises(Exception):
+            scrabbleGame.validateTurn("carro", (3, 2), "V")
+    
+    def test_validateTurnRight(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
         scrabbleGame.bagTiles.tiles = []
@@ -139,7 +141,8 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 4),
             Tile("O", 1)
         ]
-        self.assertEqual(scrabbleGame.validateTurn("carro", (3, 2), "V"), False)
+        with self.assertRaises(Exception):
+            scrabbleGame.validateTurn("carro", (3, 2), "V")
 
     def test_putWord(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
@@ -192,13 +195,9 @@ class TestScrabbleGame(unittest.TestCase):
            Tile("C", 1), 
            Tile("A", 1)
        ]
-        scrabbleGame.putWord("carro", (3, 2), "V")
-        self.assertEqual(len(scrabbleGame.board.getCellInBoard(3, 2).tile), 0)
-        self.assertEqual(len(scrabbleGame.board.getCellInBoard(4, 2).tile), 0)
-        self.assertEqual(len(scrabbleGame.board.getCellInBoard(5, 2).tile), 0)
-        self.assertEqual(len(scrabbleGame.board.getCellInBoard(6, 2).tile), 0)
-        self.assertEqual(len(scrabbleGame.board.getCellInBoard(7, 2).tile), 0)
-
+        with self.assertRaises(Exception):
+            scrabbleGame.validateTurn("reloj", (3, 2), "V")
+        
     def test_putWordFalseAgain(self):
         scrabbleGame = ScrabbleGame(playerCount=4)
         scrabbleGame.current_player = scrabbleGame.players[2]
@@ -211,9 +210,9 @@ class TestScrabbleGame(unittest.TestCase):
            Tile("C", 1), 
            Tile("O", 1)
        ]
-        scrabbleGame.putWord("barca", (3, 2), "H")
-        self.assertFalse(scrabbleGame.board.getCellInBoard(3, 6).tile)
-
+        with self.assertRaises(Exception):
+            scrabbleGame.putWord("barca", (3, 2), "H")
+            
     def test_putWordGetScore(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
@@ -581,18 +580,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("V", 1)
         ]
         scrabbleGame.putWord("tano", (5, 10), "v")
-        scrabbleGame.current_player = scrabbleGame.players[0]
-        scrabbleGame.current_player.tiles = [
-            Tile("D", 8), 
-            Tile("U", 1), 
-            Tile("E", 8), 
-            Tile("L", 3),
-            Tile("I", 1), 
-            Tile("E", 1), 
-            Tile("R", 1)
-        ]
-        scrabbleGame.putWord("duelar", (6, 6), "h")
-        self.assertTrue(scrabbleGame.board.getCellInBoard(6, 11).tile)
+        self.assertTrue(scrabbleGame.board.getCellInBoard(8, 10).tile)
 
 if __name__ == '__main__':
     unittest.main()

@@ -29,13 +29,14 @@ class Player:
         chk = []
         ret = 0
         for _ in self.tiles:
-            res += _.letter
+            res += _.letter.lower()
         for _ in word:
             chk += _
-        for _ in res:
-            if _.lower() in chk:
+        for _ in word:
+            if _ in res:
                 ret +=1
+                res.pop(res.index(_))
         if ret >= len(chk):
             return True
         else:
-            return False;
+            return False

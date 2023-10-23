@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [23/10/23]
+- Exceptions to validate_word_inside_board, addTileToCell functions in board.py
+- Exception to isWordInBoard, validateWord, putWord functions in scrabble.py
+- conditional loop to cli.py, now menu doesn't always go to next turn when choosing
+### Modified [23/10/23]
+- isWordInBoard function in scrabble.py
+- game loop in cli.py
+- validate_word function in dictionary.py
+- hasWord function in player.py
+- tests test_word_out_of_board, test_place_word_empty_board_horizontal_wrong, test_boardEmptyPlaceWrongVerticalWord in test_board.py
+- test_place_word_wrong in test_cli.py
+- test_connection_error in test_dictionary.py
+- test_playerAlmostHasWord in test_player.py
+- test_validateWordFalse, test_validateTurnWrong, test_validateTurnRight, test_putWordFalse, test_putWordFalseAgain, test_validateGameHorizontalConExtra in test_scrabble_game.py
 ### Added [22/10/23]
 - test_validateGameHorizontalConExtra in test_scrabble_game.py
 ### Modified [22/10/23]
@@ -146,7 +160,7 @@ test_validateGameHorizontalAndVerticalWithDoubleLetter in test_scrabble_game.py
 - better tilebag init code
 - badges [CodeClimate, CircleCI]
 ### Added [30/08/23]
-- tests that calculates the value of each letter/word
+- tests that calculate the value of each letter/word
 - GitHub Webhooks for CodeClimate
 - env from Windows. [virtual environment]
 - CodeClimate's Test Reporter ID to CircleCI's environmental variable 

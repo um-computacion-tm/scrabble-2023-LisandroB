@@ -1,8 +1,8 @@
 ## TO DO
+- agregar función de cambiar tiles
+- evitar poner letras cuando palabra existe en diccionario, palabra entra en tablero pero no tengo las letras suficientes
 - solo poner palabras consiguientes a tiles, al iniciar solo en centro [8, 8]
-- evitar que termine turno con segunda elección en cli [2]
 - agregar más tests rigurosos a test_cli.py [2]
-- agregar exceptions para cada error del jugador, que no rompa el loop de juego
 - refactor code smells [codeclimate]
 - testear _todo_ 
 - redis?
@@ -17,6 +17,8 @@
 - aprendí a la fuerza que los tests sirven un montón
 
 ## DONE
+- evitar que termine turno con segunda elección en cli [2]
+- agregar exceptions para cada error del jugador, que no rompa el loop de juego
 - fixear funcion de poner palabra, pone doble letra al terminar
 - agregar lógica de ver palabra y chequear tiles consiguientes para poner o no 
 - limites dependiendo de si hay tiles o no al poner [1],

@@ -39,18 +39,20 @@ class ScrabbleGame:
         
         for _ in word:
             if _ in cellsInBoard or _ in playerTiles:
-                result.append(_)    
+                result.append(_)
+                if _ in playerTiles:
+                    playerTiles.pop(playerTiles.index(_))
         
         if ''.join(result) == word:
             return True;
         else:
-            return False;
+            raise Exception("Palabra no está en tablero!")
 
     def validateTurn(self, word, location, orientation):
         if len(self.bagTiles.tiles) > 0:
             return self.putWord(word, location, orientation)
         else:
-            return False;
+            raise Exception("Turno inválido!")
 
     def getScore(self):
         print("------------------------ Scoreboard ------------------------")
@@ -72,18 +74,20 @@ class ScrabbleGame:
     def validateWord(self, word, location, orientation):
         (x, y) = location
         for _ in word:
-            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) :
+            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
                 word = unidecode(word)
                 return True;
             elif (
                 self.isWordInBoard(word, location, orientation)
                 and
                 self.board.validate_word_inside_board(word, location, orientation)
+                and 
+                dict(word)
             ):
                 word = unidecode(word)
                 return True;
             else:
-                return False;
+                raise Exception("Palabra no válida!")
 
     def putWord(self, word, location, orientation):
         (x, y) = location
@@ -144,5 +148,4 @@ class ScrabbleGame:
             self.current_player.score += self.board.calculateWordValue(score)
             return True;
         else:
-            return False;
-        
+            raise Exception

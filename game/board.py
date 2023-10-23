@@ -39,12 +39,12 @@ class Board:
         (x, y) = location
         if orientation == "H" or orientation == "h":
             if y-1 + len(word) > 15:
-                return False
+                raise Exception("Palabra no entra en tablero!")
             else:
                 return True
         elif orientation == "V" or orientation == "v":
             if x-1 + len(word) > 15:
-                return False;
+                raise Exception("Palabra no entra en tablero!")
             else:
                 return True;
 
@@ -70,6 +70,8 @@ class Board:
         elif self.getCellInBoard(x, y).tile.letter == tile.letter:
             self.grid[x-1][y-1].noneTile()
             self.grid[x-1][y-1].addTile(tile)
+        else:
+            raise Exception("No entra en tablero!")
 
     def getCellInBoard(self, x, y):
         return self.grid[x-1][y-1]

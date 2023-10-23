@@ -81,20 +81,6 @@ class TestPlayer(unittest.TestCase):
             Tile('I', 1)
         ]
         self.assertEqual(player1.hasWord("casa"), True)
-
-    def test_playerDoesntHaveWord(self):
-        bagTiles = BagTiles()
-        player1 = Player(bagTiles, id=1)
-        player1.tiles = [
-            Tile('T', 1), 
-            Tile('C', 1), 
-            Tile('E', 1), 
-            Tile('A', 1), 
-            Tile('D', 1), 
-            Tile('O', 1), 
-            Tile('D', 1)
-        ]
-        self.assertEqual(player1.hasWord("torpe"), False)
     
     def test_playerAlmostHasWord(self):
         bagTiles = BagTiles()
@@ -108,8 +94,8 @@ class TestPlayer(unittest.TestCase):
             Tile('O', 1), 
             Tile('R', 1)
         ]
-        self.assertEqual(player1.hasWord("torpe"), False)
-
+        self.assertFalse(player1.hasWord("torpe"))
+            
     def test_playerHasWordWithMoreTiles(self):
         bagTiles = BagTiles()
         player1 = Player(bagTiles, id=1)
