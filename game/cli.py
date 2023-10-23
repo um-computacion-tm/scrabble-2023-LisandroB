@@ -16,6 +16,7 @@ class Game():
         while scrabbleGame.validateTurn:
             try:
                 scrabbleGame.next_turn()
+                print(f"Fichas restantes: {len(scrabbleGame.bagTiles.tiles)}")
                 print(f"{scrabbleGame.getScore()}")
                 print(f"Turno del jugador {scrabbleGame.current_player.id}")
                 self.showBoard(scrabbleGame.board)
@@ -25,6 +26,7 @@ class Game():
                 print("2. Cambiar tiles")
                 print("3. Shuffle!")
                 print("4. Pasar turno")
+                print("5. Terminar juego?")
                 print("------------------------------------------------")
                 choice = input("Qué desea hacer?: " )
                 if choice == "1":
@@ -36,16 +38,26 @@ class Game():
                     scrabbleGame.validateTurn(word, location, orientation)
                     # calculate and show score
                     scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
-                    print("------------------------------------------------")
                 elif choice == "2":
                     print("El formato para elegir es del 1 al 7, pudiendo elegir un rango de ellas o una sola")
                     tiles = input("Elija qué tiles cambiar!")
+                    ## función de cambiar tiles
+                    ## volver al loop inicial, cómo?
                 elif choice == "3":
                     scrabbleGame.current_player.shuffleTiles()
                     print(scrabbleGame.current_player.tiles)
                     print("Shuffled!")
+                    ## volver al loop inicial, cómo?
                 elif choice == "4":
                     pass;
+                elif choice == "5":
+                    exit = input("Está seguro de terminar la partida? Y/N: ")
+                    if exit == "Y" or exit == "y":
+                        print("Gracias por jugar, hasta pronto!")
+                        break;
+                    if exit == "N" or exit == "n":
+                        ## volver al loop inicial, cómo?
+                        pass;
                 else:
                     print("Valor equivocado!")
             except False:

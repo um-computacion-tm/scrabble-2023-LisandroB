@@ -56,7 +56,6 @@ class ScrabbleGame:
         print("------------------------ Scoreboard ------------------------")
         for _ in self.players:
             print(f"Player {_.id}: {_.score}")
-        return True;
 
     def removeTileFromPlayer(self, index):
         self.current_player.tiles.pop(index)
@@ -80,7 +79,6 @@ class ScrabbleGame:
                 self.isWordInBoard(word, location, orientation)
                 and
                 self.board.validate_word_inside_board(word, location, orientation)
-
             ):
                 word = unidecode(word)
                 return True;

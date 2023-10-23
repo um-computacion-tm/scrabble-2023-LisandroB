@@ -6,13 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [22/10/23]
+- test_validateGameHorizontalConExtra in test_scrabble_game.py
 ### Modified [22/10/23]
 - validateWord function in scrabble.py, now doesn't search in dict as some words don't work well
 - location input order in cli.py
+- choice 5 [exit game] in cli.py
+- getScore function in scrabble.py now doesn't return true when called
+- tests in test_scrabble_game.py
+- .coveragerc 
 ### Fixed [22/10/23]
-- coordinates order, now corrent (was y, x - now x, y)
-### Added [22/10/23]
-- test_validateGameHorizontalConExtra in test_scrabble_game.py
+- coordinates order, now correct (was y, x // now x, y)
 ### Added [21/10/23]
 - isWordInBoard function in scrabble.py
 - unidecode in requirements.txt, added as class in player.py and scrabble.py
@@ -66,22 +70,22 @@ test_validateGameHorizontalAndVerticalWithDoubleLetter in test_scrabble_game.py
 ### Added [16/10/23]
 - fillTiles function in player.py
 - tests in test_player.py
-### Fixed [16/10/23]
-- getTiles function
-- Player class init in player.py, parameter bagTiles added
 ### Modified [16/10/23]
 - order in cli.py 
 - validateTurn function in scrabble.py
+### Fixed [16/10/23]
+- getTiles function
+- Player class init in player.py, parameter bagTiles added
 ### Added [15/10/23]
 - dev branch for updates starting from now, will publish finished project in main branch when done
 - tests in test_scrabble_game.py
 - initializing player now gets tiles from bag
-### Fixed [15/10/23]
-- logic for putWord method
-- passing player's coordinates input in client as integer instead of string 
 ### Modified [15/10/23]
 - validate_word_inside_board method
 - indentation in test_player.py 
+### Fixed [15/10/23]
+- logic for putWord method
+- passing player's coordinates input in client as integer instead of string 
 ### Added [13/10/23]
 - removeTiles method
 - test in test_scrabble_game.py

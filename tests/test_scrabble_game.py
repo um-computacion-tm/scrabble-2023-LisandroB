@@ -76,7 +76,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1)
         ]
         scrabbleGame.putWord("chipa", (5, 6), "H")
-        self.assertEqual(scrabbleGame.getScore(), True)
+        self.assertIsNone(scrabbleGame.getScore(), True)
 
     def test_validateWordFalse(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
@@ -257,9 +257,6 @@ class TestScrabbleGame(unittest.TestCase):
         self.assertTrue(scrabbleGame.board.getCellInBoard(10, 7).tile)
         self.assertTrue(scrabbleGame.board.getCellInBoard(10, 7).tile)
 
-
-
-
     def test_validateGameFixed(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
@@ -351,7 +348,6 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("moda", (9, 5), "h")
         self.assertTrue(scrabbleGame.board.getCellInBoard(9, 8).tile)
-
         
     def test_validateGameHorizontalAndVertical(self):
         game = Game()
@@ -390,7 +386,6 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("saltar", (8, 6), "h")
         self.assertTrue(scrabbleGame.board.getCellInBoard(8, 10).tile)
-
 
     def test_validateGameHorizontalAndVerticalWithDoubleLetter(self):
         game = Game()
@@ -505,7 +500,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1), 
         ]
         scrabbleGame.putWord("fuerte", (12, 3), "h")
-        game.showBoard(scrabbleGame.board)
         self.assertTrue(scrabbleGame.board.getCellInBoard(12, 8).tile)
 
     def test_validateGameHorizontalConEñe(self):
@@ -533,6 +527,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("C", 4)
         ]
         scrabbleGame.putWord("maña", (8, 6), "v")
+        self.assertTrue(scrabbleGame.board.getCellInBoard(8, 9).tile)
     
     def test_validateGameHorizontalConTilde(self):
         game = Game()
@@ -559,6 +554,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("V", 1)
         ]
         scrabbleGame.putWord("oído", (6, 7), "v")
+        self.assertTrue(scrabbleGame.board.getCellInBoard(8, 7).tile)
         
     def test_validateGameHorizontalConExtra(self):
         game = Game()
@@ -596,7 +592,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("R", 1)
         ]
         scrabbleGame.putWord("duelar", (6, 6), "h")
-        game.showBoard(scrabbleGame.board)
+        self.assertTrue(scrabbleGame.board.getCellInBoard(6, 11).tile)
 
 if __name__ == '__main__':
     unittest.main()

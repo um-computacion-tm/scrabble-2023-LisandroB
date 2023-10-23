@@ -1,5 +1,5 @@
 ## TO DO
-- solo poner palabras consiguientes a tiles
+- solo poner palabras consiguientes a tiles, al iniciar solo en centro [8, 8]
 - evitar que termine turno con segunda elección en cli [2]
 - agregar más tests rigurosos a test_cli.py [2]
 - agregar exceptions para cada error del jugador, que no rompa el loop de juego
