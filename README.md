@@ -11,7 +11,11 @@ run play.py to initiate
 
 run run_test.py to execute or debug one single test  
 
-[![um-computacion-tm](https://circleci.com/gh/um-computacion-tm/scrabble-2023-LisandroB.svg?style=svg)](https://app.circleci.com/pipelines/github/um-computacion-tm/scrabble-2023-LisandroB/14/workflows/d705be85-a3ee-4407-9b54-4af1668a40d6)
+main branch
+[![um-computacion-tm](https://circleci.com/gh/um-computacion-tm/scrabble-2023-LisandroB.svg?style=svg)](https://app.circleci.com/pipelines/github/um-computacion-tm/scrabble-2023-LisandroB?branch=main)
+
+dev branch
+[![um-computacion-tm](https://circleci.com/gh/um-computacion-tm/scrabble-2023-LisandroB.svg?style=svg)](https://app.circleci.com/pipelines/github/um-computacion-tm/scrabble-2023-LisandroB?branch=dev)
 
 <a href="https://codeclimate.com/github/um-computacion-tm/scrabble-2023-LisandroB/maintainability"><img src="https://api.codeclimate.com/v1/badges/5f39fbeaa1318a0b90e2/maintainability" /></a>
 
