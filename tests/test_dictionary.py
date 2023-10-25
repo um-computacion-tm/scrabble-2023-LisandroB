@@ -5,7 +5,7 @@ from game.dictionary import (
 )
 
 
-class TestDiccionary(unittest.TestCase):
+class TestDictionary(unittest.TestCase):
     @patch(
         'pyrae.dle.search_by_word',
         return_value=unittest.mock.MagicMock(

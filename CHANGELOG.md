@@ -6,9 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [25/10/23]
+- swapTiles function in player.py
+- test_wrongStart, test_initStartPlayerCount, test_firstTurnWordNotFound, test_firstTurnShuffle, test_firstTurnThenPass, test_firstTurnThenExit, test_firstTurnThenWrongInput, test_firstTurnThenSecondChoice in test_cli.py
+- test_playerHasSwappedAllTiles, test_playerHasSwappedSomeTiles, test_playerHasSwappedOneTile in test_player.py
+### Modified [25/10/23]
+- logic in cli.py, now second choice works as expected [swapTiles]
+- fourth choice in cli.py, now sleeps for one and a half seconds
+- fillTiles in player.py, now shuffles tiles before filling
 ### Added [23/10/23]
-- Exceptions to validate_word_inside_board, addTileToCell functions in board.py
-- Exception to isWordInBoard, validateWord, putWord functions in scrabble.py
+- exceptions to validate_word_inside_board, addTileToCell functions in board.py
+- exception to isWordInBoard, validateWord, putWord functions in scrabble.py
 - conditional loop to cli.py, now menu doesn't always go to next turn when choosing
 ### Modified [23/10/23]
 - isWordInBoard function in scrabble.py

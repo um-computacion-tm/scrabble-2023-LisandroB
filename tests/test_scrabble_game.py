@@ -50,8 +50,38 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1), 
             Tile("A", 1)
         ]
-        self.assertEqual(scrabbleGame.validateWord("papa", (8, 7), "V"), True)    
+        self.assertEqual(scrabbleGame.validateWord("papa", (8, 7), "V"), True) 
+
+    def test_validateWordWrong(self):
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("G", 4), 
+            Tile("A", 1), 
+            Tile("F", 1), 
+            Tile("P", 1), 
+            Tile("P", 1),
+            Tile("A", 1), 
+            Tile("A", 1)
+        ]
+        with self.assertRaises(Exception):
+            scrabbleGame.validateWord("palco", (8, 7), "V")
     
+    def test_putWordWrong(self):
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("G", 4), 
+            Tile("A", 1), 
+            Tile("F", 1), 
+            Tile("P", 1), 
+            Tile("P", 1),
+            Tile("A", 1), 
+            Tile("A", 1)
+        ]
+        with self.assertRaises(Exception):
+            scrabbleGame.putWord("palco", (8, 7), "V")
+
     def test_getScore(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
         scrabbleGame.current_player = scrabbleGame.players[1]

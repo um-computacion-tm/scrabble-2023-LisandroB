@@ -109,6 +109,48 @@ class TestPlayer(unittest.TestCase):
             Tile('I', 1)
         ]
         self.assertEqual(player1.hasWord("casa"), True)
+    
+    def test_playerHasSwappedAllTiles(self):
+        scrabbleGame = ScrabbleGame(2)
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile('A', 1), 
+            Tile('A', 1), 
+            Tile('C', 1), 
+            Tile('A', 1), 
+            Tile('A', 1), 
+            Tile('S', 1), 
+            Tile('I', 1)
+        ]
+        scrabbleGame.current_player.swapTiles(scrabbleGame.bagTiles, [1, 2, 3, 4, 5, 6, 7])
 
+    def test_playerHasSwappedSomeTiles(self):
+        scrabbleGame = ScrabbleGame(2)
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile('D', 1), 
+            Tile('A', 1), 
+            Tile('C', 1), 
+            Tile('G', 1), 
+            Tile('O', 1), 
+            Tile('O', 1), 
+            Tile('I', 1)
+        ]
+        scrabbleGame.current_player.swapTiles(scrabbleGame.bagTiles, [6, 3, 2])
+
+    def test_playerHasSwappedOneTile(self):
+        scrabbleGame = ScrabbleGame(2)
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile('A', 1), 
+            Tile('A', 1), 
+            Tile('F', 1), 
+            Tile('E', 1), 
+            Tile('A', 1), 
+            Tile('S', 1), 
+            Tile('I', 1)
+        ]
+        scrabbleGame.current_player.swapTiles(scrabbleGame.bagTiles, [1])
+    
 if __name__ == '__main__':
     unittest.main()

@@ -74,20 +74,16 @@ class ScrabbleGame:
     def validateWord(self, word, location, orientation):
         (x, y) = location
         for _ in word:
-            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation) and dict(word):
+            if self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation):
                 word = unidecode(word)
                 return True;
             elif (
                 self.isWordInBoard(word, location, orientation)
                 and
                 self.board.validate_word_inside_board(word, location, orientation)
-                and 
-                dict(word)
             ):
                 word = unidecode(word)
                 return True;
-            else:
-                raise Exception("Palabra no válida!")
 
     def putWord(self, word, location, orientation):
         (x, y) = location
@@ -147,5 +143,3 @@ class ScrabbleGame:
                             break;
             self.current_player.score += self.board.calculateWordValue(score)
             return True;
-        else:
-            raise Exception

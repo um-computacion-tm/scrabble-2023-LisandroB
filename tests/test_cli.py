@@ -1,5 +1,6 @@
 import unittest;
-from game.cli import Game
+from unittest.mock import patch
+from game.cli import *
 from game.board import Board
 from game.models import Tile
 
@@ -20,5 +21,58 @@ class testCli(unittest.TestCase):
         with self.assertRaises(Exception):
             board.validate_word_inside_board("facultad", (2, 11), "H")
 
+    @patch('builtins.input', side_effect=[0])
+    def test_wrongStart(self, mock):
+        game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+
+    @patch('builtins.input', side_effect=[3])
+    def test_initStartPlayerCount(self, mock):
+        game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+
+    @patch('builtins.input', side_effect=[2, "1", "papa", 8, 8, "V"])
+    def test_firstTurnWordNotFound(self, mock):
+        game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+            
+    @patch('builtins.input', side_effect=[4, "3"])
+    def test_firstTurnShuffle(self, mock):
+        game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+    
+    @patch('builtins.input', side_effect=[3, "4"])
+    def test_firstTurnThenPass(self, mock):
+        game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+    
+    @patch('builtins.input', side_effect=[2, "5", "Y"])
+    def test_firstTurnThenExit(self, mock):
+        game = Game()
+        game.cli()
+    
+    @patch('builtins.input', side_effect=[3, "5", "n"])
+    def test_firstTurnThenExitThenRegret(self, mock):
+        game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+
+    @patch('builtins.input', side_effect=[0, 4, "a"])
+    def test_firstTurnThenWrongInput(self, mock):
+        game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+        
+    @patch('builtins.input', side_effect=[2, "2", [1, 5]])
+    def test_firstTurnThenSecondChoice(self, mock):
+        game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+
 if __name__ == '__main__':
-    unittest.main() 
+    unittest.main()

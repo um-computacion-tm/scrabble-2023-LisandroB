@@ -19,6 +19,7 @@ class Player:
         return random.shuffle(self.tiles)
 
     def fillTiles(self, bagTiles):
+        random.shuffle(bagTiles.tiles)
         for i in range(7 - len(self.tiles)):
             self.tiles.append(bagTiles.tiles[i])
             bagTiles.tiles.pop(i)
@@ -40,3 +41,14 @@ class Player:
             return True
         else:
             return False
+    
+    def swapTiles(self, bagTiles, startStop):
+            params = list(startStop)
+            res = []
+            for _ in params:
+                res.append(_-1)
+            list3 = map(self.tiles.__getitem__, res)
+            for _ in list(list3):
+                bagTiles.tiles.append(_)
+                self.tiles.remove(_)
+            self.fillTiles(bagTiles)
