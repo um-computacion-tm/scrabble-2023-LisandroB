@@ -1,4 +1,5 @@
 ## TO DO
+- palabras con ñ no funcionan
 - evitar poner letras cuando palabra existe en diccionario, palabra entra en tablero pero no tengo las letras suficientes
 - solo poner palabras consiguientes a tiles, al iniciar solo en centro [8, 8]
 - eliminar None de print en cli
