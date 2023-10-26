@@ -63,7 +63,7 @@ class ScrabbleGame:
     def removeTileFromPlayer(self, index):
         self.current_player.tiles.pop(index)
     
-    def scoreAdd(self, x, y):
+    def addScore(self, x, y):
         self.score.append(self.board.getCellInBoard(x, y))
 
     def next_turn(self):
@@ -102,24 +102,23 @@ class ScrabbleGame:
             return self.addScoreThenMoveOneTile(x, y, orientation)
 
     def moveOneTile(self, xy):
-        xy = xy + 1
-        return xy
+        return xy + 1
 
     def addScoreThenMoveOneTile(self, x, y, orientation):
-        self.scoreAdd(x, y)
+        self.addScore(x, y)
         if orientation == "V" or orientation == "v":
             return self.moveOneTile(x)
         elif orientation == "H" or orientation == "h":
             return self.moveOneTile(y)
 
-    def addMultipleTilesToCellAddScoreRemoveTile(self, x, y, i):
+    def addMultipleTilesToCellAddScoreRemoveTile(self, x, y, i, orientation):
         self.board.addTileToCell(x, y, Tile(
             self.current_player.tiles[i].letter,
             self.current_player.tiles[i].value
             )
         )
-        self.scoreAdd(x, y)
         self.removeTileFromPlayer(i)
+        return self.addScoreThenMoveOneTile(x, y, orientation)
 
     def checkIfNonUnicode(self, word):
         if ('í' in word or 'é' in word or 'ú' in word or 'ó' in word or 'á' in word):
@@ -138,12 +137,10 @@ class ScrabbleGame:
                         or letter == str(self.board.getCellInBoard(x, y)).lower()
                     ):
                         if orientation == "V" or orientation == "v":
-                            self.addMultipleTilesToCellAddScoreRemoveTile(x, y, i)
-                            x+=1
+                            x = self.addMultipleTilesToCellAddScoreRemoveTile(x, y, i, orientation)
                             break;
                         elif orientation == "H" or orientation == "h":
-                            self.addMultipleTilesToCellAddScoreRemoveTile(x, y, i)                            
-                            y+=1
+                            y = self.addMultipleTilesToCellAddScoreRemoveTile(x, y, i, orientation)
                             break;
             self.current_player.score += self.board.calculateWordValue(self.score)
             return True;

@@ -15,4 +15,4 @@ exclude_lines =
     if __name__ == '__main__':
     def suite
     __str__
-    return raw_input
+    time.sleep()

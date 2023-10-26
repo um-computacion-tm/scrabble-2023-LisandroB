@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added [26/10/23]
+- addMultipleTilesToCellAddScoreRemoveTile, addScoreThenMoveOneTile, moveOneTile, checkIfWordAlreadyThere, removeTileFromPlayer, checkIfNonUnicode functions in scrabble.py
 - checkIfWordInBoard function in board.py
 - test_wrongTileToCell in test_board.py
 - test_firstTurnThenEnterWord in test_cli.py
