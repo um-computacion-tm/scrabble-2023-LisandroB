@@ -98,5 +98,10 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.isEmpty(), False)
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 6), "H"), True)
 
+    def test_wrongTileToCell(self):
+        board = Board()
+        board.addTileToCell(8, 8, Tile("A", 1))
+        self.assertEqual(board.addTileToCell(8, 8, Tile(123, 1)), False)
+
 if __name__ == '__main__':
     unittest.main()

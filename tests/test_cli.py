@@ -1,5 +1,5 @@
 import unittest;
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from game.cli import *
 from game.board import Board
 from game.models import Tile
@@ -71,6 +71,24 @@ class testCli(unittest.TestCase):
     @patch('builtins.input', side_effect=[2, "2", [1, 5]])
     def test_firstTurnThenSecondChoice(self, mock):
         game = Game()
+        with self.assertRaises(Exception):
+            game.cli()
+    
+    #wip
+    @patch('builtins.input', side_effect=[2, "1", "papa", 8, 8, "V"])
+    def test_firstTurnThenEnterWord(self, mock):
+        game = Game()
+        scrabbleGame = ScrabbleGame(3)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = MagicMock(return_value=[
+            Tile("C", 8), 
+            Tile("O", 1), 
+            Tile("N", 8), 
+            Tile("O", 3),
+            Tile("S", 1), 
+            Tile("D", 1), 
+            Tile("B", 1)
+        ])
         with self.assertRaises(Exception):
             game.cli()
 

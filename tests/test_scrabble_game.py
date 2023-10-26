@@ -612,5 +612,43 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.putWord("tano", (5, 10), "v")
         self.assertTrue(scrabbleGame.board.getCellInBoard(8, 10).tile)
 
+    def test_validateGameHorizontalConExtra(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 8), 
+            Tile("O", 1), 
+            Tile("N", 8), 
+            Tile("O", 3),
+            Tile("S", 1), 
+            Tile("D", 1), 
+            Tile("B", 1)
+        ]
+        scrabbleGame.putWord("cono", (8, 7), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("T", 8), 
+            Tile("A", 1), 
+            Tile("N", 8), 
+            Tile("R", 3),
+            Tile("O", 1), 
+            Tile("S", 1), 
+            Tile("V", 1)
+        ]
+        scrabbleGame.putWord("tano", (5, 10), "v")
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 8), 
+            Tile("O", 1), 
+            Tile("C", 8), 
+            Tile("O", 3),
+            Tile("S", 1), 
+            Tile("D", 1), 
+            Tile("B", 1)
+        ]
+        scrabbleGame.putWord("coco", (7, 8), "v")
+        
+        game.showBoard(scrabbleGame.board)
 if __name__ == '__main__':
     unittest.main()

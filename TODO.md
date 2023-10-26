@@ -1,13 +1,15 @@
 ## TO DO
-- agregar tests restantes a test_cli.py
 - evitar poner letras cuando palabra existe en diccionario, palabra entra en tablero pero no tengo las letras suficientes
 - solo poner palabras consiguientes a tiles, al iniciar solo en centro [8, 8]
+- eliminar None de print en cli
 - refactor code smells [codeclimate]
 - testear _todo_ 
 - redis?
+- agregar tests restantes a test_cli.py
 - para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
 - docker run image
 - chequear codeclimate.yml de template en github, tienen que haber 0 issues found en el analisis
+- agregar dockerfile de otros repos
 - chequear env? [revisar si virtual environment está bien]
 - correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar
 - basically the entire game haha

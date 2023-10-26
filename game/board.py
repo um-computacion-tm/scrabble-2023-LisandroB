@@ -7,6 +7,12 @@ class Board:
         self.grid = [[Cell(1, "", "") for _ in range(15)] for _ in range(15)]
         self.fillWithMultipliers()
         
+    def checkIfWordInBoard(self, word, xy):
+        if xy-1 + len(word) > 15:
+            raise Exception("Palabra no entra en tablero!")
+        else:
+            return True
+        
     def checkIfEmpty(self):
         res = []
         check = 0;
@@ -38,15 +44,9 @@ class Board:
     def validate_word_inside_board(self, word, location, orientation):
         (x, y) = location
         if orientation == "H" or orientation == "h":
-            if y-1 + len(word) > 15:
-                raise Exception("Palabra no entra en tablero!")
-            else:
-                return True
+            return self.checkIfWordInBoard(word, y)
         elif orientation == "V" or orientation == "v":
-            if x-1 + len(word) > 15:
-                raise Exception("Palabra no entra en tablero!")
-            else:
-                return True;
+            return self.checkIfWordInBoard(word, x)
 
     def isEmpty(self):
         return self.checkIfEmpty()
@@ -65,11 +65,11 @@ class Board:
             self.applyMultipliersToCoords(*z)
             
     def addTileToCell(self, x, y, tile=Tile):
-        if self.getCellInBoard(x, y).tile == "":
-            self.grid[x-1][y-1].addTile(tile)
-        elif self.getCellInBoard(x, y).tile.letter == tile.letter:
+        if self.getCellInBoard(x, y).tile == "" or self.getCellInBoard(x, y).tile.letter == tile.letter:
             self.grid[x-1][y-1].noneTile()
             self.grid[x-1][y-1].addTile(tile)
+        else:
+            return False;
 
     def getCellInBoard(self, x, y):
         return self.grid[x-1][y-1]

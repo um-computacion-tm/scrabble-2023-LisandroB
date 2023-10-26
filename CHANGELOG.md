@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [26/10/23]
+- checkIfWordInBoard function in board.py
+- test_wrongTileToCell in test_board.py
+- test_firstTurnThenEnterWord in test_cli.py
+- test_validateGameHorizontalConExtra in test_scrabble_game.py
+### Modified [26/10/23]
+- logic in addTileToCell, validate_word_inside_board functions in board.py
+- logic in validateWord function in scrabble.py
 ### Added [25/10/23]
 - swapTiles function in player.py
 - test_wrongStart, test_initStartPlayerCount, test_firstTurnWordNotFound, test_firstTurnShuffle, test_firstTurnThenPass, test_firstTurnThenExit, test_firstTurnThenWrongInput, test_firstTurnThenSecondChoice in test_cli.py
