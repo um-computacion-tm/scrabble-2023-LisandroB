@@ -53,7 +53,6 @@ class TestPlayer(unittest.TestCase):
             Tile('I', 1)
         ]
         scrabbleGame.putWord("casa", (8, 8), "V")
-        scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
         scrabbleGame.current_player = scrabbleGame.players[0]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
@@ -65,10 +64,10 @@ class TestPlayer(unittest.TestCase):
             Tile('G', 1), 
             Tile('I', 1)
         ]
-        scrabbleGame.putWord("guias", (5, 11), "H")
-        self.assertEqual(len(scrabbleGame.current_player.tiles), 2)
+        scrabbleGame.putWord("guias", (11, 5), "H")
+        self.assertEqual(len(scrabbleGame.current_player.tiles), 3)
         scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
-        self.assertEqual(len(scrabbleGame.bagTiles.tiles), 78)
+        self.assertEqual(len(scrabbleGame.bagTiles.tiles), 83)
         self.assertEqual(len(scrabbleGame.current_player.tiles), 7)
         
     def test_playerHasWord(self):

@@ -1,10 +1,9 @@
 ## TO DO
-- jugar hasta romper
 - palabras con ñ no funcionan
 - agregar tests restantes a test_cli.py
-- solo poner palabras consiguientes a tiles
 - evitar poner letras cuando palabra existe en diccionario, palabra entra en tablero pero no tengo las letras suficientes
 - eliminar None de print en cli
+- implementar endgame
 - testear _todo_ 
 - redis?
 - para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
@@ -20,6 +19,8 @@
 - aprendí a la fuerza que los tests sirven un montón
 
 ## DONE
+- solo poner palabras consiguientes a tiles
+- jugar hasta romper
 - al iniciar solo palabra que tenga una tile en celda central [8, 8]
 - agregar más tests rigurosos a test_cli.py [2]
 - agregar función de cambiar tiles

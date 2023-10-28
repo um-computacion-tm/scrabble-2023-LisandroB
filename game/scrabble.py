@@ -9,7 +9,6 @@ class ScrabbleGame:
         self.board = Board()
         self.bagTiles = BagTiles()
         self.players:list[Player] = []
-        self.score = []
         self.turn = 0;
         for index in range(playerCount):
             self.players.append(Player(self.bagTiles, id=index+1))
@@ -81,11 +80,11 @@ class ScrabbleGame:
         if self.turn == 1:
             for _ in word:
                 if orientation == "V" or orientation == "v":
-                    if self.board.getCellInBoard(x, 8) == self.board.getCellInBoard(8, 8):
+                    if self.board.getCellInBoard(x, y) == self.board.getCellInBoard(8, 8):
                         return True
                     x+=1
                 elif orientation == "H" or orientation == "h":
-                    if self.board.getCellInBoard(8, y) == self.board.getCellInBoard(8, 8):
+                    if self.board.getCellInBoard(x, y) == self.board.getCellInBoard(8, 8):
                         return True
                     y+=1
             else:
@@ -93,10 +92,22 @@ class ScrabbleGame:
         elif self.turn > 1: 
             return True;
 
-    def isNextToTile(self, word, location):
+    def isNextToTile(self, word, location, orientation):
         (x, y) = location
-        for _ in word:
-            self.board.getCellInBoard(x, y)
+        if self.turn > 1:
+            for _ in word:
+                if orientation == "V" or orientation == "v":
+                    if self.board.getCellInBoard(x, y).tile == "":
+                        x+=1
+                    else:
+                        return True;
+                if orientation == "H" or orientation == "h":
+                    if self.board.getCellInBoard(x, y).tile == "":
+                        y+=1
+                    else:
+                        return True;
+        else:
+            return True;
 
     def validateWord(self, word, location, orientation):
         if (
@@ -108,8 +119,11 @@ class ScrabbleGame:
             and
             self.checkIfFirstTurn(word, location, orientation)
         ):
-            word = unidecode(word)
-            return True;
+            if not self.isNextToTile(word, location, orientation) == None:
+                word = unidecode(word)
+                return True;
+            else:
+                raise Exception("Palabra debe continuar con las del tablero!")
         elif (
             self.isWordInBoard(word, location, orientation)
             and
@@ -119,10 +133,14 @@ class ScrabbleGame:
             and
             self.checkIfFirstTurn(word, location, orientation)
         ):
-            return True;
+            if not self.isNextToTile(word, location, orientation) == None:
+                return True;
+            else:
+                raise Exception("Palabra debe continuar con las del tablero!")
 
     def putWord(self, word, location, orientation):
         (x, y) = location
+        score = []
         if self.validateWord(word, location, orientation):
             if ('í' in word or 'é' in word or 'ú' in word or 'ó' in word or 'á' in word):
                 word = unidecode(word)
@@ -131,18 +149,18 @@ class ScrabbleGame:
                 for i in range(len(self.current_player.tiles)):             
                     if (letter == str(self.board.getCellInBoard(x, y)).lower() and letter == self.current_player.tiles[i].letter.lower()):
                         if orientation == "V" or orientation == "v":
-                            self.score.append(self.board.getCellInBoard(x, y))
+                            score.append(self.board.getCellInBoard(x, y))
                             x+=1
                         elif orientation == "H" or orientation == "h":
-                            self.score.append(self.board.getCellInBoard(x, y))
+                            score.append(self.board.getCellInBoard(x, y))
                             y+=1
                         break;
                     if letter == str(self.board.getCellInBoard(x, y)).lower():
                         if orientation == "V" or orientation == "v":
-                            self.score.append(self.board.getCellInBoard(x, y))
+                            score.append(self.board.getCellInBoard(x, y))
                             x+=1
                         elif orientation == "H" or orientation == "h":
-                            self.score.append(self.board.getCellInBoard(x, y))
+                            score.append(self.board.getCellInBoard(x, y))
                             y+=1
                         break;
                     if (
@@ -154,7 +172,7 @@ class ScrabbleGame:
                                 self.current_player.tiles[i].letter,
                                 self.current_player.tiles[i].value
                             ))
-                            self.score.append(self.board.getCellInBoard(x, y))
+                            score.append(self.board.getCellInBoard(x, y))
                             x+=1
                             self.removeTileFromPlayer(i)
                             break;
@@ -163,9 +181,9 @@ class ScrabbleGame:
                                 self.current_player.tiles[i].letter,
                                 self.current_player.tiles[i].value
                             ))
-                            self.score.append(self.board.getCellInBoard(x, y))
+                            score.append(self.board.getCellInBoard(x, y))
                             y+=1
                             self.removeTileFromPlayer(i)
                             break;
-            self.current_player.score += self.board.calculateWordValue(self.score)
+            self.current_player.score += self.board.calculateWordValue(score)
             return True
