@@ -69,7 +69,7 @@ class Board:
             self.grid[x-1][y-1].noneTile()
             self.grid[x-1][y-1].addTile(tile)
         else:
-            return False;
+            self.grid[x-1][y-1].addTile(tile)
 
     def getCellInBoard(self, x, y):
         return self.grid[x-1][y-1]

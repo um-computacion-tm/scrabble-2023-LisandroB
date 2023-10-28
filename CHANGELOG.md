@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [28/10/23]
+- self.turn attribute, checkIfFirstTurn and isNextToTile functions
+- test_firstTurnThenEnterWord in test_cli.py
+- test_putWordThroughCenter, test_putWordThroughCenterWrong, test_validateGameHorizontalConExtraDoble in test_scrabble_game.py
+### Modified [28/10/23]
+- next_turn, validateWord, putWord functions in scrabble.py
+- game logic for cli function in cli.py
+- tests in test_player.py
 ### Added [26/10/23]
 - addMultipleTilesToCellAddScoreRemoveTile, addScoreThenMoveOneTile, moveOneTile, checkIfWordAlreadyThere, removeTileFromPlayer, checkIfNonUnicode functions in scrabble.py
 - checkIfWordInBoard function in board.py

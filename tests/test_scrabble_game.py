@@ -41,6 +41,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateWordRight(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("G", 4), 
             Tile("A", 1), 
@@ -55,6 +56,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateWordWrong(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("G", 4), 
             Tile("A", 1), 
@@ -70,6 +72,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_putWordWrong(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("G", 4), 
             Tile("A", 1), 
@@ -85,6 +88,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_getScore(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("G", 4), 
             Tile("A", 1), 
@@ -94,8 +98,9 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1), 
             Tile("A", 1)
         ]
-        scrabbleGame.putWord("papa", (8, 7), "V")
+        scrabbleGame.putWord("papa", (8, 8), "V")
         scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("A", 1), 
             Tile("C", 1), 
@@ -110,7 +115,7 @@ class TestScrabbleGame(unittest.TestCase):
 
     def test_validateWordFalse(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("P", 1), 
             Tile("A", 1), 
@@ -132,6 +137,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateTurn(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("A", 1), 
             Tile("C", 1), 
@@ -141,11 +147,12 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 4),
             Tile("O", 1)
         ]
-        self.assertEqual(scrabbleGame.validateTurn("carro", (3, 2), "V"), True)
+        self.assertEqual(scrabbleGame.validateTurn("carro", (8, 8), "V"), True)
 
     def test_validateTurnWrong(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
         scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("G", 1), 
             Tile("I", 1), 
@@ -161,6 +168,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateTurnRight(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.bagTiles.tiles = []
         scrabbleGame.current_player.tiles = [
             Tile("A", 1), 
@@ -177,6 +185,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_putWord(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("A", 1), 
             Tile("C", 1), 
@@ -196,6 +205,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_putWordAgain(self):
         scrabbleGame = ScrabbleGame(playerCount=4)
         scrabbleGame.current_player = scrabbleGame.players[3]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
            Tile("U", 4),
            Tile("H", 1), 
@@ -216,6 +226,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_putWordFalse(self):
         scrabbleGame = ScrabbleGame(playerCount=4)
         scrabbleGame.current_player = scrabbleGame.players[3]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
            Tile("N", 1), 
            Tile("R", 1),
@@ -231,6 +242,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_putWordFalseAgain(self):
         scrabbleGame = ScrabbleGame(playerCount=4)
         scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
            Tile("N", 1), 
            Tile("R", 1),
@@ -246,6 +258,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_putWordGetScore(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
            Tile("U", 1),
            Tile("H", 2), 
@@ -261,7 +274,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameHuh(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("D", 2), 
             Tile("A", 1), 
@@ -273,6 +286,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("gata", (8, 8), "v")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("A", 1), 
             Tile("N", 1), 
@@ -289,7 +303,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameFixed(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("D", 2), 
             Tile("A", 1), 
@@ -301,6 +315,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("gafas", (8, 6), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 1), 
             Tile("N", 1), 
@@ -313,10 +328,41 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.putWord("fuegos", (8, 8), "v")
         self.assertTrue(scrabbleGame.board.getCellInBoard(9, 8).tile)
 
+    def test_putWordThroughCenter(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("D", 2), 
+            Tile("A", 1), 
+            Tile("G", 2), 
+            Tile("F", 4),
+            Tile("S", 1), 
+            Tile("A", 8), 
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWord("gafas", (8, 8), "h")
+        game.showBoard(scrabbleGame.board)
+        
+    def test_putWordThroughCenterWrong(self):
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("D", 2), 
+            Tile("A", 1), 
+            Tile("G", 2), 
+            Tile("F", 4),
+            Tile("S", 1), 
+            Tile("A", 8), 
+            Tile("A", 1)
+        ]
+        with self.assertRaises(Exception):
+            scrabbleGame.putWord("gafas", (1, 1), "h")
+
     def test_validateGameVertical(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("N", 1), 
             Tile("O", 1), 
@@ -328,6 +374,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("honor", (8, 8), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("O", 1), 
             Tile("E", 1), 
@@ -343,7 +390,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameHorizontal(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=3)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("T", 8), 
             Tile("E", 1), 
@@ -355,6 +402,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("terco", (8, 8), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 1), 
             Tile("U", 1), 
@@ -366,6 +414,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("tan", (8, 8), "v")
         scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("E", 1), 
             Tile("J", 8), 
@@ -381,7 +430,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameHorizontalAndVertical(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("A", 1), 
             Tile("D", 2), 
@@ -393,6 +442,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("salta", (8, 6), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("T", 1), 
             Tile("R", 1), 
@@ -404,6 +454,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("trato", (6, 7), "v")
         scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("S", 1), 
             Tile("R", 1), 
@@ -419,7 +470,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameHorizontalAndVerticalWithDoubleLetter(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 3), 
             Tile("M", 2), 
@@ -431,6 +482,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("miel", (8, 7), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("O", 2), 
             Tile("P", 8), 
@@ -442,6 +494,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("pie", (7, 8), "v")
         scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 2), 
             Tile("C", 8), 
@@ -453,6 +506,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("piel", (7, 8), "v")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("O", 2), 
             Tile("E", 8), 
@@ -464,6 +518,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("vale", (6, 10), "v")
         scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 2), 
             Tile("C", 8), 
@@ -475,6 +530,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("cela", (10, 6), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("O", 2), 
             Tile("C", 1), 
@@ -486,6 +542,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("eco", (9, 6), "v")
         scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 2), 
             Tile("Z", 8),
@@ -497,6 +554,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("tío", (11, 4), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("C", 2), 
             Tile("C", 1), 
@@ -508,6 +566,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("turco", (11, 4), "v")
         scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 2), 
             Tile("Z", 8),
@@ -519,6 +578,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("voraz", (6, 10), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 2), 
             Tile("E", 1), 
@@ -534,7 +594,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameHorizontalConEñe(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=3)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("G", 8), 
             Tile("M", 1), 
@@ -546,6 +606,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("magia", (8, 6), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("U", 1), 
             Tile("E", 1), 
@@ -561,7 +622,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameHorizontalConTilde(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("D", 8), 
             Tile("J", 1), 
@@ -573,6 +634,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("del", (8, 7), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("I", 8), 
             Tile("O", 1), 
@@ -588,7 +650,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameHorizontalConExtra(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("C", 8), 
             Tile("O", 1), 
@@ -600,6 +662,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("cono", (8, 7), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("T", 8), 
             Tile("A", 1), 
@@ -615,7 +678,7 @@ class TestScrabbleGame(unittest.TestCase):
     def test_validateGameHorizontalConExtra(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("C", 8), 
             Tile("O", 1), 
@@ -627,6 +690,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("cono", (8, 7), "h")
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("T", 8), 
             Tile("A", 1), 
@@ -638,6 +702,7 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("tano", (5, 10), "v")
         scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("C", 8), 
             Tile("O", 1), 
@@ -648,7 +713,35 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("B", 1)
         ]
         scrabbleGame.putWord("coco", (7, 8), "v")
-        
         game.showBoard(scrabbleGame.board)
+    
+    def test_validateGameHorizontalConExtraDoble(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 8), 
+            Tile("O", 1), 
+            Tile("R", 8), 
+            Tile("A", 3),
+            Tile("B", 1), 
+            Tile("O", 1), 
+            Tile("M", 1)
+        ]
+        scrabbleGame.putWord("marco", (8, 6), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 8), 
+            Tile("G", 1), 
+            Tile("R", 8), 
+            Tile("D", 3),
+            Tile("O", 1), 
+            Tile("L", 1), 
+            Tile("P", 1)
+        ]
+        scrabbleGame.putWord("palco", (7, 7), "v")
+        game.showBoard(scrabbleGame.board)
+
 if __name__ == '__main__':
     unittest.main()

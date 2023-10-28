@@ -23,6 +23,7 @@ class TestPlayer(unittest.TestCase):
     def test_fillTiles(self):
         scrabbleGame = ScrabbleGame(2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile('A', 1), 
             Tile('A', 1), 
@@ -32,7 +33,7 @@ class TestPlayer(unittest.TestCase):
             Tile('F', 1), 
             Tile('I', 1)
         ]
-        scrabbleGame.putWord("casa", (3, 2), "V")
+        scrabbleGame.putWord("casa", (8, 8), "V")
         self.assertEqual(len(scrabbleGame.current_player.tiles), 3)
         scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
         self.assertEqual(len(scrabbleGame.bagTiles.tiles), 83)
@@ -41,6 +42,7 @@ class TestPlayer(unittest.TestCase):
     def test_fillTilesWithDoubleTurn(self):
         scrabbleGame = ScrabbleGame(2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile('A', 1), 
             Tile('A', 1), 
@@ -50,9 +52,10 @@ class TestPlayer(unittest.TestCase):
             Tile('F', 1), 
             Tile('I', 1)
         ]
-        scrabbleGame.putWord("casa", (3, 2), "V")
+        scrabbleGame.putWord("casa", (8, 8), "V")
         scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
         scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile('X', 1), 
             Tile('S', 1), 
@@ -62,7 +65,7 @@ class TestPlayer(unittest.TestCase):
             Tile('G', 1), 
             Tile('I', 1)
         ]
-        scrabbleGame.putWord("guias", (7, 3), "H")
+        scrabbleGame.putWord("guias", (5, 11), "H")
         self.assertEqual(len(scrabbleGame.current_player.tiles), 2)
         scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
         self.assertEqual(len(scrabbleGame.bagTiles.tiles), 78)
@@ -113,6 +116,7 @@ class TestPlayer(unittest.TestCase):
     def test_playerHasSwappedAllTiles(self):
         scrabbleGame = ScrabbleGame(2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()        
         scrabbleGame.current_player.tiles = [
             Tile('A', 1), 
             Tile('A', 1), 
@@ -127,6 +131,7 @@ class TestPlayer(unittest.TestCase):
     def test_playerHasSwappedSomeTiles(self):
         scrabbleGame = ScrabbleGame(2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile('D', 1), 
             Tile('A', 1), 
@@ -141,6 +146,7 @@ class TestPlayer(unittest.TestCase):
     def test_playerHasSwappedOneTile(self):
         scrabbleGame = ScrabbleGame(2)
         scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile('A', 1), 
             Tile('A', 1), 

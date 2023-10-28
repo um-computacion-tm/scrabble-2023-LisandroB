@@ -21,7 +21,7 @@ class Game():
                     try:
                         print(f"Fichas restantes: {len(scrabbleGame.bagTiles.tiles)}")
                         print(f"{scrabbleGame.getScore()}")
-                        print(f"Turno del jugador {scrabbleGame.current_player.id}")
+                        print(f"Turno {scrabbleGame.turn} - Jugador {scrabbleGame.current_player.id}")
                         self.showBoard(scrabbleGame.board)
                         print(scrabbleGame.current_player.tiles)
                         print("------------------------------------------------")
@@ -54,9 +54,12 @@ class Game():
                             print("Shuffled!")
                             time.sleep(1.5)
                         elif choice == "4":
-                            print("Pasaste tu turno!")
-                            time.sleep(1.5)
-                            break;
+                            if scrabbleGame.turn > 1:
+                                print("Pasaste tu turno!")
+                                time.sleep(1.5)
+                                break;
+                            else:
+                                raise Exception("No podés pasar el primer turno!")
                         elif choice == "5":
                             exit = input("Está seguro de terminar la partida? Y/N: ")
                             if exit == "Y" or exit == "y":

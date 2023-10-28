@@ -10,6 +10,7 @@ class ScrabbleGame:
         self.bagTiles = BagTiles()
         self.players:list[Player] = []
         self.score = []
+        self.turn = 0;
         for index in range(playerCount):
             self.players.append(Player(self.bagTiles, id=index+1))
         self.current_player = None
@@ -62,24 +63,50 @@ class ScrabbleGame:
 
     def removeTileFromPlayer(self, index):
         self.current_player.tiles.pop(index)
-    
-    def addScore(self, x, y):
-        self.score.append(self.board.getCellInBoard(x, y))
 
     def next_turn(self):
         if self.current_player is None:
+            self.turn+=1
             self.current_player = self.players[0]
         elif self.current_player == self.players[-1]: #Accediendo al ultimo valor de la lista
+            self.turn+=1
             self.current_player = self.players[0]
         else:
+            self.turn+=1
             index = self.players.index(self.current_player) + 1
             self.current_player = self.players[index]
+    
+    def checkIfFirstTurn(self, word, location, orientation):
+        (x, y) = location
+        if self.turn == 1:
+            for _ in word:
+                if orientation == "V" or orientation == "v":
+                    if self.board.getCellInBoard(x, 8) == self.board.getCellInBoard(8, 8):
+                        return True
+                    x+=1
+                elif orientation == "H" or orientation == "h":
+                    if self.board.getCellInBoard(8, y) == self.board.getCellInBoard(8, 8):
+                        return True
+                    y+=1
+            else:
+                raise Exception("La primer palabra debe cruzar por la celda del centro! (8, 8)")
+        elif self.turn > 1: 
+            return True;
+
+    def isNextToTile(self, word, location):
+        (x, y) = location
+        for _ in word:
+            self.board.getCellInBoard(x, y)
 
     def validateWord(self, word, location, orientation):
         if (
             self.current_player.hasWord(word)
-            and self.board.validate_word_inside_board(word, location, orientation)
-            and dict(word)
+            and 
+            self.board.validate_word_inside_board(word, location, orientation)
+            and 
+            dict(word)
+            and
+            self.checkIfFirstTurn(word, location, orientation)
         ):
             word = unidecode(word)
             return True;
@@ -89,58 +116,56 @@ class ScrabbleGame:
             self.board.validate_word_inside_board(word, location, orientation)
             and
             dict(word)
+            and
+            self.checkIfFirstTurn(word, location, orientation)
         ):
-            word = unidecode(word)
             return True;
-
-    def checkIfWordAlreadyThere(self, orientation, letter, i, location):
-        (x, y) = location
-        if (letter == str(self.board.getCellInBoard(x, y)).lower()
-            and letter == self.current_player.tiles[i].letter.lower()):
-            return self.addScoreThenMoveOneTile(x, y, orientation)
-        if letter == str(self.board.getCellInBoard(x, y)).lower():
-            return self.addScoreThenMoveOneTile(x, y, orientation)
-
-    def moveOneTile(self, xy):
-        return xy + 1
-
-    def addScoreThenMoveOneTile(self, x, y, orientation):
-        self.addScore(x, y)
-        if orientation == "V" or orientation == "v":
-            return self.moveOneTile(x)
-        elif orientation == "H" or orientation == "h":
-            return self.moveOneTile(y)
-
-    def addMultipleTilesToCellAddScoreRemoveTile(self, x, y, i, orientation):
-        self.board.addTileToCell(x, y, Tile(
-            self.current_player.tiles[i].letter,
-            self.current_player.tiles[i].value
-            )
-        )
-        self.removeTileFromPlayer(i)
-        return self.addScoreThenMoveOneTile(x, y, orientation)
-
-    def checkIfNonUnicode(self, word):
-        if ('í' in word or 'é' in word or 'ú' in word or 'ó' in word or 'á' in word):
-            word = unidecode(word)
 
     def putWord(self, word, location, orientation):
         (x, y) = location
         if self.validateWord(word, location, orientation):
-            self.checkIfNonUnicode(word)
+            if ('í' in word or 'é' in word or 'ú' in word or 'ó' in word or 'á' in word):
+                word = unidecode(word)
             word = [char for char in word]
             for letter in word:
                 for i in range(len(self.current_player.tiles)):             
-                    self.checkIfWordAlreadyThere(orientation, letter, i, location)
+                    if (letter == str(self.board.getCellInBoard(x, y)).lower() and letter == self.current_player.tiles[i].letter.lower()):
+                        if orientation == "V" or orientation == "v":
+                            self.score.append(self.board.getCellInBoard(x, y))
+                            x+=1
+                        elif orientation == "H" or orientation == "h":
+                            self.score.append(self.board.getCellInBoard(x, y))
+                            y+=1
+                        break;
+                    if letter == str(self.board.getCellInBoard(x, y)).lower():
+                        if orientation == "V" or orientation == "v":
+                            self.score.append(self.board.getCellInBoard(x, y))
+                            x+=1
+                        elif orientation == "H" or orientation == "h":
+                            self.score.append(self.board.getCellInBoard(x, y))
+                            y+=1
+                        break;
                     if (
                         letter == self.current_player.tiles[i].letter.lower()
                         or letter == str(self.board.getCellInBoard(x, y)).lower()
                     ):
                         if orientation == "V" or orientation == "v":
-                            x = self.addMultipleTilesToCellAddScoreRemoveTile(x, y, i, orientation)
+                            self.board.addTileToCell(x, y, Tile(
+                                self.current_player.tiles[i].letter,
+                                self.current_player.tiles[i].value
+                            ))
+                            self.score.append(self.board.getCellInBoard(x, y))
+                            x+=1
+                            self.removeTileFromPlayer(i)
                             break;
                         elif orientation == "H" or orientation == "h":
-                            y = self.addMultipleTilesToCellAddScoreRemoveTile(x, y, i, orientation)
+                            self.board.addTileToCell(x, y, Tile(
+                                self.current_player.tiles[i].letter,
+                                self.current_player.tiles[i].value
+                            ))
+                            self.score.append(self.board.getCellInBoard(x, y))
+                            y+=1
+                            self.removeTileFromPlayer(i)
                             break;
             self.current_player.score += self.board.calculateWordValue(self.score)
-            return True;
+            return True
