@@ -22,7 +22,8 @@ class TestDictionary(unittest.TestCase):
         )
     )
     def test_invalid(self, search_by_word_patched):
-        self.assertFalse(validate_word('asd'))
+        with self.assertRaises(Exception):
+            validate_word('asd')
 
     @patch(
         'pyrae.dle.search_by_word',

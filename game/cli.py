@@ -20,7 +20,7 @@ class Game():
                 while True:
                     try:
                         print(f"Fichas restantes: {len(scrabbleGame.bagTiles.tiles)}")
-                        print(f"{scrabbleGame.getScore()}")
+                        scrabbleGame.getScore()
                         print(f"Turno {scrabbleGame.turn} - Jugador {scrabbleGame.current_player.id}")
                         self.showBoard(scrabbleGame.board)
                         print(scrabbleGame.current_player.tiles)
@@ -33,7 +33,7 @@ class Game():
                         print("------------------------------------------------")
                         choice = input("Qué desea hacer?: " )
                         if choice == "1":
-                            word = input("Ingrese palabra: ")
+                            word = input("Ingrese palabra en minúscula: ")
                             x = input("Ingrese posicion X: ")
                             y = input("Ingrese posicion Y: ")
                             location = (int(y), int(x))

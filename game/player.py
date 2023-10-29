@@ -25,15 +25,28 @@ class Player:
             bagTiles.tiles.pop(i)
     
     def hasWord(self, word):
-        word = unidecode(word)
         res = []
         chk = []
         ret = 0
         for _ in self.tiles:
             res += _.letter.lower()
         for _ in word:
+            if (_ == "ó"
+                or _ == "é"
+                or _ == "í" 
+                or _ == "ú" 
+                or _ == 'á'
+            ):
+                _ = unidecode(_)
             chk += _
         for _ in word:
+            if (_ == "ó"
+                or _ == "é"
+                or _ == "í" 
+                or _ == "ú" 
+                or _ == 'á'
+            ):
+                _ = unidecode(_)
             if _ in res:
                 ret +=1
                 res.pop(res.index(_))

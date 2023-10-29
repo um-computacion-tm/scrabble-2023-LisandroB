@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [29/10/23]
+- checks for special characters in hasWord function in player.py
+- checkIfNextToTile, isSpecial functions [reformatted prev code that worked, made into separate functions]
+- test_validateWordWithTildeAndÑ, test_validateWordMuchasTildes, test_validateWordNotFoundInDictionary in test_scrabble_game.py
+### Modified [29/10/23]
+- validateWord function in scrabble.py now uses checkIfNextToTile
+- putWord function in scrabble.py now uses isSpecial
+- cli.py, changed how the score is printed to avoid a stray None result and when player is asked for a word, now specifies that it needs a lowercase word
+- dictionary.py, now it throws an error when word is not found in dict
+- test_invalid in test_dictionary.py now asserts exception
 ### Added [28/10/23]
 - self.turn attribute, checkIfFirstTurn and isNextToTile functions
 - test_firstTurnThenEnterWord in test_cli.py

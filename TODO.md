@@ -1,16 +1,13 @@
 ## TO DO
-- palabras con ñ no funcionan
-- agregar tests restantes a test_cli.py
-- evitar poner letras cuando palabra existe en diccionario, palabra entra en tablero pero no tengo las letras suficientes
-- eliminar None de print en cli
 - implementar endgame
+- terminar de refactorizar code smells [codeclimate]
+- agregar tests restantes a test_cli.py
 - testear _todo_ 
 - redis?
 - para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
 - docker run image
 - chequear codeclimate.yml de template en github, tienen que haber 0 issues found en el analisis
 - agregar dockerfile de otros repos
-- terminar de refactorizar code smells [codeclimate]
 - chequear env? [revisar si virtual environment está bien]
 - correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar
 - basically the entire game haha
@@ -19,6 +16,9 @@
 - aprendí a la fuerza que los tests sirven un montón
 
 ## DONE
+- eliminar None de print en cli
+- evitar poner letras cuando palabra existe en diccionario, palabra entra en tablero pero no tengo las letras suficientes
+- palabras con ñ no funcionan
 - solo poner palabras consiguientes a tiles
 - jugar hasta romper
 - al iniciar solo palabra que tenga una tile en celda central [8, 8]
