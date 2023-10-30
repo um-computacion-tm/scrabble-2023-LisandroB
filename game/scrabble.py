@@ -14,6 +14,20 @@ class ScrabbleGame:
             self.players.append(Player(self.bagTiles, id=index+1))
         self.current_player = None
     
+    def endGame(self):
+        print("Juego terminado!")
+        print("Puntaje final: ")
+        playersAndScores = []
+        for _ in self.players:
+            s = _.id, _.score
+            playersAndScores.append(s)
+        playersAndScores = sorted(playersAndScores, key=lambda x: x[1], reverse=True)
+        for _ in playersAndScores:
+            print(f"Jugador {_[0]}: {_[1]}")
+        print(f"El ganador es: Jugador {playersAndScores[0][0]}")
+        print("Gracias por jugar, hasta pronto!")
+        raise AssertionError
+
     def isWordInBoard(self, word, location, orientation):
         (x, y) = location
         if  (
@@ -50,10 +64,10 @@ class ScrabbleGame:
             raise Exception("Palabra no está en tablero!")
 
     def validateTurn(self, word, location, orientation):
-        if len(self.bagTiles.tiles) > 0:
+        if len(self.bagTiles.tiles) > 0 and len(self.current_player.tiles) > 0:
             return self.putWord(word, location, orientation)
-        else:
-            raise Exception("Turno inválido!")
+        elif len(self.current_player.tiles) == 0 or len(self.bagTiles.tiles) == 0:
+            self.endGame()
 
     def getScore(self):
         print("------------------------ Scoreboard ------------------------")

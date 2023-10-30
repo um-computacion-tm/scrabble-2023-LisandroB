@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [30/10/23]
+- endGame function in scrabble.py, now game ends properly
+- modularized justAddTile, deleteThenAddTile functions in board.py for codeclimate code smells
+- modularized turnIntoUnidecode in player.py
+- test_wrongTurnEndGame, test_wrongTurnNoTilesEndGame in test_scrabble_game.py
+### Modified
+- validateTurn in scrabble.py, it now checks whether the game's bagtiles or the player's rack is empty and ends match 
+- addTileToCell in board.py, it now uses justAddTile and deleteThenAddTile functions
+- hasWord in player.py, it now uses turnIntoUnidecode functions
+- game logic in cli.py, it now shows ending score when quitting game
 ### Added [29/10/23]
 - checks for special characters in hasWord function in player.py
 - checkIfNextToTile, isSpecial functions [reformatted prev code that worked, made into separate functions]

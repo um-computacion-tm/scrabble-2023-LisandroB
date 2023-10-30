@@ -166,7 +166,7 @@ class TestScrabbleGame(unittest.TestCase):
         with self.assertRaises(Exception):
             scrabbleGame.validateTurn("carro", (3, 2), "V")
     
-    def test_validateTurnRight(self):
+    def test_wrongTurnLowTiles(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
         scrabbleGame.current_player = scrabbleGame.players[1]
         scrabbleGame.next_turn()
@@ -175,13 +175,263 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1), 
             Tile("C", 1), 
             Tile("R", 1), 
-            Tile("P", 1), 
-            Tile("R", 1), 
-            Tile("A", 4),
             Tile("O", 1)
         ]
         with self.assertRaises(Exception):
-            scrabbleGame.validateTurn("carro", (3, 2), "V")
+            scrabbleGame.validateTurn("carro", (8, 8), "V")
+
+    def test_wrongTurnEndGame(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=4)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 3), 
+            Tile("M", 2), 
+            Tile("C", 1), 
+            Tile("I", 1),
+            Tile("E", 1), 
+            Tile("L", 2), 
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWord("miel", (8, 7), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("O", 2), 
+            Tile("P", 8), 
+            Tile("E", 1), 
+            Tile("E", 8),
+            Tile("C", 5), 
+            Tile("E", 1), 
+            Tile("C", 1)
+        ]
+        scrabbleGame.putWord("pie", (7, 8), "v")
+        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("C", 8), 
+            Tile("A", 1), 
+            Tile("Z", 8),
+            Tile("I", 5), 
+            Tile("L", 1), 
+            Tile("E", 1)
+        ]
+        scrabbleGame.putWord("piel", (7, 8), "v")
+        scrabbleGame.current_player = scrabbleGame.players[3]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("O", 2), 
+            Tile("E", 8), 
+            Tile("C", 1), 
+            Tile("E", 8),
+            Tile("C", 5), 
+            Tile("V", 1), 
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWord("vale", (6, 10), "v")
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("C", 8), 
+            Tile("A", 1), 
+            Tile("Z", 8),
+            Tile("I", 5), 
+            Tile("E", 1), 
+            Tile("T", 1)
+        ]
+        scrabbleGame.putWord("cela", (10, 6), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("O", 2), 
+            Tile("C", 1), 
+            Tile("E", 8), 
+            Tile("C", 5), 
+            Tile("O", 8),
+            Tile("U", 1), 
+            Tile("U", 1)
+        ]
+        scrabbleGame.putWord("eco", (9, 6), "v")
+        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("Z", 8),
+            Tile("I", 5), 
+            Tile("T", 1),
+            Tile("O", 8), 
+            Tile("A", 1), 
+            Tile("E", 1), 
+        ]
+        scrabbleGame.putWord("tío", (11, 4), "h")
+        scrabbleGame.current_player = scrabbleGame.players[3]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 2), 
+            Tile("C", 1), 
+            Tile("O", 8), 
+            Tile("U", 5), 
+            Tile("U", 8),
+            Tile("O", 8), 
+            Tile("R", 1), 
+        ]
+        scrabbleGame.putWord("turco", (11, 4), "v")
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("Z", 8),
+            Tile("O", 8), 
+            Tile("A", 1), 
+            Tile("E", 1), 
+            Tile("Q", 5), 
+            Tile("R", 1),
+        ]
+        scrabbleGame.putWord("voraz", (6, 10), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("E", 1), 
+            Tile("E", 8), 
+            Tile("T", 5), 
+            Tile("F", 8),
+            Tile("R", 8), 
+            Tile("A", 1), 
+        ]
+        scrabbleGame.putWord("fuerte", (12, 3), "h")
+        scrabbleGame.bagTiles.tiles = []
+        scrabbleGame.current_player.tiles = []
+        with self.assertRaises(AssertionError):
+            scrabbleGame.validateTurn("carro", (8, 8), "V")
+
+    def test_wrongTurnNoTilesEndGame(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=4)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 3), 
+            Tile("M", 2), 
+            Tile("C", 1), 
+            Tile("I", 1),
+            Tile("E", 1), 
+            Tile("L", 2), 
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWord("miel", (8, 7), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("O", 2), 
+            Tile("P", 8), 
+            Tile("E", 1), 
+            Tile("E", 8),
+            Tile("C", 5), 
+            Tile("E", 1), 
+            Tile("C", 1)
+        ]
+        scrabbleGame.putWord("pie", (7, 8), "v")
+        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("C", 8), 
+            Tile("A", 1), 
+            Tile("Z", 8),
+            Tile("I", 5), 
+            Tile("L", 1), 
+            Tile("E", 1)
+        ]
+        scrabbleGame.putWord("piel", (7, 8), "v")
+        scrabbleGame.current_player = scrabbleGame.players[3]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("O", 2), 
+            Tile("E", 8), 
+            Tile("C", 1), 
+            Tile("E", 8),
+            Tile("C", 5), 
+            Tile("V", 1), 
+            Tile("A", 1)
+        ]
+        scrabbleGame.putWord("vale", (6, 10), "v")
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("C", 8), 
+            Tile("A", 1), 
+            Tile("Z", 8),
+            Tile("I", 5), 
+            Tile("E", 1), 
+            Tile("T", 1)
+        ]
+        scrabbleGame.putWord("cela", (10, 6), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("O", 2), 
+            Tile("C", 1), 
+            Tile("E", 8), 
+            Tile("C", 5), 
+            Tile("O", 8),
+            Tile("U", 1), 
+            Tile("U", 1)
+        ]
+        scrabbleGame.putWord("eco", (9, 6), "v")
+        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("Z", 8),
+            Tile("I", 5), 
+            Tile("T", 1),
+            Tile("O", 8), 
+            Tile("A", 1), 
+            Tile("E", 1), 
+        ]
+        scrabbleGame.putWord("tío", (11, 4), "h")
+        scrabbleGame.current_player = scrabbleGame.players[3]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 2), 
+            Tile("C", 1), 
+            Tile("O", 8), 
+            Tile("U", 5), 
+            Tile("U", 8),
+            Tile("O", 8), 
+            Tile("R", 1), 
+        ]
+        scrabbleGame.putWord("turco", (11, 4), "v")
+        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("Z", 8),
+            Tile("O", 8), 
+            Tile("A", 1), 
+            Tile("E", 1), 
+            Tile("Q", 5), 
+            Tile("R", 1),
+        ]
+        scrabbleGame.putWord("voraz", (6, 10), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("U", 2), 
+            Tile("E", 1), 
+            Tile("E", 8), 
+            Tile("T", 5), 
+            Tile("F", 8),
+            Tile("R", 8), 
+            Tile("A", 1), 
+        ]
+        scrabbleGame.putWord("fuerte", (12, 3), "h")
+        scrabbleGame.bagTiles.tiles = []
+        with self.assertRaises(AssertionError):
+            scrabbleGame.validateTurn("carro", (8, 8), "V")
 
     def test_putWord(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
@@ -787,7 +1037,20 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("M", 1)
         ]
         scrabbleGame.putWord("ñandú", (8, 6), "h")
-
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player.tiles = [
+            Tile("Ñ", 8), 
+            Tile("O", 1), 
+            Tile("Q", 8), 
+            Tile("U", 3),
+            Tile("I", 1), 
+            Tile("O", 1), 
+            Tile("M", 1)
+        ]
+        scrabbleGame.putWord("ñoqui", (8, 6), "v")
+        game.showBoard(scrabbleGame.board)
+        
     def test_validateWordMuchasTildes(self):
         game = Game()
         scrabbleGame = ScrabbleGame(playerCount=2)

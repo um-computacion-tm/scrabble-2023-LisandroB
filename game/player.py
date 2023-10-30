@@ -18,6 +18,18 @@ class Player:
     def shuffleTiles(self):
         return random.shuffle(self.tiles)
 
+    def turnIntoUnidecode(self, letter):
+        if (letter == "ó"
+                or letter == "é"
+                or letter == "í" 
+                or letter == "ú" 
+                or letter == 'á'
+            ):
+                letter = unidecode(letter)
+                return letter
+        else:
+            return letter
+
     def fillTiles(self, bagTiles):
         random.shuffle(bagTiles.tiles)
         for i in range(7 - len(self.tiles)):
@@ -31,22 +43,10 @@ class Player:
         for _ in self.tiles:
             res += _.letter.lower()
         for _ in word:
-            if (_ == "ó"
-                or _ == "é"
-                or _ == "í" 
-                or _ == "ú" 
-                or _ == 'á'
-            ):
-                _ = unidecode(_)
+            _ = self.turnIntoUnidecode(_)
             chk += _
         for _ in word:
-            if (_ == "ó"
-                or _ == "é"
-                or _ == "í" 
-                or _ == "ú" 
-                or _ == 'á'
-            ):
-                _ = unidecode(_)
+            _ = self.turnIntoUnidecode(_)
             if _ in res:
                 ret +=1
                 res.pop(res.index(_))

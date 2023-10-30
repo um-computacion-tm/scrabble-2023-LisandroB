@@ -56,6 +56,13 @@ class Board:
             (x, y) = _
             self.grid[x-1][y-1].multiplier, self.grid[x-1][y-1].multiplier_type  = multiplier, multiplier_type
 
+    def deleteThenAddTile(self, x, y, tile):
+        self.grid[x-1][y-1].noneTile()
+        self.grid[x-1][y-1].addTile(tile)
+
+    def justAddTile(self, x, y, tile):
+        self.grid[x-1][y-1].addTile(tile)
+
     def fillWithMultipliers(self):
         unpacking = [(Multipliers.doubleLetter, 2, "letter"),
             (Multipliers.tripleletter, 3, "letter"),
@@ -66,10 +73,9 @@ class Board:
             
     def addTileToCell(self, x, y, tile=Tile):
         if self.getCellInBoard(x, y).tile == "" or self.getCellInBoard(x, y).tile.letter == tile.letter:
-            self.grid[x-1][y-1].noneTile()
-            self.grid[x-1][y-1].addTile(tile)
+            self.deleteThenAddTile(x, y, tile)
         else:
-            self.grid[x-1][y-1].addTile(tile)
+            self.justAddTile(x, y, tile)
 
     def getCellInBoard(self, x, y):
         return self.grid[x-1][y-1]

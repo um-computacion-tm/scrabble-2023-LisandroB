@@ -63,7 +63,7 @@ class Game():
                         elif choice == "5":
                             exit = input("Está seguro de terminar la partida? Y/N: ")
                             if exit == "Y" or exit == "y":
-                                print("Gracias por jugar, hasta pronto!")
+                                scrabbleGame.endGame()
                                 time.sleep(1.5)
                                 raise AssertionError
                             if exit == "N" or exit == "n":
