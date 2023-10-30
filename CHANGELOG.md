@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - endGame function in scrabble.py, now game ends properly
 - modularized justAddTile, deleteThenAddTile functions in board.py for codeclimate code smells
 - modularized turnIntoUnidecode in player.py
-- test_wrongTurnEndGame, test_wrongTurnNoTilesEndGame in test_scrabble_game.py
+- test_wrongTurnEndGame, test_wrongTurnNoTilesEndGame, test_validateWord0a100 in test_scrabble_game.py
 ### Modified
 - validateTurn in scrabble.py, it now checks whether the game's bagtiles or the player's rack is empty and ends match 
 - addTileToCell in board.py, it now uses justAddTile and deleteThenAddTile functions

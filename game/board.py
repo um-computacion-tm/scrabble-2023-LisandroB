@@ -58,7 +58,7 @@ class Board:
 
     def deleteThenAddTile(self, x, y, tile):
         self.grid[x-1][y-1].noneTile()
-        self.grid[x-1][y-1].addTile(tile)
+        self.justAddTile(x, y, tile)
 
     def justAddTile(self, x, y, tile):
         self.grid[x-1][y-1].addTile(tile)
