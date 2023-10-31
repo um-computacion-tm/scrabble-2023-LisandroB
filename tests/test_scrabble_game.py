@@ -1126,20 +1126,8 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("O", 1), 
             Tile("R", 1)
         ]
-        scrabbleGame.putWord("coso", (7, 11), "v")
+        scrabbleGame.putWord("coso", (5, 11), "v")
         scrabbleGame.current_player = scrabbleGame.players[3]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("N", 8), 
-            Tile("C", 1), 
-            Tile("R", 8), 
-            Tile("U", 3),
-            Tile("S", 1), 
-            Tile("I", 1), 
-            Tile("S", 1)
-        ]
-        scrabbleGame.putWord("no", (10, 10), "h")
-        scrabbleGame.current_player = scrabbleGame.players[1]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("N", 8), 
@@ -1150,32 +1138,8 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1), 
             Tile("A", 1)
         ]
-        scrabbleGame.putWord("suya", (9, 11), "h")
+        scrabbleGame.putWord("suya", (7, 11), "h")
         scrabbleGame.current_player = scrabbleGame.players[2]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("I", 8), 
-            Tile("N", 1), 
-            Tile("E", 8), 
-            Tile("R", 3),
-            Tile("Z", 1), 
-            Tile("S", 1), 
-            Tile("O", 1)
-        ]
-        scrabbleGame.putWord("sano", (8, 14), "v")
-        scrabbleGame.current_player = scrabbleGame.players[3]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("R", 8), 
-            Tile("S", 1), 
-            Tile("I", 8), 
-            Tile("H", 3),
-            Tile("C", 1), 
-            Tile("C", 1), 
-            Tile("T", 1)
-        ]
-        scrabbleGame.putWord("sanos", (8, 14), "v")
-        scrabbleGame.current_player = scrabbleGame.players[0]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("N", 8), 
@@ -1186,8 +1150,8 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1), 
             Tile("E", 1)
         ]
-        scrabbleGame.putWord("cenar", (7, 11), "h")
-        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.putWord("cenar", (5, 11), "h")
+        scrabbleGame.current_player = scrabbleGame.players[3]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("I", 8), 
@@ -1199,7 +1163,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("E", 1)
         ]
         scrabbleGame.putWord("pire", (8, 8), "v")
-        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.current_player = scrabbleGame.players[0]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("R", 8), 
@@ -1211,6 +1175,30 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1)
         ]
         scrabbleGame.putWord("cierta", (11, 6), "h")
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("I", 8), 
+            Tile("N", 1), 
+            Tile("E", 8), 
+            Tile("R", 3),
+            Tile("Z", 1), 
+            Tile("S", 1), 
+            Tile("O", 1)
+        ]
+        scrabbleGame.putWord("sano", (10, 11), "v")
+        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("R", 8), 
+            Tile("S", 1), 
+            Tile("I", 8), 
+            Tile("H", 3),
+            Tile("C", 1), 
+            Tile("C", 1), 
+            Tile("T", 1)
+        ]
+        scrabbleGame.putWord("sanos", (10, 11), "v")
         scrabbleGame.current_player = scrabbleGame.players[3]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
@@ -1222,6 +1210,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("E", 1), 
             Tile("D", 1)
         ]
+        game.showBoard(scrabbleGame.board)
         scrabbleGame.putWord("toca", (9, 6), "v")
         scrabbleGame.current_player = scrabbleGame.players[0]
         scrabbleGame.next_turn()
@@ -1250,18 +1239,6 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.current_player = scrabbleGame.players[2]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
-            Tile("E", 8), 
-            Tile("O", 1), 
-            Tile("E", 8), 
-            Tile("D", 3),
-            Tile("C", 1), 
-            Tile("M", 1), 
-            Tile("E", 1)
-        ]
-        scrabbleGame.putWord("remo", (11, 9), "v")
-        scrabbleGame.current_player = scrabbleGame.players[3]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
             Tile("I", 8), 
             Tile("B", 1), 
             Tile("E", 8), 
@@ -1271,7 +1248,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("H", 1)
         ]
         scrabbleGame.putWord("zares", (13, 4), "h")
-        scrabbleGame.current_player = scrabbleGame.players[0]
+        scrabbleGame.current_player = scrabbleGame.players[3]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("H", 8), 
@@ -1283,7 +1260,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("L", 1)
         ]
         scrabbleGame.putWord("loco", (10, 3), "h")
-        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.current_player = scrabbleGame.players[0]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("E", 8), 
@@ -1295,7 +1272,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1)
         ]
         scrabbleGame.putWord("celda", (8, 3), "v")
-        scrabbleGame.current_player = scrabbleGame.players[2]
+        scrabbleGame.current_player = scrabbleGame.players[1]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
             Tile("I", 8), 
@@ -1307,42 +1284,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1)
         ]
         scrabbleGame.putWord("bicha", (8, 1), "h")
-        scrabbleGame.current_player = scrabbleGame.players[3]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("H", 8), 
-            Tile("O", 1), 
-            Tile("O", 8), 
-            Tile("N", 3),
-            Tile("R", 1), 
-            Tile("G", 1), 
-            Tile("E", 1)
-        ]
-        scrabbleGame.putWord("robe", (6, 1), "v")
-        scrabbleGame.current_player = scrabbleGame.players[0]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("E", 8), 
-            Tile("O", 1), 
-            Tile("A", 8), 
-            Tile("L", 3),
-            Tile("A", 1), 
-            Tile("H", 1), 
-            Tile("F", 1)
-        ]
-        scrabbleGame.putWord("hola", (5, 5), "v")
-        scrabbleGame.current_player = scrabbleGame.players[1]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("I", 8), 
-            Tile("T", 1), 
-            Tile("E", 8), 
-            Tile("V", 3),
-            Tile("R", 1), 
-            Tile("P", 1), 
-            Tile("L", 1)
-        ]
-        scrabbleGame.putWord("pero", (6, 2), "h")
         scrabbleGame.current_player = scrabbleGame.players[2]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
@@ -1367,54 +1308,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("H", 1)
         ]
         scrabbleGame.putWord("sueca", (15, 6), "h")
-        scrabbleGame.current_player = scrabbleGame.players[0]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("I", 8), 
-            Tile("T", 1), 
-            Tile("V", 8), 
-            Tile("L", 3),
-            Tile("Q", 1), 
-            Tile("S", 1), 
-            Tile("T", 1)
-        ]
-        scrabbleGame.putWord("suecas", (15, 6), "h")
-        scrabbleGame.current_player = scrabbleGame.players[1]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("H", 8), 
-            Tile("O", 1), 
-            Tile("N", 8), 
-            Tile("G", 3),
-            Tile("O", 1), 
-            Tile("L", 1), 
-            Tile("X", 1)
-        ]
-        scrabbleGame.putWord("hongo", (5, 5), "h")
-        scrabbleGame.current_player = scrabbleGame.players[2]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("E", 8), 
-            Tile("A", 1), 
-            Tile("A", 8), 
-            Tile("F", 3),
-            Tile("I", 1), 
-            Tile("E", 1), 
-            Tile("I", 1)
-        ]
-        scrabbleGame.putWord("fiera", (3, 4), "v")
-        scrabbleGame.current_player = scrabbleGame.players[3]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("A", 8), 
-            Tile("E", 1), 
-            Tile("F", 8), 
-            Tile("D", 3),
-            Tile("Q", 1), 
-            Tile("S", 1), 
-            Tile("H", 1)
-        ]
-        scrabbleGame.putWord("fea", (14, 4), "h")
         game.showBoard(scrabbleGame.board)
 
     def test_validateWordNotFoundInDictionary(self):
