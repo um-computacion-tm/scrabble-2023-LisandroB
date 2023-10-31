@@ -1,8 +1,5 @@
 ## TO DO
 - terminar de refactorizar code smells [codeclimate]
-- agregar tests restantes a test_cli.py
-- testear _todo_ 
-- redis?
 - chequear todos los tests por self asserts correctos
 - para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
 - docker run image

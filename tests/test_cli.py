@@ -79,6 +79,11 @@ class testCli(unittest.TestCase):
         game = Game()
         with self.assertRaises(Exception):
             game.cli()
+        
+    @patch('builtins.input', side_effect=[2, "6", "y"])
+    def test_twoPlayersThenExit(self, mock):
+        game = Game()
+        game.cli()
     
     #wip
     @patch.object(ScrabbleGame(3), "current_player", return_value=[

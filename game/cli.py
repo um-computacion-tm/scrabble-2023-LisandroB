@@ -73,48 +73,55 @@ class Game():
         if exit == "Y" or exit == "y":
             game.endGame()
             time.sleep(1.5)
-            raise AssertionError
         if exit == "N" or exit == "n":
             raise Exception("Volviendo a tu turno!")
+        
+    def mainMenu(self, game):
+        while True:    
+            try:
+                self.getMenu(game)
+                choice = input("Qué desea hacer?: " )
+                if choice == "1":
+                    self.playWord(game)
+                    break;
+                elif choice == "2":
+                    self.changeTiles(game)
+                    time.sleep(1.5)
+                elif choice == "3":
+                    self.shufflePlayersTiles(game)
+                    time.sleep(1.5)
+                elif choice == "4":
+                    self.passTurn(game)
+                    pass;
+                elif choice == "5":
+                    game.getScore()
+                    time.sleep(2)
+                elif choice == "6":
+                    self.quit(game)
+                    raise AssertionError
+                else:
+                    raise Exception("Valor equivocado, inténtelo otra vez") 
+            except AssertionError:
+                global breaker
+                breaker = True;
+                return False;
+            except Exception as err:
+                print(err.args[0])
+                time.sleep(1.5)
 
     def cli(self):
+        global breaker
+        breaker = False
         print("Bienvenido a ScrabbleUM!")
         scrabbleGame = ScrabbleGame(self.getPlayers(input))
-        while scrabbleGame.validateTurn:
+        while scrabbleGame.validateTurn():
             try:
                 scrabbleGame.next_turn()
-                while True:    
-                    try:
-                        self.getMenu(scrabbleGame)
-                        choice = input("Qué desea hacer?: " )
-                        if choice == "1":
-                            self.playWord(scrabbleGame)
-                            break;
-                        elif choice == "2":
-                            self.changeTiles(scrabbleGame)
-                            time.sleep(1.5)
-                        elif choice == "3":
-                            self.shufflePlayersTiles(scrabbleGame)
-                            time.sleep(1.5)
-                        elif choice == "4":
-                            self.passTurn(scrabbleGame)
-                            pass;
-                        elif choice == "5":
-                            scrabbleGame.getScore()
-                            time.sleep(2)
-                        elif choice == "6":
-                            self.quit(scrabbleGame)
-                        else:
-                            raise Exception("Valor equivocado, inténtelo otra vez")
-                    except AssertionError:
-                        return False;                        
-                    except Exception as err:
-                        print(err.args[0])
-                        time.sleep(1.5)
+                self.mainMenu(scrabbleGame)
             except False:
                 print("Valor equivocado!")
-        else:
-            input("Juego terminado! Desea jugar otra vez? (Y/N): ")
+            if breaker == True:
+                break;
 
     def showBoard(self, board):
         print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(1, 16)]))

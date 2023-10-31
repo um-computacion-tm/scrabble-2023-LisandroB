@@ -26,7 +26,6 @@ class ScrabbleGame:
         for _ in playersAndScores:
             print(f"Jugador {_[0]}: {_[1]}")
         print(f"El ganador es: Jugador {playersAndScores[0][0]}")
-        print("Gracias por jugar, hasta pronto!")
         raise AssertionError
 
     def isWordInBoard(self, word, location, orientation):
@@ -65,10 +64,13 @@ class ScrabbleGame:
             raise Exception("Palabra no está en tablero!")
 
     def validateTurn(self):
-        if len(self.bagTiles.tiles) > 0 and len(self.current_player.tiles) > 0:
+        if self.turn == 0:
             return True;
-        elif len(self.current_player.tiles) == 0 or len(self.bagTiles.tiles) == 0:
-            self.endGame()
+        elif self.turn > 0:
+            if len(self.bagTiles.tiles) > 0 and len(self.current_player.tiles) > 0:
+                return True;
+            elif len(self.current_player.tiles) == 0 or len(self.bagTiles.tiles) == 0:
+                self.endGame()
 
     def getScore(self):
         print("------------------------ Scoreboard ------------------------".center(65))
@@ -144,7 +146,8 @@ class ScrabbleGame:
         global x, y
         if (self.current_player.hasWord(word)
             and 
-            self.board.validate_word_inside_board(word, location, orientation)):
+            self.board.validate_word_inside_board(word, location, orientation)
+        ):
             return True
         else:
             return False;
@@ -153,7 +156,8 @@ class ScrabbleGame:
         global x, y
         if (self.isWordInBoard(word, location, orientation)
             and
-            self.board.validate_word_inside_board(word, location, orientation)):
+            self.board.validate_word_inside_board(word, location, orientation)
+        ):
             return True;
         else:
             return False;
@@ -226,7 +230,10 @@ class ScrabbleGame:
         for letter in word:
             for i in range(len(self.current_player.tiles)): 
                 letter = self.isSpecial(letter)
-                if (letter == str(self.board.getCellInBoard(x, y)).lower() and letter == self.current_player.tiles[i].letter.lower()):
+                if (
+                    letter == str(self.board.getCellInBoard(x, y)).lower()
+                    and letter == self.current_player.tiles[i].letter.lower()
+                ):
                     self.scoreMove(orientation)
                     break;
                 if letter == str(self.board.getCellInBoard(x, y)).lower():

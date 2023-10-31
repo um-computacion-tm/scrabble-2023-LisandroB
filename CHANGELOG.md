@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added [31/10/23]
+- [fixed code smells]
+- mainMenu, cli functions in cli.py. they are now modularized
+- verticalOrHorizontalTile, ifPlayerHasWordAndFitsInBoard, ifWordIsInBoardAndFits functions in scrabble.py
+- test_putWordNotFoundInDictionary2 in test_scrabble_game.py
+### Modified [31/10/23]
+- checkIfFirstTurn, isFirstTurn, checkIfNextToTile, isNextToTile and validateWord functions. they now use global variables within scrabble.py to allow for modification within different functions
+- validateTurn function in scrabble.py, now works properly
 ### Added [30/10/23]
 - getPlayers, printTiles, getMenu, playWord, changeTiles, shufflePlayersTiles, passTurn, quit functions added to cli.py, all of them were the main part of the game logic, now it's modularized 
 - endGame function in scrabble.py, now game ends properly

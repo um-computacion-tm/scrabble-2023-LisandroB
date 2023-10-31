@@ -1352,7 +1352,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("E", 1), 
             Tile("B", 1)
         ]
-        scrabbleGame.putWord("grúas", (7, 9), "v")
+        scrabbleGame.putWord("grúas", (6, 9), "v")
         game.showBoard(scrabbleGame.board)
 
     def test_putWordNotFoundInDictionary2(self):
