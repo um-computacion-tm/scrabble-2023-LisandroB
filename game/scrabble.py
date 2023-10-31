@@ -90,7 +90,8 @@ class ScrabbleGame:
             index = self.players.index(self.current_player) + 1
             self.current_player = self.players[index]
     
-    def isFirstTurn(self, word, x, y, orientation):
+    def isFirstTurn(self, word, orientation):
+        global x, y
         for _ in word:
             if orientation == "V" or orientation == "v":
                 if self.board.getCellInBoard(x, y) == self.board.getCellInBoard(8, 8):
@@ -103,57 +104,79 @@ class ScrabbleGame:
         else:
             raise Exception("La primer palabra debe cruzar por la celda del centro! (8, 8)")
 
-    def checkIfFirstTurn(self, word, location, orientation):
-        (x, y) = location
+    def checkIfFirstTurn(self, word, orientation):
+        global x, y
         if self.turn == 1:
-            return self.isFirstTurn(word, x, y, orientation)
+            return self.isFirstTurn(word, orientation)
         elif self.turn > 1: 
             return True;
 
-    def checkIfNextToTile(self, word, location, orientation):
-        if not self.isNextToTile(word, location, orientation) == None:
+    def checkIfNextToTile(self, word, orientation):
+        global x, y
+        if not self.isNextToTile(word, orientation) == None:
             return True;
         else:
             raise Exception("Palabra debe continuar con las del tablero!")
 
-    def isNextToTile(self, word, location, orientation):
-        (x, y) = location
+    def verticalOrHorizontalTile(self, orientation):
+        global x, y
+        if orientation == "V" or orientation == "v":
+            if self.board.getCellInBoard(x, y).tile == "":
+                x+=1
+            else:
+                return True;
+        if orientation == "H" or orientation == "h":
+            if self.board.getCellInBoard(x, y).tile == "":
+                y+=1
+            else:
+                return True;
+
+    def isNextToTile(self, word, orientation):
+        global x, y
         if self.turn > 1:
             for _ in word:
-                if orientation == "V" or orientation == "v":
-                    if self.board.getCellInBoard(x, y).tile == "":
-                        x+=1
-                    else:
-                        return True;
-                if orientation == "H" or orientation == "h":
-                    if self.board.getCellInBoard(x, y).tile == "":
-                        y+=1
-                    else:
-                        return True;
+                if self.verticalOrHorizontalTile(orientation):
+                    return True;
         else:
             return True;
 
-    def validateWord(self, word, location, orientation):
+    def ifPlayerHasWordAndFitsInBoard(self, word, location, orientation):
+        global x, y
+        if (self.current_player.hasWord(word)
+            and 
+            self.board.validate_word_inside_board(word, location, orientation)):
+            return True
+        else:
+            return False;
+
+    def ifWordIsInBoardAndFits(self, word, location, orientation):
+        global x, y
+        if (self.isWordInBoard(word, location, orientation)
+            and
+            self.board.validate_word_inside_board(word, location, orientation)):
+            return True;
+        else:
+            return False;
+
+    def validateWord(self, word, orientation):
+        global x, y
+        location = (x, y)
         if (
-            self.current_player.hasWord(word)
-            and 
-            self.board.validate_word_inside_board(word, location, orientation)
+            self.ifPlayerHasWordAndFitsInBoard(word, location, orientation)
             and 
             dict(word)
             and
-            self.checkIfFirstTurn(word, location, orientation)
+            self.checkIfFirstTurn(word, orientation)
         ):
-            return self.checkIfNextToTile(word, location, orientation)
+            return self.checkIfNextToTile(word,  orientation)
         elif (
-            self.isWordInBoard(word, location, orientation)
-            and
-            self.board.validate_word_inside_board(word, location, orientation)
+            self.ifWordIsInBoardAndFits(word, location, orientation)
             and
             dict(word)
             and
-            self.checkIfFirstTurn(word, location, orientation)
+            self.checkIfFirstTurn(word, orientation)
         ):
-            return self.checkIfNextToTile(word, location, orientation)
+            return self.checkIfNextToTile(word, orientation)
 
     def isSpecial(self, letter):
         if (
@@ -220,7 +243,8 @@ class ScrabbleGame:
         self.score = []
         global x, y
         (x, y) = location
-        if self.validateWord(word, location, orientation):
+        if self.validateWord(word, orientation):
+            (x, y) = location
             word = [char for char in word]
             self.formWord(word, orientation)
             self.current_player.score += self.board.calculateWordValue(self.score)
