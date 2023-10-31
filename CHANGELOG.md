@@ -7,12 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added [30/10/23]
+- getPlayers, printTiles, getMenu, playWord, changeTiles, shufflePlayersTiles, passTurn, quit functions added to cli.py, all of them were the main part of the game logic, now it's modularized 
 - endGame function in scrabble.py, now game ends properly
 - modularized justAddTile, deleteThenAddTile functions in board.py for codeclimate code smells
 - modularized turnIntoUnidecode in player.py
 - test_wrongTurnEndGame, test_wrongTurnNoTilesEndGame, test_validateWord0a100 in test_scrabble_game.py
+- test_firstTurnThenShowScoreAndExit in test_cli.py
 ### Modified
-- validateTurn in scrabble.py, it now checks whether the game's bagtiles or the player's rack is empty and ends match 
+- validateTurn, getScore in scrabble.py, validateTurn now checks whether the game's bagtiles or the player's rack is empty and ends match, getScore is now centered
 - addTileToCell in board.py, it now uses justAddTile and deleteThenAddTile functions
 - hasWord in player.py, it now uses turnIntoUnidecode functions
 - game logic in cli.py, it now shows ending score when quitting game

@@ -63,16 +63,16 @@ class ScrabbleGame:
         else:
             raise Exception("Palabra no está en tablero!")
 
-    def validateTurn(self, word, location, orientation):
+    def validateTurn(self):
         if len(self.bagTiles.tiles) > 0 and len(self.current_player.tiles) > 0:
-            return self.putWord(word, location, orientation)
+            return True;
         elif len(self.current_player.tiles) == 0 or len(self.bagTiles.tiles) == 0:
             self.endGame()
 
     def getScore(self):
-        print("------------------------ Scoreboard ------------------------")
+        print("------------------------ Scoreboard ------------------------".center(65))
         for _ in self.players:
-            print(f"Player {_.id}: {_.score}")
+            print(f"Jugador {_.id}: {_.score}".center(65))
 
     def removeTileFromPlayer(self, index):
         self.current_player.tiles.pop(index)

@@ -6,6 +6,7 @@
 - chequear todos los tests por self asserts correctos
 - para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
 - docker run image
+- arreglar error donde si pongo palabra una coordenada antes se rompe
 - chequear codeclimate.yml de template en github, tienen que haber 0 issues found en el analisis
 - agregar dockerfile de otros repos
 - chequear env? [revisar si virtual environment está bien]

@@ -52,16 +52,21 @@ class testCli(unittest.TestCase):
         with self.assertRaises(Exception):
             game.cli()
     
-    @patch('builtins.input', side_effect=[2, "5", "Y"])
+    @patch('builtins.input', side_effect=[2, "6", "Y"])
     def test_firstTurnThenExit(self, mock):
         game = Game()
         game.cli()
     
-    @patch('builtins.input', side_effect=[3, "5", "n"])
+    @patch('builtins.input', side_effect=[3, "6", "n"])
     def test_firstTurnThenExitThenRegret(self, mock):
         game = Game()
         with self.assertRaises(Exception):
             game.cli()
+    
+    @patch('builtins.input', side_effect=[4, "5", "6", "y"])
+    def test_firstTurnThenShowScoreAndExit(self, mock):
+        game = Game()
+        game.cli()
 
     @patch('builtins.input', side_effect=[0, 4, "a"])
     def test_firstTurnThenWrongInput(self, mock):

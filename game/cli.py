@@ -3,71 +3,107 @@ from game.board import Board
 import time as time
 
 class Game():
-    def cli(self):
-        print("Bienvenido a ScrabbleUM!")
+    def getPlayers(self, input):
         while True:
             try: 
-                players_count = int(input("Ingrese cantidad de jugadores: "))
-                if players_count <= 1 or players_count > 4:
+                playerCount = int(input("Ingrese cantidad de jugadores [2-4]: "))
+                if playerCount <= 1 or playerCount > 4:
                     raise ValueError
-                break
+                else:
+                    return playerCount
             except ValueError:
                 print("Valor invalido")
-        scrabbleGame = ScrabbleGame(players_count)
+
+    def printTiles(self, game):
+        lst = []
+        for _ in game.current_player.tiles:
+            lst.append(f"{_.letter}:{_.value}")
+        txt = ', '.join(lst)
+        print(txt.center(65))
+
+    def getMenu(self, game):
+        print(f" ")
+        txt = f"Turno {game.turn} - Jugador {game.current_player.id}"
+        print(txt.center(65))
+        self.showBoard(game.board)
+        print(f" ")
+        txt2 = f"Fichas restantes: {len(game.bagTiles.tiles)}"
+        print(txt2.center(65))
+        print(f" ")
+        self.printTiles(game)
+        print("------------------------------------------------".center(65))
+        print("1. Poner palabra".center(65))
+        print("2. Cambiar tiles".center(65))
+        print("3. Shuffle!".center(65))
+        print("4. Pasar turno".center(65))
+        print("5. Mostrar puntaje".center(65))
+        print("6. Terminar juego".center(65))
+        print("------------------------------------------------".center(65))
+    
+    def playWord(self, game):
+        word = input("Ingrese palabra en minúscula: ")
+        x = input("Ingrese posicion X: ")
+        y = input("Ingrese posicion Y: ")
+        location = (int(y), int(x))
+        orientation = input("Ingrese orientacion (V/H): ")
+        game.putWord(word, location, orientation)
+        game.current_player.fillTiles(game.bagTiles)
+    
+    def changeTiles(self, game):
+        list = input("Elija qué tiles cambiar! Separe con coma, por ej: 1, 5, 3: ")
+        res = [eval(i) for i in list.split(', ')]
+        game.current_player.swapTiles(game.bagTiles, res)
+        print(game.current_player.tiles)
+        print("Tiles cambiadas!")
+    
+    def shufflePlayersTiles(self, game):
+        game.current_player.shuffleTiles()
+        self.printTiles(game)
+        print("Shuffled!")
+    
+    def passTurn(self, game):
+        if game.turn > 1:
+            print("Pasaste tu turno!")
+            time.sleep(1.5)
+        else:
+            raise Exception("No podés pasar el primer turno!")
+    
+    def quit(self, game):
+        exit = input("Está seguro de terminar la partida? Y/N: ")
+        if exit == "Y" or exit == "y":
+            game.endGame()
+            time.sleep(1.5)
+            raise AssertionError
+        if exit == "N" or exit == "n":
+            raise Exception("Volviendo a tu turno!")
+
+    def cli(self):
+        print("Bienvenido a ScrabbleUM!")
+        scrabbleGame = ScrabbleGame(self.getPlayers(input))
         while scrabbleGame.validateTurn:
             try:
                 scrabbleGame.next_turn()
-                while True:
+                while True:    
                     try:
-                        print(f"Fichas restantes: {len(scrabbleGame.bagTiles.tiles)}")
-                        scrabbleGame.getScore()
-                        print(f"Turno {scrabbleGame.turn} - Jugador {scrabbleGame.current_player.id}")
-                        self.showBoard(scrabbleGame.board)
-                        print(scrabbleGame.current_player.tiles)
-                        print("------------------------------------------------")
-                        print("1. Poner palabra")
-                        print("2. Cambiar tiles")
-                        print("3. Shuffle!")
-                        print("4. Pasar turno")
-                        print("5. Terminar juego?")
-                        print("------------------------------------------------")
+                        self.getMenu(scrabbleGame)
                         choice = input("Qué desea hacer?: " )
                         if choice == "1":
-                            word = input("Ingrese palabra en minúscula: ")
-                            x = input("Ingrese posicion X: ")
-                            y = input("Ingrese posicion Y: ")
-                            location = (int(y), int(x))
-                            orientation = input("Ingrese orientacion (V/H): ")
-                            scrabbleGame.validateTurn(word, location, orientation)
-                            scrabbleGame.current_player.fillTiles(scrabbleGame.bagTiles)
+                            self.playWord(scrabbleGame)
                             break;
                         elif choice == "2":
-                            list = input("Elija qué tiles cambiar! Separe con coma, por ej: 1, 5, 3: ")
-                            res = [eval(i) for i in list.split(', ')]
-                            scrabbleGame.current_player.swapTiles(scrabbleGame.bagTiles, res)
-                            print(scrabbleGame.current_player.tiles)
-                            print("Tiles cambiadas!")
+                            self.changeTiles(scrabbleGame)
                             time.sleep(1.5)
                         elif choice == "3":
-                            scrabbleGame.current_player.shuffleTiles()
-                            print(scrabbleGame.current_player.tiles)
-                            print("Shuffled!")
+                            self.shufflePlayersTiles(scrabbleGame)
                             time.sleep(1.5)
                         elif choice == "4":
-                            if scrabbleGame.turn > 1:
-                                print("Pasaste tu turno!")
-                                time.sleep(1.5)
-                                break;
-                            else:
-                                raise Exception("No podés pasar el primer turno!")
+                            self.passTurn(scrabbleGame)
+                            pass;
                         elif choice == "5":
-                            exit = input("Está seguro de terminar la partida? Y/N: ")
-                            if exit == "Y" or exit == "y":
-                                scrabbleGame.endGame()
-                                time.sleep(1.5)
-                                raise AssertionError
-                            if exit == "N" or exit == "n":
-                                raise Exception("Volviendo a tu turno!")
+                            scrabbleGame.getScore()
+                            time.sleep(2)
+                        elif choice == "6":
+                            self.quit(scrabbleGame)
                         else:
                             raise Exception("Valor equivocado, inténtelo otra vez")
                     except AssertionError:

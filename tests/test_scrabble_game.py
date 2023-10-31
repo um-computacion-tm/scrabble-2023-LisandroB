@@ -148,20 +148,13 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 4),
             Tile("O", 1)
         ]
-        self.assertEqual(scrabbleGame.validateTurn("carro", (8, 8), "V"), True)
+        self.assertEqual(scrabbleGame.validateTurn(), True)
 
     def test_validateTurnWrong(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
         scrabbleGame.current_player = scrabbleGame.players[2]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
-            Tile("G", 1), 
-            Tile("I", 1), 
-            Tile("R", 1), 
-            Tile("R", 1), 
-            Tile("R", 1), 
-            Tile("A", 4),
-            Tile("O", 1)
         ]
         with self.assertRaises(Exception):
             scrabbleGame.validateTurn("carro", (3, 2), "V")
@@ -305,7 +298,7 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.bagTiles.tiles = []
         scrabbleGame.current_player.tiles = []
         with self.assertRaises(AssertionError):
-            scrabbleGame.validateTurn("carro", (8, 8), "V")
+            scrabbleGame.validateTurn()
 
     def test_wrongTurnNoTilesEndGame(self):
         game = Game()
@@ -431,7 +424,7 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.putWord("fuerte", (12, 3), "h")
         scrabbleGame.bagTiles.tiles = []
         with self.assertRaises(AssertionError):
-            scrabbleGame.validateTurn("carro", (8, 8), "V")
+            scrabbleGame.validateTurn()
 
     def test_putWord(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
@@ -479,13 +472,6 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.current_player = scrabbleGame.players[3]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
-           Tile("N", 1), 
-           Tile("R", 1),
-           Tile("B", 1), 
-           Tile("I", 4),
-           Tile("A", 1), 
-           Tile("C", 1), 
-           Tile("A", 1)
        ]
         with self.assertRaises(Exception):
             scrabbleGame.validateTurn("reloj", (3, 2), "V")
@@ -1446,6 +1432,35 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         with self.assertRaises(Exception):
             scrabbleGame.putWord("duos", (8, 8), "h")
+    
+    def test_validateWordNotFoundInDictionary(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("S", 8), 
+            Tile("A", 1), 
+            Tile("D", 8), 
+            Tile("U", 3),
+            Tile("O", 1), 
+            Tile("E", 1), 
+            Tile("B", 1)
+        ]
+        scrabbleGame.putWord("dúos", (8, 8), "h")
+        game.showBoard(scrabbleGame.board)
+        scrabbleGame.current_player = scrabbleGame.players[1]
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("G", 8), 
+            Tile("R", 1), 
+            Tile("U", 8), 
+            Tile("A", 3),
+            Tile("S", 1), 
+            Tile("E", 1), 
+            Tile("B", 1)
+        ]
+        scrabbleGame.putWord("grúas", (7, 9), "v")
+        game.showBoard(scrabbleGame.board)
 
 if __name__ == '__main__':
     unittest.main()
