@@ -101,7 +101,8 @@ class TestBoard(unittest.TestCase):
     def test_wrongTileToCell(self):
         board = Board()
         board.addTileToCell(8, 8, Tile("A", 1))
-        self.assertIsNone(board.addTileToCell(8, 8, Tile(123, 1)))
+        with self.assertRaises(Exception):
+            board.addTileToCell(8, 8, Tile(123, 1))
 
 if __name__ == '__main__':
     unittest.main()

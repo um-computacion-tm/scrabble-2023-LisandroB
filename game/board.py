@@ -12,7 +12,7 @@ class Board:
             raise Exception("Palabra no entra en tablero!")
         else:
             return True
-        
+
     def checkIfEmpty(self):
         res = []
         check = 0;
@@ -75,7 +75,7 @@ class Board:
         if self.getCellInBoard(x, y).tile == "" or self.getCellInBoard(x, y).tile.letter == tile.letter:
             self.deleteThenAddTile(x, y, tile)
         else:
-            self.justAddTile(x, y, tile)
+            raise Exception("Palabra mal puesta!")
 
     def getCellInBoard(self, x, y):
         return self.grid[x-1][y-1]

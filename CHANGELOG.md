@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added [31/10/23]
 - [fixed code smells]
 - mainMenu, cli functions in cli.py. they are now modularized
-- verticalOrHorizontalTile, ifPlayerHasWordAndFitsInBoard, ifWordIsInBoardAndFits functions in scrabble.py
-- test_putWordNotFoundInDictionary2 in test_scrabble_game.py
+- verticalOrHorizontalTile, ifPlayerHasWordAndFitsInBoard, ifWordIsInBoardAndFits, isInRightOrder functions in scrabble.py
+- test_putWordNotFoundInDictionary2, test_putWordNotFoundInDictionary3 in test_scrabble_game.py
 ### Modified [31/10/23]
-- checkIfFirstTurn, isFirstTurn, checkIfNextToTile, isNextToTile and validateWord functions. they now use global variables within scrabble.py to allow for modification within different functions
+- checkIfFirstTurn, isFirstTurn, checkIfNextToTile, isNextToTile, ifPlayerHasWordAndFitsInBoard, and validateWord functions in scrabble.py. they now use global variables within scrabble.py to allow for modification within different functions
 - validateTurn function in scrabble.py, now works properly
 ### Added [30/10/23]
 - getPlayers, printTiles, getMenu, playWord, changeTiles, shufflePlayersTiles, passTurn, quit functions added to cli.py, all of them were the main part of the game logic, now it's modularized 
@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - modularized justAddTile, deleteThenAddTile functions in board.py for codeclimate code smells
 - modularized turnIntoUnidecode in player.py
 - test_wrongTurnEndGame, test_wrongTurnNoTilesEndGame, test_validateWord0a100 in test_scrabble_game.py
+- test_wrongTileToCell in test_board.py
 - test_firstTurnThenShowScoreAndExit in test_cli.py
 ### Modified
 - validateTurn, getScore in scrabble.py, validateTurn now checks whether the game's bagtiles or the player's rack is empty and ends match, getScore is now centered

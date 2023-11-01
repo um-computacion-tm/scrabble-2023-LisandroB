@@ -92,7 +92,7 @@ class Game():
                     time.sleep(1.5)
                 elif choice == "4":
                     self.passTurn(game)
-                    pass;
+                    break;
                 elif choice == "5":
                     game.getScore()
                     time.sleep(2)

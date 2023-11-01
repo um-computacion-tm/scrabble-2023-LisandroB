@@ -1352,8 +1352,8 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("E", 1), 
             Tile("B", 1)
         ]
-        scrabbleGame.putWord("grúas", (6, 9), "v")
-        game.showBoard(scrabbleGame.board)
+        with self.assertRaises(Exception):
+            scrabbleGame.putWord("grúas", (7, 9), "v")
 
     def test_putWordNotFoundInDictionary2(self):
         game = Game()
@@ -1381,6 +1381,33 @@ class TestScrabbleGame(unittest.TestCase):
         ]
         scrabbleGame.putWord("gerundio", (8, 12), "v")
         game.showBoard(scrabbleGame.board)
+
+    def test_putWordNotFoundInDictionary3(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("R", 8), 
+            Tile("O", 1), 
+            Tile("C", 8), 
+            Tile("R", 3),
+            Tile("E", 1), 
+            Tile("O", 1), 
+            Tile("D", 1), 
+        ]
+        scrabbleGame.putWord("corred", (8, 8), "h")
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("S", 8), 
+            Tile("J", 1), 
+            Tile("A", 8), 
+            Tile("T", 3),
+            Tile("E", 1), 
+            Tile("U", 1), 
+            Tile("O", 1), 
+        ]
+        with self.assertRaises(Exception):
+            scrabbleGame.putWord("jota", (6, 9), "v")
 
 if __name__ == '__main__':
     unittest.main()

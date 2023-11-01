@@ -80,6 +80,36 @@ class ScrabbleGame:
     def removeTileFromPlayer(self, index):
         self.current_player.tiles.pop(index)
 
+    def isInRightOrder(self, word, location, orientation):
+        (x, y) = location
+        res = ""
+        wordRes = ""
+        for _ in word:
+            wordRes += self.isSpecial(_)
+        for i in range(len(word)):
+            if orientation == "V" or orientation == "v":
+                if self.board.getCellInBoard(x, y).tile == "":
+                    res += wordRes[i]
+                    if not len(word) == i+1:
+                        x+=1
+                if str(self.board.getCellInBoard(x, y).tile).lower() == wordRes[i]:
+                    res += wordRes[i]
+                    if not len(word) == i+1:
+                        x+=1
+            if orientation == "H" or orientation == "h":
+                if self.board.getCellInBoard(x, y).tile == "":
+                    res += wordRes[i]
+                    if not len(word) == i+1:
+                        y+=1
+                if str(self.board.getCellInBoard(x, y).tile).lower() == wordRes[i]:
+                    res += wordRes[i]
+                    if not len(word) == i+1:
+                        y+=1 
+        if res == wordRes:
+            return True;
+        else:
+            raise Exception("Palabra mal puesta!")
+
     def next_turn(self):
         if self.current_player is None:
             self.turn+=1
@@ -120,31 +150,37 @@ class ScrabbleGame:
         else:
             raise Exception("Palabra debe continuar con las del tablero!")
 
-    def verticalOrHorizontalTile(self, orientation):
+    def verticalOrHorizontalTile(self, word, orientation):
         global x, y
-        if orientation == "V" or orientation == "v":
-            if self.board.getCellInBoard(x, y).tile == "":
-                x+=1
-            else:
-                return True;
-        if orientation == "H" or orientation == "h":
-            if self.board.getCellInBoard(x, y).tile == "":
-                y+=1
-            else:
-                return True;
-
+        for _ in word:
+            if orientation == "V" or orientation == "v":
+                if self.board.getCellInBoard(x, y).tile == "":
+                    x+=1
+                if str(self.board.getCellInBoard(x, y).tile).lower() == _:
+                    return True;
+                else:
+                    pass;
+            if orientation == "H" or orientation == "h":
+                if self.board.getCellInBoard(x, y).tile == "":
+                    y+=1
+                if str(self.board.getCellInBoard(x, y).tile).lower() == _:
+                    return True;
+                else:
+                    pass;
+    
     def isNextToTile(self, word, orientation):
         global x, y
         if self.turn > 1:
             for _ in word:
-                if self.verticalOrHorizontalTile(orientation):
+                if self.verticalOrHorizontalTile(word, orientation):
                     return True;
         else:
             return True;
 
     def ifPlayerHasWordAndFitsInBoard(self, word, location, orientation):
         global x, y
-        if (self.current_player.hasWord(word)
+        if (
+            self.current_player.hasWord(word)
             and 
             self.board.validate_word_inside_board(word, location, orientation)
         ):
@@ -162,13 +198,17 @@ class ScrabbleGame:
         else:
             return False;
 
+    def ifWordIsInDictionary(self, word, location, orientation):
+        self.isInRightOrder(word, location, orientation)
+        return dict(word)
+
     def validateWord(self, word, orientation):
         global x, y
         location = (x, y)
         if (
             self.ifPlayerHasWordAndFitsInBoard(word, location, orientation)
             and 
-            dict(word)
+            self.ifWordIsInDictionary(word, location, orientation)
             and
             self.checkIfFirstTurn(word, orientation)
         ):
@@ -176,7 +216,7 @@ class ScrabbleGame:
         elif (
             self.ifWordIsInBoardAndFits(word, location, orientation)
             and
-            dict(word)
+            self.ifWordIsInDictionary(word, location, orientation)
             and
             self.checkIfFirstTurn(word, orientation)
         ):
@@ -245,7 +285,7 @@ class ScrabbleGame:
                 ):
                     self.addOneTileAppendScoreMoveOnePosRemovePlayerTile(orientation, i)
                     break;
-
+        
     def putWord(self, word, location, orientation):
         self.score = []
         global x, y
