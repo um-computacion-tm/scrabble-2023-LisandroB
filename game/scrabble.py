@@ -77,27 +77,37 @@ class ScrabbleGame:
             wordRes += self.isSpecial(_)
         return wordRes;
 
-    def iterate(self, word, orientation, i):
+    def iterateHorizontally(self, word, i):
+        global x, y
+        global res
+        if self.board.getCellInBoard(x, y).tile == "":
+            res += word[i]
+            if not len(word) == i+1:
+                x+=1
+        if str(self.board.getCellInBoard(x, y).tile).lower() == word[i]:
+            res += word[i]
+            if not len(word) == i+1:
+                x+=1
+
+    def iterateVertically(self, word, i):
+        global x, y
+        global res
+        if self.board.getCellInBoard(x, y).tile == "":
+            res += word[i]
+            if not len(word) == i+1:
+                y+=1
+        if str(self.board.getCellInBoard(x, y).tile).lower() == word[i]:
+            res += word[i]
+            if not len(word) == i+1:
+                y+=1 
+
+    def checkOrientation(self, word, orientation, i):
         global x, y
         global res
         if orientation == "V" or orientation == "v":
-            if self.board.getCellInBoard(x, y).tile == "":
-                res += word[i]
-                if not len(word) == i+1:
-                    x+=1
-            if str(self.board.getCellInBoard(x, y).tile).lower() == word[i]:
-                res += word[i]
-                if not len(word) == i+1:
-                    x+=1
+            self.iterateHorizontally(word, i)
         if orientation == "H" or orientation == "h":
-            if self.board.getCellInBoard(x, y).tile == "":
-                res += word[i]
-                if not len(word) == i+1:
-                    y+=1
-            if str(self.board.getCellInBoard(x, y).tile).lower() == word[i]:
-                res += word[i]
-                if not len(word) == i+1:
-                    y+=1 
+            self.iterateVertically(word, i)
 
     def isInRightOrder(self, word, orientation):
         global x, y
@@ -105,7 +115,7 @@ class ScrabbleGame:
         res = ""
         word = self.specialWord(word)
         for i in range(len(word)):
-            self.iterate(word, orientation, i)
+            self.checkOrientation(word, orientation, i)
         if res == word:
             return True;
         else:
