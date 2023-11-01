@@ -71,7 +71,7 @@ class Game():
     def quit(self, game):
         exit = input("Está seguro de terminar la partida? Y/N: ")
         if exit == "Y" or exit == "y":
-            game.endGame()
+            game.board.endGame(game)
             time.sleep(1.5)
         if exit == "N" or exit == "n":
             raise Exception("Volviendo a tu turno!")
@@ -119,7 +119,7 @@ class Game():
         breaker = False
         print("Bienvenido a ScrabbleUM!")
         scrabbleGame = ScrabbleGame(self.getPlayers(input))
-        while scrabbleGame.validateTurn():
+        while scrabbleGame.board.validateTurn(scrabbleGame):
             try:
                 scrabbleGame.next_turn()
                 self.mainMenu(scrabbleGame)

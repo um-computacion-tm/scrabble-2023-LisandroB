@@ -1,6 +1,7 @@
 from game.cell import Cell
 from game.models import Tile
 from game.multipliers import Multipliers
+from unidecode import unidecode
 
 class Board:
     def __init__(self):
@@ -12,6 +13,41 @@ class Board:
             raise Exception("Palabra no entra en tablero!")
         else:
             return True
+
+    def specialWord(self, word):
+        wordRes = ""
+        for _ in word:
+            wordRes += self.isSpecial(_)
+        return wordRes;
+
+    def validateTurn(self, game):
+        if game.turn == 0:
+            return True;
+        elif game.turn > 0:
+            if len(game.bagTiles.tiles) > 0 and len(game.current_player.tiles) > 0:
+                return True;
+            elif len(game.current_player.tiles) == 0 or len(game.bagTiles.tiles) == 0:
+                self.endGame(game)
+
+    def endGame(self, game):
+        print("Juego terminado!")
+        print("Puntaje final: ")
+        playersAndScores = []
+        for _ in game.players:
+            s = _.id, _.score
+            playersAndScores.append(s)
+        playersAndScores = sorted(playersAndScores, key=lambda x: x[1], reverse=True)
+        for _ in playersAndScores:
+            print(f"Jugador {_[0]}: {_[1]}")
+        print(f"El ganador es: Jugador {playersAndScores[0][0]}")
+        raise AssertionError
+    
+    def isSpecial(self, letter):
+        if (letter == "ú" or letter == "é" or letter == "í" or letter == "ó" or letter == "á"):
+            letter = unidecode(letter)
+            return letter
+        else:
+            return letter
 
     def checkIfEmpty(self):
         res = []

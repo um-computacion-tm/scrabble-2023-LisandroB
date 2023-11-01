@@ -120,7 +120,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 4),
             Tile("O", 1)
         ]
-        self.assertEqual(scrabbleGame.validateTurn(), True)
+        self.assertEqual(scrabbleGame.board.validateTurn(scrabbleGame), True)
 
     def test_validateTurnWrong(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
@@ -129,7 +129,7 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.current_player.tiles = [
         ]
         with self.assertRaises(Exception):
-            scrabbleGame.validateTurn("carro", (3, 2), "V")
+            scrabbleGame.board.validateTurn("carro", (3, 2), "V")
     
     def test_wrongTurnLowTiles(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
@@ -143,7 +143,7 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("O", 1)
         ]
         with self.assertRaises(Exception):
-            scrabbleGame.validateTurn("carro", (8, 8), "V")
+            scrabbleGame.board.validateTurn("carro", (8, 8), "V")
 
     def test_wrongTurnEndGame(self):
         game = Game()
@@ -270,7 +270,7 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.bagTiles.tiles = []
         scrabbleGame.current_player.tiles = []
         with self.assertRaises(AssertionError):
-            scrabbleGame.validateTurn()
+            scrabbleGame.board.validateTurn(scrabbleGame)
 
     def test_wrongTurnNoTilesEndGame(self):
         game = Game()
@@ -396,7 +396,7 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.putWord("fuerte", (12, 3), "h")
         scrabbleGame.bagTiles.tiles = []
         with self.assertRaises(AssertionError):
-            scrabbleGame.validateTurn()
+            scrabbleGame.board.validateTurn(scrabbleGame)
 
     def test_putWord(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
@@ -446,7 +446,7 @@ class TestScrabbleGame(unittest.TestCase):
         scrabbleGame.current_player.tiles = [
        ]
         with self.assertRaises(Exception):
-            scrabbleGame.validateTurn("reloj", (3, 2), "V")
+            scrabbleGame.board.validateTurn("reloj", (3, 2), "V")
         
     def test_putWordFalseAgain(self):
         scrabbleGame = ScrabbleGame(playerCount=4)

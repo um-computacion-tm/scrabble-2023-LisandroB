@@ -14,19 +14,6 @@ class ScrabbleGame:
         for index in range(playerCount):
             self.players.append(Player(self.bagTiles, id=index+1))
         self.current_player = None
-    
-    def endGame(self):
-        print("Juego terminado!")
-        print("Puntaje final: ")
-        playersAndScores = []
-        for _ in self.players:
-            s = _.id, _.score
-            playersAndScores.append(s)
-        playersAndScores = sorted(playersAndScores, key=lambda x: x[1], reverse=True)
-        for _ in playersAndScores:
-            print(f"Jugador {_[0]}: {_[1]}")
-        print(f"El ganador es: Jugador {playersAndScores[0][0]}")
-        raise AssertionError
 
     def isWordInBoard(self, word, location, orientation):
         (x, y) = location
@@ -56,22 +43,6 @@ class ScrabbleGame:
             return True;
         else:
             raise Exception("Palabra no está en tablero!")
-
-    def validateTurn(self):
-        if self.turn == 0:
-            return True;
-        elif self.turn > 0:
-            if len(self.bagTiles.tiles) > 0 and len(self.current_player.tiles) > 0:
-                return True;
-            elif len(self.current_player.tiles) == 0 or len(self.bagTiles.tiles) == 0:
-                self.endGame()
-
-
-    def specialWord(self, word):
-        wordRes = ""
-        for _ in word:
-            wordRes += self.isSpecial(_)
-        return wordRes;
 
     def iterateHorizontally(self, word, i):
         global x, y
@@ -109,7 +80,7 @@ class ScrabbleGame:
         global x, y
         global res
         res = ""
-        word = self.specialWord(word)
+        word = self.board.specialWord(word)
         for i in range(len(word)):
             self.checkOrientation(word, orientation, i)
         if res == word:
@@ -213,12 +184,6 @@ class ScrabbleGame:
         elif (self.ifWordIsInBoardAndFits(word, location, orientation) and dict(word) and self.checkIfFirstTurn(word, orientation)):
             return self.checkIfNextToTile(word, location, orientation)
 
-    def isSpecial(self, letter):
-        if (letter == "ú" or letter == "é" or letter == "í" or letter == "ó" or letter == "á"):
-            letter = unidecode(letter)
-            return letter
-        else:
-            return letter
     
     def addOneTileAppendScoreMoveOnePosRemovePlayerTile(self, orientation, i):
         global x, y
@@ -248,7 +213,7 @@ class ScrabbleGame:
         global x, y
         for letter in word:
             for i in range(len(self.current_player.tiles)): 
-                letter = self.isSpecial(letter)
+                letter = self.board.isSpecial(letter)
                 if (letter == str(self.board.getCellInBoard(x, y)).lower() and letter == self.current_player.tiles[i].letter.lower()):
                     self.scoreMove(orientation)
                     break;
