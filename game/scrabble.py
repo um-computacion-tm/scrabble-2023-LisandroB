@@ -66,10 +66,6 @@ class ScrabbleGame:
             elif len(self.current_player.tiles) == 0 or len(self.bagTiles.tiles) == 0:
                 self.endGame()
 
-    def getScore(self):
-        print("------------------------ Scoreboard ------------------------".center(65))
-        for _ in self.players:
-            print(f"Jugador {_.id}: {_.score}".center(65))
 
     def specialWord(self, word):
         wordRes = ""

@@ -75,7 +75,12 @@ class Game():
             time.sleep(1.5)
         if exit == "N" or exit == "n":
             raise Exception("Volviendo a tu turno!")
-        
+    
+    def getScore(self, game):
+        print("------------------------ Scoreboard ------------------------".center(65))
+        for _ in game.players:
+            print(f"Jugador {_.id}: {_.score}".center(65))
+    
     def mainMenu(self, game):
         while True:    
             try:
@@ -94,7 +99,7 @@ class Game():
                     self.passTurn(game)
                     break;
                 elif choice == "5":
-                    game.getScore()
+                    self.getScore()
                     time.sleep(2)
                 elif choice == "6":
                     self.quit(game)
