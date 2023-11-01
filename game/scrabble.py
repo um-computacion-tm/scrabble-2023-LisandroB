@@ -71,32 +71,42 @@ class ScrabbleGame:
         for _ in self.players:
             print(f"Jugador {_.id}: {_.score}".center(65))
 
-    def isInRightOrder(self, word, orientation):
-        global x, y
-        res = ""
+    def specialWord(self, word):
         wordRes = ""
         for _ in word:
             wordRes += self.isSpecial(_)
+        return wordRes;
+
+    def iterate(self, word, orientation, i):
+        global x, y
+        global res
+        if orientation == "V" or orientation == "v":
+            if self.board.getCellInBoard(x, y).tile == "":
+                res += word[i]
+                if not len(word) == i+1:
+                    x+=1
+            if str(self.board.getCellInBoard(x, y).tile).lower() == word[i]:
+                res += word[i]
+                if not len(word) == i+1:
+                    x+=1
+        if orientation == "H" or orientation == "h":
+            if self.board.getCellInBoard(x, y).tile == "":
+                res += word[i]
+                if not len(word) == i+1:
+                    y+=1
+            if str(self.board.getCellInBoard(x, y).tile).lower() == word[i]:
+                res += word[i]
+                if not len(word) == i+1:
+                    y+=1 
+
+    def isInRightOrder(self, word, orientation):
+        global x, y
+        global res
+        res = ""
+        word = self.specialWord(word)
         for i in range(len(word)):
-            if orientation == "V" or orientation == "v":
-                if self.board.getCellInBoard(x, y).tile == "":
-                    res += wordRes[i]
-                    if not len(word) == i+1:
-                        x+=1
-                if str(self.board.getCellInBoard(x, y).tile).lower() == wordRes[i]:
-                    res += wordRes[i]
-                    if not len(word) == i+1:
-                        x+=1
-            if orientation == "H" or orientation == "h":
-                if self.board.getCellInBoard(x, y).tile == "":
-                    res += wordRes[i]
-                    if not len(word) == i+1:
-                        y+=1
-                if str(self.board.getCellInBoard(x, y).tile).lower() == wordRes[i]:
-                    res += wordRes[i]
-                    if not len(word) == i+1:
-                        y+=1 
-        if res == wordRes:
+            self.iterate(word, orientation, i)
+        if res == word:
             return True;
         else:
             raise Exception("Palabra mal puesta!")
@@ -136,35 +146,41 @@ class ScrabbleGame:
 
     def checkIfNextToTile(self, word, location, orientation):
         global x, y
-        if not self.isNextToTile(word, orientation) == None:
+        if not self.isNextToTile(word, location, orientation) == None:
             (x, y) = location
             return self.isInRightOrder(word, orientation)
         else:
             raise Exception("Palabra debe continuar con las del tablero!")
     
-    def verticalOrHorizontalTile(self, word, orientation):
+    def CheckVertOrHoriTiles(self, _, location, orientation):
         global x, y
-        for _ in word:
-            if orientation == "V" or orientation == "v":
-                if self.board.getCellInBoard(x, y).tile == "":
-                    x+=1
-                if str(self.board.getCellInBoard(x, y).tile).lower() == _:
-                    return True;
-                else:
-                    pass;
-            if orientation == "H" or orientation == "h":
-                if self.board.getCellInBoard(x, y).tile == "":
-                    y+=1
-                if str(self.board.getCellInBoard(x, y).tile).lower() == _:
-                    return True;
-                else:
-                    pass;
+        if orientation == "V" or orientation == "v":
+            if str(self.board.getCellInBoard(x, y).tile).lower() == _:
+                return True;
+            if self.board.getCellInBoard(x, y).tile == "":
+                x+=1
+            else:
+                pass;
+        if orientation == "H" or orientation == "h":
+            if str(self.board.getCellInBoard(x, y).tile).lower() == _:
+                return True;
+            if self.board.getCellInBoard(x, y).tile == "":
+                y+=1
+            else:
+                pass;
     
-    def isNextToTile(self, word, orientation):
+    def verticalOrHorizontalTile(self, word, location, orientation):
+        global x, y
+        (x, y) = location
+        for _ in word:
+            if self.CheckVertOrHoriTiles(_, location, orientation):
+                return True;
+    
+    def isNextToTile(self, word, location, orientation):
         global x, y
         if self.turn > 1:
             for _ in word:
-                if self.verticalOrHorizontalTile(word, orientation):
+                if self.verticalOrHorizontalTile(word, location, orientation):
                     return True;
         else:
             return True;

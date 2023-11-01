@@ -60,8 +60,8 @@ class Player:
             res = []
             for _ in params:
                 res.append(_-1)
-            list3 = map(self.tiles.__getitem__, res)
-            for _ in list(list3):
+            mapTiles = map(self.tiles.__getitem__, res)
+            for _ in list(mapTiles):
                 bagTiles.tiles.append(_)
                 self.tiles.remove(_)
             self.fillTiles(bagTiles)

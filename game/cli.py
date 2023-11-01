@@ -59,7 +59,7 @@ class Game():
     def shufflePlayersTiles(self, game):
         game.current_player.shuffleTiles()
         self.printTiles(game)
-        print("Shuffled!")
+        print("Shuffled!".center(65))
     
     def passTurn(self, game):
         if game.turn > 1:
