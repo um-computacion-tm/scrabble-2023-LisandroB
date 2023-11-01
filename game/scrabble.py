@@ -30,14 +30,8 @@ class ScrabbleGame:
 
     def isWordInBoard(self, word, location, orientation):
         (x, y) = location
-        if  (
-                'í' in word 
-                or 'é' in word 
-                or 'ú' in word 
-                or 'ó' in word 
-                or 'á' in word
-            ):
-                word = unidecode(word)
+        if  ('í' in word or 'é' in word or 'ú' in word or 'ó' in word or 'á' in word):
+            word = unidecode(word)
         cellsInBoard = []
         playerTiles = []
         result = []
@@ -77,11 +71,8 @@ class ScrabbleGame:
         for _ in self.players:
             print(f"Jugador {_.id}: {_.score}".center(65))
 
-    def removeTileFromPlayer(self, index):
-        self.current_player.tiles.pop(index)
-
-    def isInRightOrder(self, word, location, orientation):
-        (x, y) = location
+    def isInRightOrder(self, word, orientation):
+        global x, y
         res = ""
         wordRes = ""
         for _ in word:
@@ -143,13 +134,14 @@ class ScrabbleGame:
         elif self.turn > 1: 
             return True;
 
-    def checkIfNextToTile(self, word, orientation):
+    def checkIfNextToTile(self, word, location, orientation):
         global x, y
         if not self.isNextToTile(word, orientation) == None:
-            return True;
+            (x, y) = location
+            return self.isInRightOrder(word, orientation)
         else:
             raise Exception("Palabra debe continuar con las del tablero!")
-
+    
     def verticalOrHorizontalTile(self, word, orientation):
         global x, y
         for _ in word:
@@ -179,57 +171,28 @@ class ScrabbleGame:
 
     def ifPlayerHasWordAndFitsInBoard(self, word, location, orientation):
         global x, y
-        if (
-            self.current_player.hasWord(word)
-            and 
-            self.board.validate_word_inside_board(word, location, orientation)
-        ):
+        if (self.current_player.hasWord(word) and self.board.validate_word_inside_board(word, location, orientation)):
             return True
         else:
             return False;
 
     def ifWordIsInBoardAndFits(self, word, location, orientation):
         global x, y
-        if (self.isWordInBoard(word, location, orientation)
-            and
-            self.board.validate_word_inside_board(word, location, orientation)
-        ):
+        if (self.isWordInBoard(word, location, orientation) and self.board.validate_word_inside_board(word, location, orientation)):
             return True;
         else:
             return False;
 
-    def ifWordIsInDictionary(self, word, location, orientation):
-        self.isInRightOrder(word, location, orientation)
-        return dict(word)
-
     def validateWord(self, word, orientation):
         global x, y
         location = (x, y)
-        if (
-            self.ifPlayerHasWordAndFitsInBoard(word, location, orientation)
-            and 
-            self.ifWordIsInDictionary(word, location, orientation)
-            and
-            self.checkIfFirstTurn(word, orientation)
-        ):
-            return self.checkIfNextToTile(word,  orientation)
-        elif (
-            self.ifWordIsInBoardAndFits(word, location, orientation)
-            and
-            self.ifWordIsInDictionary(word, location, orientation)
-            and
-            self.checkIfFirstTurn(word, orientation)
-        ):
-            return self.checkIfNextToTile(word, orientation)
+        if (self.ifPlayerHasWordAndFitsInBoard(word, location, orientation) and dict(word) and self.checkIfFirstTurn(word, orientation)):
+            return self.checkIfNextToTile(word, location, orientation)
+        elif (self.ifWordIsInBoardAndFits(word, location, orientation) and dict(word) and self.checkIfFirstTurn(word, orientation)):
+            return self.checkIfNextToTile(word, location, orientation)
 
     def isSpecial(self, letter):
-        if (
-            letter == "ú" 
-            or letter == "é" 
-            or letter == "í"
-            or letter == "ó"
-            or letter == "á"
-        ):
+        if (letter == "ú" or letter == "é" or letter == "í" or letter == "ó" or letter == "á"):
             letter = unidecode(letter)
             return letter
         else:
@@ -238,22 +201,16 @@ class ScrabbleGame:
     def addOneTileAppendScoreMoveOnePosRemovePlayerTile(self, orientation, i):
         global x, y
         if orientation == "V" or orientation == "v":
-            self.board.addTileToCell(x, y, Tile(
-                self.current_player.tiles[i].letter,
-                self.current_player.tiles[i].value
-            ))
+            self.board.addTileToCell(x, y, Tile(self.current_player.tiles[i].letter, self.current_player.tiles[i].value))
             self.score.append(self.board.getCellInBoard(x, y))
             x+=1
-            self.removeTileFromPlayer(i)
+            self.current_player.tiles.pop(i)
         elif orientation == "H" or orientation == "h":
-            self.board.addTileToCell(x, y, Tile(
-                self.current_player.tiles[i].letter,
-                self.current_player.tiles[i].value
-            ))
+            self.board.addTileToCell(x, y, Tile(self.current_player.tiles[i].letter, self.current_player.tiles[i].value))
             self.score.append(self.board.getCellInBoard(x, y))
             y+=1
-            self.removeTileFromPlayer(i)
-    
+            self.current_player.tiles.pop(i)
+
     def scoreMove(self, orientation):
         global x, y
         if orientation == "V" or orientation == "v":
@@ -270,19 +227,13 @@ class ScrabbleGame:
         for letter in word:
             for i in range(len(self.current_player.tiles)): 
                 letter = self.isSpecial(letter)
-                if (
-                    letter == str(self.board.getCellInBoard(x, y)).lower()
-                    and letter == self.current_player.tiles[i].letter.lower()
-                ):
+                if (letter == str(self.board.getCellInBoard(x, y)).lower() and letter == self.current_player.tiles[i].letter.lower()):
                     self.scoreMove(orientation)
                     break;
                 if letter == str(self.board.getCellInBoard(x, y)).lower():
                     self.scoreMove(orientation)
                     break;
-                if (
-                    letter == self.current_player.tiles[i].letter.lower()
-                    or letter == str(self.board.getCellInBoard(x, y)).lower()
-                ):
+                if (letter == self.current_player.tiles[i].letter.lower() or letter == str(self.board.getCellInBoard(x, y)).lower()):
                     self.addOneTileAppendScoreMoveOnePosRemovePlayerTile(orientation, i)
                     break;
         
