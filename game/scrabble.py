@@ -66,17 +66,6 @@ class ScrabbleGame:
             elif len(self.current_player.tiles) == 0 or len(self.bagTiles.tiles) == 0:
                 self.endGame()
 
-
-    def specialWord(self, word):
-        wordRes = ""
-        for _ in word:
-            wordRes += self.isSpecial(_)
-        return wordRes;
-
-    def iterateHorizontally(self, word, i):
-        global x, y
-        global res
-
     def iterateVerticallyAndHorizontally(self, word, i, orientation):
         global x, y
         global res
@@ -99,13 +88,21 @@ class ScrabbleGame:
                 if not len(word) == i+1:
                     y+=1 
 
+    def checkOrientation(self, word, orientation, i):
+        global x, y
+        global res
+        self.iterateVerticallyAndHorizontally(word, i, orientation)
+
     def isInRightOrder(self, word, orientation):
         global x, y
         global res
         res = ""
-        word = self.specialWord(word)
+        wordRes = ""
+        for _ in word:
+            wordRes += self.isSpecial(_)
+        word = wordRes
         for i in range(len(word)):
-            self.iterateVerticallyAndHorizontally(word, i, orientation)
+            self.checkOrientation(word, orientation, i)
         if res == word:
             return True;
         else:
