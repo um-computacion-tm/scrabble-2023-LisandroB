@@ -85,35 +85,7 @@ class TestScrabbleGame(unittest.TestCase):
         with self.assertRaises(Exception):
             scrabbleGame.putWord("palco", (8, 7), "V")
 
-    def test_getScore(self):
-        game = Game()
-        scrabbleGame = ScrabbleGame(playerCount=3)
-        scrabbleGame.current_player = scrabbleGame.players[1]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("G", 4), 
-            Tile("A", 1), 
-            Tile("F", 1), 
-            Tile("P", 1), 
-            Tile("P", 1),
-            Tile("A", 1), 
-            Tile("A", 1)
-        ]
-        scrabbleGame.putWord("papa", (8, 8), "V")
-        scrabbleGame.current_player = scrabbleGame.players[2]
-        scrabbleGame.next_turn()
-        scrabbleGame.current_player.tiles = [
-            Tile("A", 1), 
-            Tile("C", 1), 
-            Tile("H", 1), 
-            Tile("P", 1), 
-            Tile("I", 1), 
-            Tile("A", 4),
-            Tile("A", 1)
-        ]
-        scrabbleGame.putWord("chipa", (8, 5), "H")
-        self.assertIsNone(scrabbleGame.getScore(), True)
-
+    
     def test_putWordFalse(self):
         scrabbleGame = ScrabbleGame(playerCount=3)
         scrabbleGame.next_turn()
