@@ -1,17 +1,15 @@
 ## TO DO
-- chequear todos los tests por self asserts correctos
-- para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
-- docker run image
-- chequear codeclimate.yml de template en github, tienen que haber 0 issues found en el analisis
-- agregar dockerfile de otros repos
-- chequear env? [revisar si virtual environment está bien]
-- correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar
-- basically the entire game haha
 
 ### Moraleja [17/10/23]
 - aprendí a la fuerza que los tests sirven un montón
 
 ## DONE
+- basically the entire game haha
+- correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar
+- chequear env? [revisar si virtual environment está bien]
+- para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
+- docker run image
+- chequear codeclimate.yml de template en github, tienen que haber 0 issues found en el analisis
 - arreglar error donde si pongo palabra una coordenada antes se rompe
 - terminar de refactorizar code smells [codeclimate]
 - implementar endgame
