@@ -23,6 +23,8 @@ class Game():
 
     def getMenu(self, game):
         print(f" ")
+        print("------------------------------------------------".center(65))
+        print(f" ")
         txt = f"Turno {game.turn} - Jugador {game.current_player.id}"
         print(txt.center(65))
         self.showBoard(game.board)
@@ -47,12 +49,12 @@ class Game():
         location = (int(y), int(x))
         orientation = input("Ingrese orientacion (V/H): ")
         game.putWord(word, location, orientation)
-        game.current_player.fillTiles(game.bagTiles)
+        game.current_player.fillTiles(game.bagTiles, game)
     
     def changeTiles(self, game):
-        list = input("Elija qué tiles cambiar! Separe con coma, por ej: 1, 5, 3: ")
+        list = input("Elija qué tiles cambiar! Separe con coma y espacio, por ej // 1, 5, 3 //: ")
         res = [eval(i) for i in list.split(', ')]
-        game.current_player.swapTiles(game.bagTiles, res)
+        game.current_player.swapTiles(game.bagTiles, game, res)
         print(game.current_player.tiles)
         print("Tiles cambiadas!")
     
@@ -88,6 +90,7 @@ class Game():
                 choice = input("Qué desea hacer?: " )
                 if choice == "1":
                     self.playWord(game)
+                    print("------------------------------------------------".center(65))
                     break;
                 elif choice == "2":
                     self.changeTiles(game)
@@ -99,7 +102,7 @@ class Game():
                     self.passTurn(game)
                     break;
                 elif choice == "5":
-                    self.getScore()
+                    self.getScore(game)
                     time.sleep(2)
                 elif choice == "6":
                     self.quit(game)

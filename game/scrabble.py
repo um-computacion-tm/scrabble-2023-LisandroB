@@ -184,7 +184,6 @@ class ScrabbleGame:
         elif (self.ifWordIsInBoardAndFits(word, location, orientation) and dict(word) and self.checkIfFirstTurn(word, orientation)):
             return self.checkIfNextToTile(word, location, orientation)
 
-    
     def addOneTileAppendScoreMoveOnePosRemovePlayerTile(self, orientation, i):
         global x, y
         if orientation == "V" or orientation == "v":

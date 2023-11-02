@@ -26,7 +26,7 @@ class Board:
         elif game.turn > 0:
             if len(game.bagTiles.tiles) > 0 and len(game.current_player.tiles) > 0:
                 return True;
-            elif len(game.current_player.tiles) == 0 or len(game.bagTiles.tiles) == 0:
+            elif len(game.current_player.tiles) > 7 or len(game.bagTiles.tiles) == 0:
                 self.endGame(game)
 
     def endGame(self, game):

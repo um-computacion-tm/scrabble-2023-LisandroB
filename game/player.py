@@ -1,5 +1,6 @@
 import random
 from unidecode import unidecode
+from game.board import Board
 
 class Player:
     def __init__(self, bagTiles, id): 
@@ -30,12 +31,16 @@ class Player:
         else:
             return letter
 
-    def fillTiles(self, bagTiles):
+    def fillTiles(self, bagTiles, game):
+        board = Board()
         random.shuffle(bagTiles.tiles)
         for i in range(7 - len(self.tiles)):
-            self.tiles.append(bagTiles.tiles[i])
-            bagTiles.tiles.pop(i)
-    
+            if len(bagTiles.tiles) > len(self.tiles):
+                self.tiles.append(bagTiles.tiles[i])
+                bagTiles.tiles.pop(i)
+            else:
+                board.endGame(game)
+            
     def hasWord(self, word):
         res = []
         chk = []
@@ -55,13 +60,13 @@ class Player:
         else:
             return False
     
-    def swapTiles(self, bagTiles, startStop):
-            params = list(startStop)
-            res = []
-            for _ in params:
-                res.append(_-1)
-            mapTiles = map(self.tiles.__getitem__, res)
-            for _ in list(mapTiles):
-                bagTiles.tiles.append(_)
-                self.tiles.remove(_)
-            self.fillTiles(bagTiles)
+    def swapTiles(self, bagTiles, game, startStop):
+        params = list(startStop)
+        res = []
+        for _ in params:
+            res.append(_-1)
+        mapTiles = map(self.tiles.__getitem__, res)
+        for _ in list(mapTiles):
+            bagTiles.tiles.append(_)
+            self.tiles.remove(_)
+        self.fillTiles(bagTiles, game)

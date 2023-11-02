@@ -116,4 +116,4 @@ class TestCalculateWordValue(unittest.TestCase):
         self.assertEqual(value, 38)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)

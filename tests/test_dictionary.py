@@ -34,4 +34,4 @@ class TestDictionary(unittest.TestCase):
             validate_word('hola')
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)     

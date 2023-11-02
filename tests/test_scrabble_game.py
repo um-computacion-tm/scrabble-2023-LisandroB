@@ -551,7 +551,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1)
         ]
         scrabbleGame.putWord("gafas", (8, 8), "h")
-        game.showBoard(scrabbleGame.board)
         
     def test_putWordThroughCenterWrong(self):
         scrabbleGame = ScrabbleGame(playerCount=2)
@@ -690,7 +689,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("A", 1)
         ]
         scrabbleGame.putWord("miel", (8, 7), "h")
-        game.showBoard(scrabbleGame.board)
         scrabbleGame.current_player = scrabbleGame.players[1]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
@@ -923,7 +921,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("B", 1)
         ]
         scrabbleGame.putWord("coco", (7, 8), "v")
-        game.showBoard(scrabbleGame.board)
     
     def test_validateGameHorizontalConExtra(self):
         game = Game()
@@ -951,7 +948,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("P", 1)
         ]
         scrabbleGame.putWord("palco", (7, 7), "v")
-        game.showBoard(scrabbleGame.board)
     
     def test_validateIsNextToTile(self):
         game = Game()
@@ -1007,7 +1003,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("M", 1)
         ]
         scrabbleGame.putWord("ñoqui", (8, 6), "v")
-        game.showBoard(scrabbleGame.board)
         
     def test_putWordMuchasTildes(self):
         game = Game()
@@ -1059,7 +1054,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("M", 1)
         ]
         scrabbleGame.putWord("araña", (11, 11), "v")
-        game.showBoard(scrabbleGame.board)
     
     def test_putWord0a100(self):
         game = Game()
@@ -1182,7 +1176,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("E", 1), 
             Tile("D", 1)
         ]
-        game.showBoard(scrabbleGame.board)
         scrabbleGame.putWord("toca", (9, 6), "v")
         scrabbleGame.current_player = scrabbleGame.players[0]
         scrabbleGame.next_turn()
@@ -1280,7 +1273,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("H", 1)
         ]
         scrabbleGame.putWord("sueca", (15, 6), "h")
-        game.showBoard(scrabbleGame.board)
 
     def test_putWordNotFoundInDictionary(self):
         game = Game()
@@ -1312,7 +1304,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("B", 1)
         ]
         scrabbleGame.putWord("dúos", (8, 8), "h")
-        game.showBoard(scrabbleGame.board)
         scrabbleGame.current_player = scrabbleGame.players[1]
         scrabbleGame.next_turn()
         scrabbleGame.current_player.tiles = [
@@ -1352,7 +1343,6 @@ class TestScrabbleGame(unittest.TestCase):
             Tile("I", 1), 
         ]
         scrabbleGame.putWord("gerundio", (8, 12), "v")
-        game.showBoard(scrabbleGame.board)
 
     def test_putWordNotFoundInDictionary3(self):
         game = Game()
@@ -1381,5 +1371,32 @@ class TestScrabbleGame(unittest.TestCase):
         with self.assertRaises(Exception):
             scrabbleGame.putWord("jota", (6, 9), "v")
 
+    def test_putWordNotFoundInDictionary3(self):
+        game = Game()
+        scrabbleGame = ScrabbleGame(playerCount=2)
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("H", 8), 
+            Tile("L", 1), 
+            Tile("D", 8), 
+            Tile("O", 3),
+            Tile("N", 1), 
+            Tile("A", 1), 
+            Tile("E", 1), 
+        ]
+        scrabbleGame.putWord("dona", (8, 8), "h")
+        scrabbleGame.next_turn()
+        scrabbleGame.current_player.tiles = [
+            Tile("C", 8), 
+            Tile("J", 1), 
+            Tile("H", 8), 
+            Tile("E", 3),
+            Tile("O", 1), 
+            Tile("X", 1), 
+            Tile("D", 1), 
+        ]
+        with self.assertRaises(Exception):
+            scrabbleGame.putWord("dedo", (7, 8), "v")
+
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)   

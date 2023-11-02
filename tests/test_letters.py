@@ -11,4 +11,4 @@ class TestLetters(unittest.TestCase):
             LettersSpa.threePoints]), True)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True) 

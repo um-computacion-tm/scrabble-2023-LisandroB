@@ -46,7 +46,7 @@ class testCli(unittest.TestCase):
         with self.assertRaises(Exception):
             game.cli()
     
-    @patch('builtins.input', side_effect=[3, "4"])
+    @patch('builtins.input', side_effect=[3, "4", "1"])
     def test_firstTurnThenPass(self, mock):
         game = Game()
         with self.assertRaises(Exception):
@@ -74,7 +74,7 @@ class testCli(unittest.TestCase):
         with self.assertRaises(Exception):
             game.cli()
         
-    @patch('builtins.input', side_effect=[2, "2", [1, 5]])
+    @patch('builtins.input', side_effect=[2, "2", "1, 5"])
     def test_firstTurnThenSecondChoice(self, mock):
         game = Game()
         with self.assertRaises(Exception):
@@ -84,7 +84,6 @@ class testCli(unittest.TestCase):
     def test_twoPlayersThenExit(self, mock):
         game = Game()
         game.cli()
-    
     #wip
     @patch.object(ScrabbleGame(3), "current_player", return_value=[
             Tile("C", 8), 
@@ -99,4 +98,4 @@ class testCli(unittest.TestCase):
         scrabbleGame = ScrabbleGame(2)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)

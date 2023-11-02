@@ -105,4 +105,4 @@ class TestBoard(unittest.TestCase):
             board.addTileToCell(8, 8, Tile(123, 1))
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)  
