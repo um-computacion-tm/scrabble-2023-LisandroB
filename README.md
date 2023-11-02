@@ -37,4 +37,4 @@ Have fun!
 
 <a href="https://codeclimate.com/github/um-computacion-tm/scrabble-2023-LisandroB/test_coverage"><img src="https://api.codeclimate.com/v1/badges/5f39fbeaa1318a0b90e2/test_coverage" /></a>
 
-Author Lisandro Brasolin, 
+Author Lisandro Brasolin, Computación 2023 TM - Universidad de Mendoza, Facultad de Ingeniería
