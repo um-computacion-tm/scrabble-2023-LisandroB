@@ -5,7 +5,10 @@ class Cell:
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
         self.tile = tile
-        
+
+    def __str__(self):
+        return str(self.tile).lower()
+
     def __repr__(self):
         if self.tile:
             return repr(self.tile)
@@ -22,5 +25,8 @@ class Cell:
         else:
             return self.tile.value
     
-    def addValue(self, tile):
+    def addTile(self, tile):
         self.tile = tile;
+
+    def noneTile(self):
+        self.tile = None;

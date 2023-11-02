@@ -14,7 +14,8 @@ class TestBoard(unittest.TestCase):
     
     def test_word_out_of_board(self):
         board = Board()
-        self.assertEqual(board.validate_word_inside_board("Facultad", (14, 4), "H"), False)
+        with self.assertRaises(Exception):
+            board.validate_word_inside_board("Facultad", (4, 14), "H")
 
     def test_board_is_empty(self):
         board = Board()
@@ -27,6 +28,13 @@ class TestBoard(unittest.TestCase):
         board.addTileToCell(9, 7, Tile('S', 1))
         board.addTileToCell(10, 7, Tile('A', 1))
         self.assertEqual(board.isEmpty(), False)
+
+    def test_addTileToCell(self):
+        board = Board()
+        board.addTileToCell(15, 15, Tile('C', 1))
+        self.assertEqual(board.getCellInBoard(15, 15).tile.letter, "C")
+        board.addTileToCell(15, 15, Tile('C', 1))
+        self.assertEqual(board.getCellInBoard(15, 15).tile.letter, "C")
 
     def test_addTileInCorner(self):
         board = Board()
@@ -69,16 +77,18 @@ class TestBoard(unittest.TestCase):
 
     def test_place_word_empty_board_horizontal_wrong(self):
         board = Board()
-        self.assertEqual(board.validate_word_inside_board("Facultad", (13, 4), "H"), False)
+        with self.assertRaises(Exception):
+            board.validate_word_inside_board("Facultad", (4, 13), "H")
 
     def test_place_word_empty_board_vertical_fine(self):
         board = Board()
-        self.assertEqual(board.validate_word_inside_board("Facultad", (4, 7), "V"), True)
+        self.assertEqual(board.validate_word_inside_board("Facultad", (7, 4), "V"), True)
 
     def test_boardEmptyPlaceWrongVerticalWord(self):
         board = Board()
-        self.assertEqual(board.validate_word_inside_board("Facultad", (6, 11), "V"), False)
-    
+        with self.assertRaises(Exception):
+            board.validate_word_inside_board("Facultad", (11, 6), "V")
+
     def test_boardNotEmptyPlaceRightHorizontalWord(self):
         board = Board()
         board.addTileToCell(7, 7, Tile('C', 1))
@@ -88,5 +98,11 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.isEmpty(), False)
         self.assertEqual(board.validate_word_inside_board("Facultad", (6, 6), "H"), True)
 
+    def test_wrongTileToCell(self):
+        board = Board()
+        board.addTileToCell(8, 8, Tile("A", 1))
+        with self.assertRaises(Exception):
+            board.addTileToCell(8, 8, Tile(123, 1))
+
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)  

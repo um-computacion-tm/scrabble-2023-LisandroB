@@ -2,11 +2,10 @@ import unittest
 from unittest.mock import patch
 from game.dictionary import (
     validate_word,
-    DictionaryConnectionError,
 )
 
 
-class TestDiccionary(unittest.TestCase):
+class TestDictionary(unittest.TestCase):
     @patch(
         'pyrae.dle.search_by_word',
         return_value=unittest.mock.MagicMock(
@@ -23,15 +22,16 @@ class TestDiccionary(unittest.TestCase):
         )
     )
     def test_invalid(self, search_by_word_patched):
-        self.assertFalse(validate_word('asd'))
+        with self.assertRaises(Exception):
+            validate_word('asd')
 
     @patch(
         'pyrae.dle.search_by_word',
         return_value=None
     )
     def test_connection_error(self, search_by_word_patched):
-        with self.assertRaises(DictionaryConnectionError):
+        with self.assertRaises(Exception):
             validate_word('hola')
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)     

@@ -34,4 +34,4 @@ class TestBagTiles(unittest.TestCase):
         self.assertEqual(len(bag.tiles), 96)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)   

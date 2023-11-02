@@ -1,18 +1,51 @@
 ## TO DO
-- lógica de cli.py, juego en general
-- remove tiles from player when putting on board
-- add tiles to players from bagtiles after turn
+- chequear todos los tests por self asserts correctos
+- para instalar: crear nueva dockerfile, ingresar el dockerfile, instalar
+- docker run image
+- chequear codeclimate.yml de template en github, tienen que haber 0 issues found en el analisis
+- agregar dockerfile de otros repos
 - chequear env? [revisar si virtual environment está bien]
-- sacar linea comentada donde chequea la clase dict [scrabble.py, validateWord]
-- add missing scrabble.py functions [put, take, ...]
-- check if function is removing tiles from bagtiles when creating players 
-- limites dependiendo de si hay tiles o no al poner, choque entre tiles
-- refactor code smells [codeclimate]
-- basically the entire game haha
-- redo cli.py [following directions] 
 - correr con docker run {imagen}, correr todos los tests/coverage, ahi jugar
+- basically the entire game haha
+
+### Moraleja [17/10/23]
+- aprendí a la fuerza que los tests sirven un montón
 
 ## DONE
+- arreglar error donde si pongo palabra una coordenada antes se rompe
+- terminar de refactorizar code smells [codeclimate]
+- implementar endgame
+- eliminar None de print en cli
+- evitar poner letras cuando palabra existe en diccionario, palabra entra en tablero pero no tengo las letras suficientes
+- palabras con ñ no funcionan
+- solo poner palabras consiguientes a tiles
+- jugar hasta romper
+- al iniciar solo palabra que tenga una tile en celda central [8, 8]
+- agregar más tests rigurosos a test_cli.py [2]
+- agregar función de cambiar tiles
+- evitar que termine turno con segunda elección en cli [2]
+- agregar exceptions para cada error del jugador, que no rompa el loop de juego
+- fixear funcion de poner palabra, pone doble letra al terminar
+- agregar lógica de ver palabra y chequear tiles consiguientes para poner o no 
+- limites dependiendo de si hay tiles o no al poner [1],
+- fixear concatenacion de si hay tile en player y en board, qué hacer? [1]
+- arreglar score [no se guarda]
+- choque entre tiles
+- chequear si hasword y hasletters son iguales, if so borrar la que no sirva
+- printear scoreboard en client [bien]
+- arreglar score
+- lógica de cli.py, juego en general
+- agregar funciones de score a client
+- agregar opciones de menú [swappear tiles después terminar turno, poner palabra, shuffle] a client
+- redo cli.py [following directions] 
+- check if function is removing tiles from bagtiles when creating players 
+- readme/changelog en ingles
+- add missing scrabble.py functions [put, take, ...]
+- add tiles to players from bagtiles after turn
+- turnos
+- arreglar putWord [no deja de agregar tiles después de encontrar]
+- remove tiles from player when putting on board
+- pasar a rama develop somehow
 - board multipliers arreglados
 - added online api as dictionary in spa
 - reworked player/bagtile interaction
